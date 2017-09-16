@@ -10,7 +10,39 @@
 		073CFD8B1F6DBEE100C1BD29 /* KSOTooltip.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFD891F6DBEE100C1BD29 /* KSOTooltip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFD931F6DBF7E00C1BD29 /* KSOTooltipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFD911F6DBF7E00C1BD29 /* KSOTooltipViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFD941F6DBF7E00C1BD29 /* KSOTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */; };
+		073CFD9E1F6DC11E00C1BD29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFD9D1F6DC11E00C1BD29 /* main.m */; };
+		073CFDA11F6DC11E00C1BD29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDA01F6DC11E00C1BD29 /* AppDelegate.m */; };
+		073CFDA41F6DC11E00C1BD29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDA31F6DC11E00C1BD29 /* ViewController.m */; };
+		073CFDA71F6DC11E00C1BD29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 073CFDA51F6DC11E00C1BD29 /* Main.storyboard */; };
+		073CFDA91F6DC11E00C1BD29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */; };
+		073CFDAC1F6DC11E00C1BD29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */; };
+		073CFDB11F6DC13B00C1BD29 /* KSOTooltip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */; };
+		073CFDB21F6DC13B00C1BD29 /* KSOTooltip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		073CFDB31F6DC13B00C1BD29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 073CFD7B1F6DBEB600C1BD29 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 073CFD851F6DBEE100C1BD29;
+			remoteInfo = "KSOTooltip-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		073CFDB51F6DC13B00C1BD29 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				073CFDB21F6DC13B00C1BD29 /* KSOTooltip.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSOTooltip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,6 +51,16 @@
 		073CFD911F6DBF7E00C1BD29 /* KSOTooltipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipViewController.h; sourceTree = "<group>"; };
 		073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOTooltipViewController.m; sourceTree = "<group>"; };
 		073CFD951F6DBF9900C1BD29 /* KSOTooltip-Info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KSOTooltip-Info.h"; sourceTree = "<group>"; };
+		073CFD9A1F6DC11E00C1BD29 /* Demo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		073CFD9D1F6DC11E00C1BD29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		073CFD9F1F6DC11E00C1BD29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		073CFDA01F6DC11E00C1BD29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		073CFDA21F6DC11E00C1BD29 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		073CFDA31F6DC11E00C1BD29 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		073CFDA61F6DC11E00C1BD29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		073CFDAB1F6DC11E00C1BD29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		073CFDAD1F6DC11E00C1BD29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +71,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		073CFD971F6DC11E00C1BD29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073CFDB11F6DC13B00C1BD29 /* KSOTooltip.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -36,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				073CFD881F6DBEE100C1BD29 /* KSOTooltip */,
+				073CFD9B1F6DC11E00C1BD29 /* Demo-iOS */,
 				073CFD871F6DBEE100C1BD29 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */,
+				073CFD9A1F6DC11E00C1BD29 /* Demo-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,6 +126,30 @@
 				073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */,
 			);
 			name = Source;
+			sourceTree = "<group>";
+		};
+		073CFD9B1F6DC11E00C1BD29 /* Demo-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				073CFD9F1F6DC11E00C1BD29 /* AppDelegate.h */,
+				073CFDA01F6DC11E00C1BD29 /* AppDelegate.m */,
+				073CFDA21F6DC11E00C1BD29 /* ViewController.h */,
+				073CFDA31F6DC11E00C1BD29 /* ViewController.m */,
+				073CFDA51F6DC11E00C1BD29 /* Main.storyboard */,
+				073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */,
+				073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */,
+				073CFDAD1F6DC11E00C1BD29 /* Info.plist */,
+				073CFD9C1F6DC11E00C1BD29 /* Supporting Files */,
+			);
+			path = "Demo-iOS";
+			sourceTree = "<group>";
+		};
+		073CFD9C1F6DC11E00C1BD29 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				073CFD9D1F6DC11E00C1BD29 /* main.m */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,6 +185,25 @@
 			productReference = 073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		073CFD991F6DC11E00C1BD29 /* Demo-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 073CFDAE1F6DC11E00C1BD29 /* Build configuration list for PBXNativeTarget "Demo-iOS" */;
+			buildPhases = (
+				073CFD961F6DC11E00C1BD29 /* Sources */,
+				073CFD971F6DC11E00C1BD29 /* Frameworks */,
+				073CFD981F6DC11E00C1BD29 /* Resources */,
+				073CFDB51F6DC13B00C1BD29 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				073CFDB41F6DC13B00C1BD29 /* PBXTargetDependency */,
+			);
+			name = "Demo-iOS";
+			productName = "Demo-iOS";
+			productReference = 073CFD9A1F6DC11E00C1BD29 /* Demo-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -124,6 +219,11 @@
 						DevelopmentTeam = 74KPPW2K35;
 						ProvisioningStyle = Automatic;
 					};
+					073CFD991F6DC11E00C1BD29 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 74KPPW2K35;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 073CFD7E1F6DBEB600C1BD29 /* Build configuration list for PBXProject "KSOTooltip" */;
@@ -132,6 +232,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 073CFD7A1F6DBEB600C1BD29;
 			productRefGroup = 073CFD871F6DBEE100C1BD29 /* Products */;
@@ -139,6 +240,7 @@
 			projectRoot = "";
 			targets = (
 				073CFD851F6DBEE100C1BD29 /* KSOTooltip-iOS */,
+				073CFD991F6DC11E00C1BD29 /* Demo-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -148,6 +250,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		073CFD981F6DC11E00C1BD29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073CFDAC1F6DC11E00C1BD29 /* LaunchScreen.storyboard in Resources */,
+				073CFDA91F6DC11E00C1BD29 /* Assets.xcassets in Resources */,
+				073CFDA71F6DC11E00C1BD29 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +274,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		073CFD961F6DC11E00C1BD29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073CFDA41F6DC11E00C1BD29 /* ViewController.m in Sources */,
+				073CFDA11F6DC11E00C1BD29 /* AppDelegate.m in Sources */,
+				073CFD9E1F6DC11E00C1BD29 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		073CFDB41F6DC13B00C1BD29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 073CFD851F6DBEE100C1BD29 /* KSOTooltip-iOS */;
+			targetProxy = 073CFDB31F6DC13B00C1BD29 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		073CFDA51F6DC11E00C1BD29 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				073CFDA61F6DC11E00C1BD29 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				073CFDAB1F6DC11E00C1BD29 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		073CFD7F1F6DBEB600C1BD29 /* Debug */ = {
@@ -226,7 +375,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/KSOTooltip/KSOTooltip-iOS-Info.plist";
-				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/KSOTooltip-Info.h";
+				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/KSOTooltip/KSOTooltip-Info.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -286,7 +435,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/KSOTooltip/KSOTooltip-iOS-Info.plist";
-				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/KSOTooltip-Info.h";
+				INFOPLIST_PREFIX_HEADER = "$(SRCROOT)/KSOTooltip/KSOTooltip-Info.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -300,6 +449,110 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		073CFDAF1F6DC11E00C1BD29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 74KPPW2K35;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Demo-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.KSOTooltip.Demo-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		073CFDB01F6DC11E00C1BD29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 74KPPW2K35;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Demo-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.KSOTooltip.Demo-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -320,6 +573,14 @@
 			buildConfigurations = (
 				073CFD8D1F6DBEE100C1BD29 /* Debug */,
 				073CFD8E1F6DBEE100C1BD29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		073CFDAE1F6DC11E00C1BD29 /* Build configuration list for PBXNativeTarget "Demo-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				073CFDAF1F6DC11E00C1BD29 /* Debug */,
+				073CFDB01F6DC11E00C1BD29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
