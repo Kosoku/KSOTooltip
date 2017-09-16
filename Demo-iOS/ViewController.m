@@ -29,4 +29,8 @@
     
 }
 
+- (IBAction)_showTooltipAction:(UIButton *)sender {
+    [self KSO_presentTooltipViewControllerWithText:@"The tooltip text that should wrap because it is too long" sourceView:sender sourceRect:CGRectZero animated:YES completion:nil];
+}
+
 @end

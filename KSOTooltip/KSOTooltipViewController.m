@@ -14,31 +14,92 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import "KSOTooltipViewController.h"
+#import "KSOTooltipPresentationController.h"
+#import "KSOTooltipAnimation.h"
+#import "KSOTooltipView.h"
 
-@interface KSOTooltipViewController ()
-
+@interface KSOTooltipViewController () <UIViewControllerTransitioningDelegate>
+@property (strong,nonatomic) UIButton *dismissButton;
+@property (strong,nonatomic) KSOTooltipView *tooltipView;
 @end
 
 @implementation KSOTooltipViewController
+#pragma mark *** Subclass Overrides ***
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return UIModalPresentationCustom;
+}
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+        return nil;
+    
+    [self setTransitioningDelegate:self];
+    
+    _minimumEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+    _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    
+    return self;
+}
+#pragma mark -
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setDismissButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.dismissButton addTarget:self action:@selector(_dismissButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.dismissButton];
+    
+    [self.view addSubview:self.tooltipView];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillLayoutSubviews {
+    [self.dismissButton setFrame:self.view.bounds];
+    
+    CGRect sourceRect = CGRectIsEmpty(self.sourceRect) ? self.sourceView.bounds : self.sourceRect;
+    
+    sourceRect = [self.view convertRect:[self.view.window convertRect:[self.sourceView convertRect:sourceRect toView:nil] fromWindow:nil] fromView:nil];
+    
+    CGSize size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+    CGRect rect = CGRectMake(CGRectGetMinX(sourceRect), CGRectGetMaxY(sourceRect), size.width, size.height);
+    
+    // check right edge
+    if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.right) {
+        rect.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(rect) - self.minimumEdgeInsets.right;
+    }
+    
+    [self.tooltipView setFrame:rect];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark UIViewControllerTransitioningDelegate
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    KSOTooltipAnimation *retval = [[KSOTooltipAnimation alloc] init];
+    
+    [retval setPresenting:YES];
+    
+    return retval;
 }
-*/
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[KSOTooltipAnimation alloc] init];
+}
+- (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {
+    return [[KSOTooltipPresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
+}
+#pragma mark *** Public Methods ***
+#pragma mark Properties
+@dynamic text;
+- (NSString *)text {
+    return self.tooltipView.text;
+}
+- (void)setText:(NSString *)text {
+    [self.tooltipView setText:text];
+}
+#pragma mark *** Private Methods ***
+#pragma mark Actions
+- (IBAction)_dismissButtonAction:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark Notifications
+- (void)_contentSizeCategoryDidChange:(NSNotification *)note {
+    [self.view setNeedsLayout];
+}
 
 @end

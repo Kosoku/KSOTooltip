@@ -1,5 +1,5 @@
 //
-//  KSOTooltip.h
+//  KSOTooltipAnimation.h
 //  KSOTooltip
 //
 //  Created by William Towe on 9/16/17.
@@ -15,14 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for KSOTooltip.
-FOUNDATION_EXPORT double KSOTooltipVersionNumber;
+@interface KSOTooltipAnimation : NSObject <UIViewControllerAnimatedTransitioning>
 
-//! Project version string for KSOTooltip.
-FOUNDATION_EXPORT const unsigned char KSOTooltipVersionString[];
+@property (assign,nonatomic,getter=isPresenting) BOOL presenting;
 
-// In this header, you should import all the public headers of your framework using statements like #import <KSOTooltip/PublicHeader.h>
-
-#import <KSOTooltip/KSOTooltipDefines.h>
-#import <KSOTooltip/KSOTooltipViewController.h>
-#import <KSOTooltip/UIViewController+KSOTooltipExtensions.h>
+@end

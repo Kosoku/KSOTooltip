@@ -1,5 +1,5 @@
 //
-//  KSOTooltip.h
+//  KSOTooltipView.h
 //  KSOTooltip
 //
 //  Created by William Towe on 9/16/17.
@@ -15,14 +15,10 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for KSOTooltip.
-FOUNDATION_EXPORT double KSOTooltipVersionNumber;
+@interface KSOTooltipView : UIView
 
-//! Project version string for KSOTooltip.
-FOUNDATION_EXPORT const unsigned char KSOTooltipVersionString[];
+@property (copy,nonatomic) NSString *text;
 
-// In this header, you should import all the public headers of your framework using statements like #import <KSOTooltip/PublicHeader.h>
+@property (assign,nonatomic) UIEdgeInsets edgeInsets;
 
-#import <KSOTooltip/KSOTooltipDefines.h>
-#import <KSOTooltip/KSOTooltipViewController.h>
-#import <KSOTooltip/UIViewController+KSOTooltipExtensions.h>
+@end

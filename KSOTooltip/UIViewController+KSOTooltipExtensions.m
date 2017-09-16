@@ -1,5 +1,5 @@
 //
-//  KSOTooltip.h
+//  UIViewController+KSOTooltipExtensions.m
 //  KSOTooltip
 //
 //  Created by William Towe on 9/16/17.
@@ -13,16 +13,19 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+#import "UIViewController+KSOTooltipExtensions.h"
+#import "KSOTooltipViewController.h"
 
-//! Project version number for KSOTooltip.
-FOUNDATION_EXPORT double KSOTooltipVersionNumber;
+@implementation UIViewController (KSOTooltipExtensions)
 
-//! Project version string for KSOTooltip.
-FOUNDATION_EXPORT const unsigned char KSOTooltipVersionString[];
+- (void)KSO_presentTooltipViewControllerWithText:(NSString *)text sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect animated:(BOOL)animated completion:(dispatch_block_t)completion {
+    KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
+    
+    [viewController setText:text];
+    [viewController setSourceView:sourceView];
+    [viewController setSourceRect:sourceRect];
+    
+    [self presentViewController:viewController animated:animated completion:completion];
+}
 
-// In this header, you should import all the public headers of your framework using statements like #import <KSOTooltip/PublicHeader.h>
-
-#import <KSOTooltip/KSOTooltipDefines.h>
-#import <KSOTooltip/KSOTooltipViewController.h>
-#import <KSOTooltip/UIViewController+KSOTooltipExtensions.h>
+@end
