@@ -18,8 +18,6 @@
 		073CFDAC1F6DC11E00C1BD29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */; };
 		073CFDB11F6DC13B00C1BD29 /* KSOTooltip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */; };
 		073CFDB21F6DC13B00C1BD29 /* KSOTooltip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		073CFDB81F6DC32A00C1BD29 /* KSOTooltipPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDB61F6DC32A00C1BD29 /* KSOTooltipPresentationController.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		073CFDB91F6DC32A00C1BD29 /* KSOTooltipPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDB71F6DC32A00C1BD29 /* KSOTooltipPresentationController.m */; };
 		073CFDBC1F6DC54C00C1BD29 /* KSOTooltipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDBA1F6DC54C00C1BD29 /* KSOTooltipAnimation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		073CFDBD1F6DC54C00C1BD29 /* KSOTooltipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */; };
 		073CFDC01F6DCEC000C1BD29 /* KSOTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,8 +68,6 @@
 		073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		073CFDAB1F6DC11E00C1BD29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		073CFDAD1F6DC11E00C1BD29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		073CFDB61F6DC32A00C1BD29 /* KSOTooltipPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipPresentationController.h; sourceTree = "<group>"; };
-		073CFDB71F6DC32A00C1BD29 /* KSOTooltipPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOTooltipPresentationController.m; sourceTree = "<group>"; };
 		073CFDBA1F6DC54C00C1BD29 /* KSOTooltipAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipAnimation.h; sourceTree = "<group>"; };
 		073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOTooltipAnimation.m; sourceTree = "<group>"; };
 		073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipView.h; sourceTree = "<group>"; };
@@ -144,8 +140,6 @@
 				073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */,
 				073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */,
 				073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */,
-				073CFDB61F6DC32A00C1BD29 /* KSOTooltipPresentationController.h */,
-				073CFDB71F6DC32A00C1BD29 /* KSOTooltipPresentationController.m */,
 				073CFDBA1F6DC54C00C1BD29 /* KSOTooltipAnimation.h */,
 				073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */,
 				073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */,
@@ -188,7 +182,6 @@
 			files = (
 				073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */,
 				073CFD8B1F6DBEE100C1BD29 /* KSOTooltip.h in Headers */,
-				073CFDB81F6DC32A00C1BD29 /* KSOTooltipPresentationController.h in Headers */,
 				073CFD931F6DBF7E00C1BD29 /* KSOTooltipViewController.h in Headers */,
 				073CFDC31F6DCFF300C1BD29 /* KSOTooltipDefines.h in Headers */,
 				073CFDC01F6DCEC000C1BD29 /* KSOTooltipView.h in Headers */,
@@ -303,7 +296,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				073CFD941F6DBF7E00C1BD29 /* KSOTooltipViewController.m in Sources */,
-				073CFDB91F6DC32A00C1BD29 /* KSOTooltipPresentationController.m in Sources */,
 				073CFDC11F6DCEC000C1BD29 /* KSOTooltipView.m in Sources */,
 				073CFDBD1F6DC54C00C1BD29 /* KSOTooltipAnimation.m in Sources */,
 				073CFDC71F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m in Sources */,
@@ -611,6 +603,7 @@
 				073CFD8E1F6DBEE100C1BD29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		073CFDAE1F6DC11E00C1BD29 /* Build configuration list for PBXNativeTarget "Demo-iOS" */ = {
 			isa = XCConfigurationList;
@@ -619,6 +612,7 @@
 				073CFDB01F6DC11E00C1BD29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
