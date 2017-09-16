@@ -33,13 +33,23 @@
     
     if (self.isPresenting) {
         [viewController.view setAlpha:0.0];
+        [self.tooltipView setTransform:CGAffineTransformMakeScale(0.5, 0.5)];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0 options:0 animations:^{
+            [viewController.view setAlpha:1.0];
+            [self.tooltipView setTransform:CGAffineTransformIdentity];
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
     }
-    
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        [viewController.view setAlpha:self.isPresenting ? 1.0 : 0.0];
-    } completion:^(BOOL finished) {
-        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
-    }];
+    else {
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            [viewController.view setAlpha:0.0];
+            [self.tooltipView setTransform:CGAffineTransformMakeScale(2.0, 2.0)];
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        }];
+    }
 }
 
 @end

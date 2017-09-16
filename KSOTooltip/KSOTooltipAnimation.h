@@ -18,5 +18,6 @@
 @interface KSOTooltipAnimation : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (assign,nonatomic,getter=isPresenting) BOOL presenting;
+@property (strong,nonatomic) UIView *tooltipView;
 
 @end

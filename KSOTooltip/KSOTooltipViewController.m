@@ -52,6 +52,10 @@
     [self.view addSubview:self.tooltipView];
 }
 - (void)viewWillLayoutSubviews {
+    if (self.isBeingDismissed) {
+        return;
+    }
+    
     [self.dismissButton setFrame:self.view.bounds];
     
     CGRect sourceRect = CGRectIsEmpty(self.sourceRect) ? self.sourceView.bounds : self.sourceRect;
@@ -73,11 +77,16 @@
     KSOTooltipAnimation *retval = [[KSOTooltipAnimation alloc] init];
     
     [retval setPresenting:YES];
+    [retval setTooltipView:self.tooltipView];
     
     return retval;
 }
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [[KSOTooltipAnimation alloc] init];
+    KSOTooltipAnimation *retval = [[KSOTooltipAnimation alloc] init];
+    
+    [retval setTooltipView:self.tooltipView];
+    
+    return retval;
 }
 #pragma mark *** Public Methods ***
 #pragma mark Properties
