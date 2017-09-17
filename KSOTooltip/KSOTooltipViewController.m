@@ -58,9 +58,26 @@
     
     [self.dismissButton setFrame:self.view.bounds];
     
-    CGRect sourceRect = CGRectIsEmpty(self.sourceRect) ? self.sourceView.bounds : self.sourceRect;
+    UIView *sourceView;
     
-    sourceRect = [self.view convertRect:[self.view.window convertRect:[self.sourceView convertRect:sourceRect toView:nil] fromWindow:nil] fromView:nil];
+    if (self.sourceView != nil) {
+        sourceView = self.sourceView;
+    }
+    else if (self.barButtonItem != nil) {
+        if ([self.barButtonItem respondsToSelector:@selector(view)]) {
+            id view = [self.barButtonItem valueForKey:@"view"];
+            
+            if ([view isKindOfClass:UIView.class]) {
+                sourceView = view;
+            }
+        }
+    }
+    
+    NSAssert(sourceView != nil, @"sourceView or barButtonItem must not be nil!");
+    
+    CGRect sourceRect = CGRectIsEmpty(self.sourceRect) ? sourceView.bounds : self.sourceRect;
+    
+    sourceRect = [self.view convertRect:[self.view.window convertRect:[sourceView convertRect:sourceRect toView:nil] fromWindow:nil] fromView:nil];
     
     CGSize size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
     CGRect rect = CGRectMake(CGRectGetMinX(sourceRect), CGRectGetMaxY(sourceRect), size.width, size.height);

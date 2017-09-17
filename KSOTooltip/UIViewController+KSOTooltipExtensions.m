@@ -27,5 +27,13 @@
     
     [self presentViewController:viewController animated:animated completion:completion];
 }
+- (void)KSO_presentTooltipViewControllerWithText:(NSString *)text barButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated completion:(dispatch_block_t)completion {
+    KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
+    
+    [viewController setText:text];
+    [viewController setBarButtonItem:barButtonItem];
+    
+    [self presentViewController:viewController animated:animated completion:completion];
+}
 
 @end

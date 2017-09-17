@@ -13,7 +13,6 @@
 		073CFD9E1F6DC11E00C1BD29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFD9D1F6DC11E00C1BD29 /* main.m */; };
 		073CFDA11F6DC11E00C1BD29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDA01F6DC11E00C1BD29 /* AppDelegate.m */; };
 		073CFDA41F6DC11E00C1BD29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDA31F6DC11E00C1BD29 /* ViewController.m */; };
-		073CFDA71F6DC11E00C1BD29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 073CFDA51F6DC11E00C1BD29 /* Main.storyboard */; };
 		073CFDA91F6DC11E00C1BD29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */; };
 		073CFDAC1F6DC11E00C1BD29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */; };
 		073CFDB11F6DC13B00C1BD29 /* KSOTooltip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */; };
@@ -25,6 +24,7 @@
 		073CFDC31F6DCFF300C1BD29 /* KSOTooltipDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFDC71F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */; };
+		07F91A1F1F6DF3CA008DFB8D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,6 @@
 		073CFDA01F6DC11E00C1BD29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		073CFDA21F6DC11E00C1BD29 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		073CFDA31F6DC11E00C1BD29 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		073CFDA61F6DC11E00C1BD29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		073CFDAB1F6DC11E00C1BD29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		073CFDAD1F6DC11E00C1BD29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +74,7 @@
 		073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipDefines.h; sourceTree = "<group>"; };
 		073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KSOTooltipExtensions.h"; sourceTree = "<group>"; };
 		073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KSOTooltipExtensions.m"; sourceTree = "<group>"; };
+		07F91A1E1F6DF3CA008DFB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,7 @@
 				073CFDA01F6DC11E00C1BD29 /* AppDelegate.m */,
 				073CFDA21F6DC11E00C1BD29 /* ViewController.h */,
 				073CFDA31F6DC11E00C1BD29 /* ViewController.m */,
-				073CFDA51F6DC11E00C1BD29 /* Main.storyboard */,
+				07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */,
 				073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */,
 				073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */,
 				073CFDAD1F6DC11E00C1BD29 /* Info.plist */,
@@ -283,8 +283,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				073CFDAC1F6DC11E00C1BD29 /* LaunchScreen.storyboard in Resources */,
+				07F91A1F1F6DF3CA008DFB8D /* ViewController.xib in Resources */,
 				073CFDA91F6DC11E00C1BD29 /* Assets.xcassets in Resources */,
-				073CFDA71F6DC11E00C1BD29 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,20 +323,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		073CFDA51F6DC11E00C1BD29 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				073CFDA61F6DC11E00C1BD29 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				073CFDAB1F6DC11E00C1BD29 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07F91A1E1F6DF3CA008DFB8D /* Base */,
+			);
+			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

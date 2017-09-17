@@ -23,14 +23,25 @@
 
 @implementation ViewController
 
+- (NSString *)title {
+    return @"Demo";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationItem setLeftBarButtonItems:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_showTooltipAction:)]]];
     
+    [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithTitle:@"Show Tooltip" style:UIBarButtonItemStylePlain target:self action:@selector(_showTooltipAction:)]]];
 }
 
-- (IBAction)_showTooltipAction:(UIButton *)sender {
-    [self KSO_presentTooltipViewControllerWithText:@"The tooltip text that should wrap because it is too long" sourceView:sender sourceRect:CGRectZero animated:YES completion:nil];
+- (IBAction)_showTooltipAction:(id)sender {
+    if ([sender isKindOfClass:UIView.class]) {
+        [self KSO_presentTooltipViewControllerWithText:@"The tooltip is being presented from a button" sourceView:sender sourceRect:CGRectZero animated:YES completion:nil];
+    }
+    else {
+        [self KSO_presentTooltipViewControllerWithText:@"This tooltip is being presented from a bar button item" barButtonItem:sender animated:YES completion:nil];
+    }
 }
 
 @end
