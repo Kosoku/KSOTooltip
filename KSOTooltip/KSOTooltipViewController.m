@@ -54,6 +54,8 @@
     [super viewDidLoad];
     
     [self setDismissButton:[UIButton buttonWithType:UIButtonTypeCustom]];
+    [self.dismissButton setAccessibilityLabel:NSLocalizedString(@"Close", @"dismiss button accessibility label")];
+    [self.dismissButton setAccessibilityHint:NSLocalizedString(@"Close the tooltip", @"dismiss button accessibility hint")];
     [self.dismissButton addTarget:self action:@selector(_dismissButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.dismissButton];
     
