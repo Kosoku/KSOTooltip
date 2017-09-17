@@ -1,0 +1,1 @@
+find $SRCROOT/KSOTooltip/ -name "*.m" | xargs genstrings -o $SRCROOT/KSOTooltip/en.lproj

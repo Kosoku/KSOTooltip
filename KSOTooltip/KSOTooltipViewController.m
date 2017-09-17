@@ -16,6 +16,7 @@
 #import "KSOTooltipViewController.h"
 #import "KSOTooltipAnimation.h"
 #import "KSOTooltipView.h"
+#import "NSBundle+KSOTooltipPrivateExtensions.h"
 
 #import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
@@ -54,8 +55,8 @@
     [super viewDidLoad];
     
     [self setDismissButton:[UIButton buttonWithType:UIButtonTypeCustom]];
-    [self.dismissButton setAccessibilityLabel:NSLocalizedString(@"Close", @"dismiss button accessibility label")];
-    [self.dismissButton setAccessibilityHint:NSLocalizedString(@"Close the tooltip", @"dismiss button accessibility hint")];
+    [self.dismissButton setAccessibilityLabel:NSLocalizedStringWithDefaultValue(@"DISMISS_BUTTON_ACCESSIBILITY_LABEL", nil, [NSBundle KSO_tooltipFrameworkBundle], @"Close", @"dismiss button accessibility label")];
+    [self.dismissButton setAccessibilityHint:NSLocalizedStringWithDefaultValue(@"DISMISS_BUTTON_ACCESSIBILITY_HINT", nil, [NSBundle KSO_tooltipFrameworkBundle], @"Close the tooltip", @"dismiss button accessibility hint")];
     [self.dismissButton addTarget:self action:@selector(_dismissButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.dismissButton];
     

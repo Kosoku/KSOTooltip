@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072FDDFD1F6E5BE600E73661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 072FDDFB1F6E5BE600E73661 /* Localizable.strings */; };
+		072FDE001F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		072FDE011F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */; };
 		073CFD8B1F6DBEE100C1BD29 /* KSOTooltip.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFD891F6DBEE100C1BD29 /* KSOTooltip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFD931F6DBF7E00C1BD29 /* KSOTooltipViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFD911F6DBF7E00C1BD29 /* KSOTooltipViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFD941F6DBF7E00C1BD29 /* KSOTooltipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */; };
@@ -64,6 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		072FDDFC1F6E5BE600E73661 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KSOTooltipPrivateExtensions.h"; sourceTree = "<group>"; };
+		072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KSOTooltipPrivateExtensions.m"; sourceTree = "<group>"; };
 		073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSOTooltip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		073CFD891F6DBEE100C1BD29 /* KSOTooltip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSOTooltip.h; sourceTree = "<group>"; };
 		073CFD8A1F6DBEE100C1BD29 /* KSOTooltip-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KSOTooltip-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 			children = (
 				073CFD8A1F6DBEE100C1BD29 /* KSOTooltip-iOS-Info.plist */,
 				073CFD951F6DBF9900C1BD29 /* KSOTooltip-Info.h */,
+				072FDDFB1F6E5BE600E73661 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -170,6 +177,8 @@
 				073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */,
 				073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */,
 				073CFDBF1F6DCEC000C1BD29 /* KSOTooltipView.m */,
+				072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */,
+				072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 				073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */,
 				073CFD8B1F6DBEE100C1BD29 /* KSOTooltip.h in Headers */,
 				073CFD931F6DBF7E00C1BD29 /* KSOTooltipViewController.h in Headers */,
+				072FDE001F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h in Headers */,
 				073CFDC31F6DCFF300C1BD29 /* KSOTooltipDefines.h in Headers */,
 				073CFDC01F6DCEC000C1BD29 /* KSOTooltipView.h in Headers */,
 				073CFDBC1F6DC54C00C1BD29 /* KSOTooltipAnimation.h in Headers */,
@@ -234,6 +244,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 073CFD8C1F6DBEE100C1BD29 /* Build configuration list for PBXNativeTarget "KSOTooltip-iOS" */;
 			buildPhases = (
+				072FDDFA1F6E5B3F00E73661 /* genstrings */,
 				073CFD811F6DBEE100C1BD29 /* Sources */,
 				073CFD821F6DBEE100C1BD29 /* Frameworks */,
 				073CFD831F6DBEE100C1BD29 /* Headers */,
@@ -313,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072FDDFD1F6E5BE600E73661 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +340,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		072FDDFA1F6E5B3F00E73661 /* genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = genstrings;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = scripts/./genstrings.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		073CFD811F6DBEE100C1BD29 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -337,6 +366,7 @@
 				073CFDC11F6DCEC000C1BD29 /* KSOTooltipView.m in Sources */,
 				073CFDBD1F6DC54C00C1BD29 /* KSOTooltipAnimation.m in Sources */,
 				073CFDC71F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m in Sources */,
+				072FDE011F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +391,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		072FDDFB1F6E5BE600E73661 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				072FDDFC1F6E5BE600E73661 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -454,7 +492,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.KSOTooltip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.ksotooltip;
 				PRODUCT_NAME = KSOTooltip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -519,7 +557,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.KSOTooltip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kosoku.ksotooltip;
 				PRODUCT_NAME = KSOTooltip;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -578,7 +616,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.KSOTooltip.Demo-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.ksotooltip.Demo-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -626,7 +664,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.KSOTooltip.Demo-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kosoku.ksotooltip.Demo-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
