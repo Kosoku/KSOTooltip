@@ -332,7 +332,9 @@
             accessorySize = [self.accessoryView sizeThatFits:CGSizeMake(CGRectGetWidth(bounds), CGRectGetHeight(bounds))];
         }
         
-        retval = CGRectMake(0, CGRectGetMaxY([self _backgroundRectForBounds:bounds]) - accessorySize.height, CGRectGetWidth(bounds), accessorySize.height);
+        CGRect backgroundRect = [self _backgroundRectForBounds:bounds];
+        
+        retval = CGRectMake(CGRectGetMinX(backgroundRect), CGRectGetMaxY(backgroundRect) - accessorySize.height, CGRectGetWidth(backgroundRect), accessorySize.height);
     }
     
     return retval;

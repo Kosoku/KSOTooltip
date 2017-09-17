@@ -161,7 +161,7 @@
     
     KSTLog(@"allowed directions: %@",@(directions));
     
-    [viewController setAllowedArrowDirections:directions];
+    [viewController setAllowedArrowDirections:KSOTooltipArrowDirectionLeft];
     
     if (arc4random_uniform(2) % 2 == 0) {
         if (arc4random_uniform(2) % 2 == 0) {

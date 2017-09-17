@@ -236,8 +236,8 @@
     }
     
     // check top edge
-    if (CGRectGetMinY(rect) < self.minimumEdgeInsets.top) {
-        rect.origin.y = self.minimumEdgeInsets.top;
+    if (CGRectGetMinY(rect) < self.topLayoutGuide.length + self.minimumEdgeInsets.top) {
+        rect.origin.y = self.topLayoutGuide.length + self.minimumEdgeInsets.top;
     }
     // check bottom edge
     else if (CGRectGetMaxY(rect) > CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.bottom) {
