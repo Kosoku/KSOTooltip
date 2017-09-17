@@ -16,6 +16,20 @@
 #ifndef __KSO_TOOLTIP_DEFINES__
 #define __KSO_TOOLTIP_DEFINES__
 
+#import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, KSOTooltipArrowStyle) {
+    KSOTooltipArrowStyleDefault,
+    KSOTooltipArrowStyleNone
+};
+
+typedef NS_OPTIONS(NSUInteger, KSOTooltipArrowDirection) {
+    KSOTooltipArrowDirectionUnknown = 0,
+    KSOTooltipArrowDirectionUp = 1 << 0,
+    KSOTooltipArrowDirectionLeft = 1 << 1,
+    KSOTooltipArrowDirectionDown = 1 << 2,
+    KSOTooltipArrowDirectionRight = 1 << 3,
+    KSOTooltipArrowDirectionAll = KSOTooltipArrowDirectionUp|KSOTooltipArrowDirectionLeft|KSOTooltipArrowDirectionDown|KSOTooltipArrowDirectionRight
+};
 
 #endif

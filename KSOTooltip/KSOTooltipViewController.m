@@ -17,6 +17,8 @@
 #import "KSOTooltipAnimation.h"
 #import "KSOTooltipView.h"
 
+#import <Stanley/Stanley.h>
+
 @interface KSOTooltipViewController () <UIViewControllerTransitioningDelegate>
 @property (strong,nonatomic) UIButton *dismissButton;
 @property (strong,nonatomic) KSOTooltipView *tooltipView;
@@ -34,7 +36,9 @@
     
     [self setTransitioningDelegate:self];
     
-    _minimumEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+    _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
+    _allowedArrowDirections = KSOTooltipArrowDirectionAll;
+    
     _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
@@ -80,14 +84,36 @@
     
     CGRect sourceRect = CGRectIsEmpty(self.sourceRect) ? sourceView.bounds : self.sourceRect;
     
+    [self.tooltipView setSourceView:sourceView];
+    [self.tooltipView setSourceRect:sourceRect];
+    
     sourceRect = [self.view convertRect:[self.view.window convertRect:[sourceView convertRect:sourceRect toView:nil] fromWindow:nil] fromView:nil];
     
     CGSize size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
-    CGRect rect = CGRectMake(CGRectGetMinX(sourceRect), CGRectGetMaxY(sourceRect), size.width, size.height);
+    CGRect rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(sourceRect), size.width, size.height), sourceRect);
     
+    // check left edge
+    if (CGRectGetMinX(rect) < self.minimumEdgeInsets.left) {
+        rect.origin.x = self.minimumEdgeInsets.left;
+    }
     // check right edge
-    if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.right) {
+    else if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.right) {
         rect.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(rect) - self.minimumEdgeInsets.right;
+    }
+    
+    // check top edge
+    if (CGRectGetMinY(rect) < self.minimumEdgeInsets.top) {
+        rect.origin.y = self.minimumEdgeInsets.top;
+    }
+    // check bottom edge
+    else if (CGRectGetMaxY(rect) > CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.bottom) {
+        rect.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(rect) - self.minimumEdgeInsets.bottom;
+        
+        if (CGRectIntersectsRect(rect, sourceRect)) {
+            rect.origin.y = CGRectGetMinY(sourceRect) - CGRectGetHeight(rect);
+            
+            [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionDown];
+        }
     }
     
     [self.tooltipView setFrame:rect];
@@ -108,6 +134,10 @@
     
     return retval;
 }
+#pragma mark KDIDynamicTypeObject
+- (SEL)KDI_dynamicTypeSetFontSelector {
+    return @selector(setFont:);
+}
 #pragma mark *** Public Methods ***
 #pragma mark Properties
 @dynamic text;
@@ -116,6 +146,23 @@
 }
 - (void)setText:(NSString *)text {
     [self.tooltipView setText:text];
+}
+@dynamic font;
+- (UIFont *)font {
+    return self.tooltipView.font;
+}
+- (void)setFont:(UIFont *)font {
+    [self.tooltipView setFont:font];
+}
+- (KSOTooltipArrowDirection)arrowDirection {
+    return self.tooltipView.arrowDirection;
+}
+@dynamic arrowStyle;
+- (KSOTooltipArrowStyle)arrowStyle {
+    return self.tooltipView.arrowStyle;
+}
+- (void)setArrowStyle:(KSOTooltipArrowStyle)arrowStyle {
+    [self.tooltipView setArrowStyle:arrowStyle];
 }
 #pragma mark *** Private Methods ***
 #pragma mark Actions

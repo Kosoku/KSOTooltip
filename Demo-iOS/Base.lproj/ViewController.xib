@@ -26,11 +26,38 @@
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="dae-rN-RFf"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkR-Bd-BAj">
+                    <rect key="frame" x="16" y="318" width="89" height="30"/>
+                    <state key="normal" title="Show Tooltip"/>
+                    <connections>
+                        <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="4QC-m4-Egv"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riR-ts-vMU">
+                    <rect key="frame" x="270" y="318" width="89" height="30"/>
+                    <state key="normal" title="Show Tooltip"/>
+                    <connections>
+                        <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="L21-1Q-4vZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpe-eh-vvR">
+                    <rect key="frame" x="143" y="617" width="89" height="30"/>
+                    <state key="normal" title="Show Tooltip"/>
+                    <connections>
+                        <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="02Y-5w-ay6"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="4Gx-ty-2cl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="C2a-iK-tgY"/>
                 <constraint firstItem="4Gx-ty-2cl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SOD-re-Qhw"/>
+                <constraint firstItem="lpe-eh-vvR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SgW-In-ACF"/>
+                <constraint firstAttribute="bottom" secondItem="lpe-eh-vvR" secondAttribute="bottom" constant="20" id="az2-o2-qcg"/>
+                <constraint firstItem="riR-ts-vMU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="d98-Ne-zTo"/>
+                <constraint firstAttribute="trailing" secondItem="riR-ts-vMU" secondAttribute="trailing" constant="16" id="hqk-JD-8OJ"/>
+                <constraint firstItem="DkR-Bd-BAj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ilR-71-oAM"/>
+                <constraint firstItem="DkR-Bd-BAj" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uBy-pN-Pgh"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>

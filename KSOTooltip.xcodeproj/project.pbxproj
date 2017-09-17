@@ -24,7 +24,16 @@
 		073CFDC31F6DCFF300C1BD29 /* KSOTooltipDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFDC71F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */; };
+		0752D1731F6E0871002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1721F6E0871002BA4CC /* Stanley.framework */; };
+		0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; };
+		0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07F91A1F1F6DF3CA008DFB8D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */; };
+		07FB2F5F1F6E0D51001A4C8F /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */; };
+		07FB2F611F6E0D58001A4C8F /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F601F6E0D58001A4C8F /* Ditko.framework */; };
+		07FB2F621F6E0D58001A4C8F /* Ditko.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F601F6E0D58001A4C8F /* Ditko.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07FB2F641F6E0DB6001A4C8F /* Loki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F631F6E0DB6001A4C8F /* Loki.framework */; };
+		07FB2F661F6E0DBC001A4C8F /* Loki.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F651F6E0DBC001A4C8F /* Loki.framework */; };
+		07FB2F671F6E0DBC001A4C8F /* Loki.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F651F6E0DBC001A4C8F /* Loki.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				073CFDB21F6DC13B00C1BD29 /* KSOTooltip.framework in Embed Frameworks */,
+				07FB2F671F6E0DBC001A4C8F /* Loki.framework in Embed Frameworks */,
+				0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */,
+				07FB2F621F6E0D58001A4C8F /* Ditko.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,7 +86,13 @@
 		073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipDefines.h; sourceTree = "<group>"; };
 		073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KSOTooltipExtensions.h"; sourceTree = "<group>"; };
 		073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KSOTooltipExtensions.m"; sourceTree = "<group>"; };
+		0752D1721F6E0871002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
+		0752D1741F6E087A002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F91A1E1F6DF3CA008DFB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ViewController.xib; sourceTree = "<group>"; };
+		07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ditko.framework; path = "Vendor/Ditko/build/Debug-iphoneos/Ditko.framework"; sourceTree = "<group>"; };
+		07FB2F601F6E0D58001A4C8F /* Ditko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ditko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07FB2F631F6E0DB6001A4C8F /* Loki.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Loki.framework; path = "Vendor/Loki/build/Debug-iphoneos/Loki.framework"; sourceTree = "<group>"; };
+		07FB2F651F6E0DBC001A4C8F /* Loki.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loki.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +100,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07FB2F641F6E0DB6001A4C8F /* Loki.framework in Frameworks */,
+				07FB2F5F1F6E0D51001A4C8F /* Ditko.framework in Frameworks */,
+				0752D1731F6E0871002BA4CC /* Stanley.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +111,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				073CFDB11F6DC13B00C1BD29 /* KSOTooltip.framework in Frameworks */,
+				07FB2F661F6E0DBC001A4C8F /* Loki.framework in Frameworks */,
+				0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */,
+				07FB2F611F6E0D58001A4C8F /* Ditko.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +126,7 @@
 				073CFD881F6DBEE100C1BD29 /* KSOTooltip */,
 				073CFD9B1F6DC11E00C1BD29 /* Demo-iOS */,
 				073CFD871F6DBEE100C1BD29 /* Products */,
+				0752D1711F6E0871002BA4CC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +196,19 @@
 				073CFD9D1F6DC11E00C1BD29 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0752D1711F6E0871002BA4CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07FB2F651F6E0DBC001A4C8F /* Loki.framework */,
+				07FB2F631F6E0DB6001A4C8F /* Loki.framework */,
+				07FB2F601F6E0D58001A4C8F /* Ditko.framework */,
+				07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */,
+				0752D1741F6E087A002BA4CC /* Stanley.framework */,
+				0752D1721F6E0871002BA4CC /* Stanley.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +426,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-iphoneos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -454,6 +498,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-iphoneos",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
