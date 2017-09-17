@@ -30,7 +30,7 @@
 		0752D1731F6E0871002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1721F6E0871002BA4CC /* Stanley.framework */; };
 		0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; };
 		0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		07C914211F6F102F008368F5 /* KSOTooltipPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */; };
+		07C914211F6F102F008368F5 /* KSOTooltipPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		07C914221F6F102F008368F5 /* KSOTooltipPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */; };
 		07F91A1F1F6DF3CA008DFB8D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */; };
 		07FB2F5F1F6E0D51001A4C8F /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */; };
