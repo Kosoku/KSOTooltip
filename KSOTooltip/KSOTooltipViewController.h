@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic) NSString *text;
 
 @property (strong,nonatomic) UIFont *font;
+@property (copy,nonatomic) UIFontTextStyle textStyle;
 
 @property (strong,nonatomic,nullable) UIView *sourceView;
 @property (assign,nonatomic) CGRect sourceRect;

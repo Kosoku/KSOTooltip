@@ -36,12 +36,13 @@
     
     [self setTransitioningDelegate:self];
     
+    _textStyle = UIFontTextStyleFootnote;
     _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     _allowedArrowDirections = KSOTooltipArrowDirectionAll;
     
     _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
     
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_contentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+    [NSObject KDI_registerDynamicTypeObject:self forTextStyle:_textStyle];
     
     return self;
 }
@@ -153,6 +154,20 @@
 }
 - (void)setFont:(UIFont *)font {
     [self.tooltipView setFont:font];
+    
+    if (self.isViewLoaded) {
+        [self.view setNeedsLayout];
+    }
+}
+- (void)setTextStyle:(UIFontTextStyle)textStyle {
+    _textStyle = textStyle;
+    
+    if (_textStyle == nil) {
+        [NSObject KDI_unregisterDynamicTypeObject:self];
+    }
+    else {
+        [NSObject KDI_registerDynamicTypeObject:self forTextStyle:_textStyle];
+    }
 }
 - (KSOTooltipArrowDirection)arrowDirection {
     return self.tooltipView.arrowDirection;
@@ -168,10 +183,6 @@
 #pragma mark Actions
 - (IBAction)_dismissButtonAction:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-}
-#pragma mark Notifications
-- (void)_contentSizeCategoryDidChange:(NSNotification *)note {
-    [self.view setNeedsLayout];
 }
 
 @end

@@ -37,7 +37,6 @@
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     [_label setNumberOfLines:0];
     [_label setTextColor:UIColor.whiteColor];
-    [_label setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]];
     [self addSubview:_label];
     
     return self;
