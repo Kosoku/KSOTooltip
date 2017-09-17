@@ -136,6 +136,7 @@
 		073CFD901F6DBF2100C1BD29 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */,
 				073CFD911F6DBF7E00C1BD29 /* KSOTooltipViewController.h */,
 				073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */,
 				073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */,
@@ -144,7 +145,6 @@
 				073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */,
 				073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */,
 				073CFDBF1F6DCEC000C1BD29 /* KSOTooltipView.m */,
-				073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
