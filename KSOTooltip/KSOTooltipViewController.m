@@ -89,10 +89,42 @@
     [self.tooltipView setSourceView:sourceView];
     [self.tooltipView setSourceRect:sourceRect];
     
+    if (self.allowedArrowDirections & KSOTooltipArrowDirectionUp) {
+        [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionUp];
+    }
+    else if (self.allowedArrowDirections & KSOTooltipArrowDirectionDown) {
+        [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionDown];
+    }
+    else if (self.allowedArrowDirections & KSOTooltipArrowDirectionLeft) {
+        [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionLeft];
+    }
+    else if (self.allowedArrowDirections & KSOTooltipArrowDirectionRight) {
+        [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionRight];
+    }
+    
+    NSAssert(self.tooltipView.arrowDirection != KSOTooltipArrowDirectionUnknown, @"arrowDirection cannot be unknown!");
+    
     sourceRect = [self.view convertRect:[self.view.window convertRect:[sourceView convertRect:sourceRect toView:nil] fromWindow:nil] fromView:nil];
     
     CGSize size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
-    CGRect rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(sourceRect), size.width, size.height), sourceRect);
+    CGRect rect = CGRectZero;
+    
+    switch (self.tooltipView.arrowDirection) {
+        case KSOTooltipArrowDirectionUp:
+            rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(sourceRect), size.width, size.height), sourceRect);
+            break;
+        case KSOTooltipArrowDirectionDown:
+            rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMinY(sourceRect) - size.height, size.width, size.height), sourceRect);
+            break;
+        case KSOTooltipArrowDirectionLeft:
+            rect = KSTCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(sourceRect), 0, size.width, size.height), sourceRect);
+            break;
+        case KSOTooltipArrowDirectionRight:
+            rect = KSTCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(sourceRect) - size.width, 0, size.width, size.height), sourceRect);
+            break;
+        default:
+            break;
+    }
     
     // check left edge
     if (CGRectGetMinX(rect) < self.minimumEdgeInsets.left) {
@@ -110,11 +142,101 @@
     // check bottom edge
     else if (CGRectGetMaxY(rect) > CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.bottom) {
         rect.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(rect) - self.minimumEdgeInsets.bottom;
+    }
+    
+    if (CGRectIntersectsRect(rect, sourceRect)) {
+        if (self.allowedArrowDirections & KSOTooltipArrowDirectionUp) {
+            [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionUp];
+            
+            size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+            rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(sourceRect), size.width, size.height), sourceRect);
+        }
+        else if (self.allowedArrowDirections & KSOTooltipArrowDirectionDown) {
+            [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionDown];
+            
+            size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+            rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMinY(sourceRect) - size.height, size.width, size.height), sourceRect);
+        }
+        else if (self.allowedArrowDirections & KSOTooltipArrowDirectionLeft) {
+            [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionLeft];
+            
+            size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+            rect = KSTCGRectCenterInRectVertically(CGRectMake(CGRectGetMaxX(sourceRect), 0, size.width, size.height), sourceRect);
+        }
+        else if (self.allowedArrowDirections & KSOTooltipArrowDirectionRight) {
+            [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionRight];
+            
+            size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+            rect = KSTCGRectCenterInRectVertically(CGRectMake(CGRectGetMinX(sourceRect) - size.width, 0, size.width, size.height), sourceRect);
+        }
+        
+        // check left edge
+        if (CGRectGetMinX(rect) < self.minimumEdgeInsets.left) {
+            rect.origin.x = self.minimumEdgeInsets.left;
+        }
+        // check right edge
+        else if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.right) {
+            rect.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(rect) - self.minimumEdgeInsets.right;
+        }
+        // check top edge
+        if (CGRectGetMinY(rect) < self.minimumEdgeInsets.top) {
+            rect.origin.y = self.minimumEdgeInsets.top;
+        }
+        // check bottom edge
+        else if (CGRectGetMaxY(rect) > CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.bottom) {
+            rect.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(rect) - self.minimumEdgeInsets.bottom;
+            
+            if (CGRectIntersectsRect(rect, sourceRect)) {
+                [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionDown];
+                
+                rect.origin.y = CGRectGetMinY(sourceRect) - size.height;
+            }
+        }
         
         if (CGRectIntersectsRect(rect, sourceRect)) {
-            rect.origin.y = CGRectGetMinY(sourceRect) - CGRectGetHeight(rect);
+            [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionUp];
             
+            size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+            rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMaxY(sourceRect), size.width, size.height), sourceRect);
+            
+            // check left edge
+            if (CGRectGetMinX(rect) < self.minimumEdgeInsets.left) {
+                rect.origin.x = self.minimumEdgeInsets.left;
+            }
+            // check right edge
+            else if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.right) {
+                rect.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(rect) - self.minimumEdgeInsets.right;
+            }
+            // check top edge
+            if (CGRectGetMinY(rect) < self.minimumEdgeInsets.top) {
+                rect.origin.y = self.minimumEdgeInsets.top;
+            }
+            // check bottom edge
+            else if (CGRectGetMaxY(rect) > CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.bottom) {
+                rect.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(rect) - self.minimumEdgeInsets.bottom;
+                
+                if (CGRectIntersectsRect(rect, sourceRect)) {
+                    [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionDown];
+                    
+                    rect.origin.y = CGRectGetMinY(sourceRect) - size.height;
+                }
+            }
+        }
+        
+        if (CGRectIntersectsRect(rect, sourceRect)) {
             [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionDown];
+            
+            size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+            rect = KSTCGRectCenterInRectHorizontally(CGRectMake(0, CGRectGetMinY(sourceRect) - size.height, size.width, size.height), sourceRect);
+            
+            // check left edge
+            if (CGRectGetMinX(rect) < self.minimumEdgeInsets.left) {
+                rect.origin.x = self.minimumEdgeInsets.left;
+            }
+            // check right edge
+            else if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.right) {
+                rect.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(rect) - self.minimumEdgeInsets.right;
+            }
         }
     }
     
@@ -148,6 +270,20 @@
 }
 - (void)setText:(NSString *)text {
     [self.tooltipView setText:text];
+}
+@dynamic backgroundColor;
+- (UIColor *)backgroundColor {
+    return self.tooltipView.fillColor;
+}
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [self.tooltipView setFillColor:backgroundColor];
+}
+@dynamic textColor;
+- (UIColor *)textColor {
+    return self.tooltipView.textColor;
+}
+- (void)setTextColor:(UIColor *)textColor {
+    [self.tooltipView setTextColor:textColor];
 }
 @dynamic font;
 - (UIFont *)font {

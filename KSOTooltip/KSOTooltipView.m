@@ -30,7 +30,7 @@
     
     _edgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     
-    _arrowDirection = KSOTooltipArrowDirectionUp;
+    _arrowDirection = KSOTooltipArrowDirectionUnknown;
     _arrowWidth = 8.0;
     _arrowHeight = 8.0;
     _cornerRadius = 5.0;
@@ -46,22 +46,20 @@
 - (void)tintColorDidChange {
     [super tintColorDidChange];
     
-    [self setNeedsDisplay];
+    if (self.fillColor == nil) {
+        [self setNeedsDisplay];
+    }
 }
 
 - (BOOL)isOpaque {
     return NO;
 }
 - (void)drawRect:(CGRect)rect {
-    if (self.tintColor == nil) {
-        return;
-    }
-    
     CGRect backgroundRect = [self _backgroundRectForBounds:self.bounds];
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:backgroundRect cornerRadius:self.cornerRadius];
     
-    [self.tintColor setFill];
+    [self.fillColor ?: self.tintColor setFill];
     
     [path fill];
     
@@ -99,7 +97,7 @@
                 break;
         }
         
-        [self.tintColor setFill];
+        [self.fillColor ?: self.tintColor setFill];
         
         [path fill];
     }
@@ -183,6 +181,18 @@
     
     [self setNeedsDisplay];
     [self setNeedsLayout];
+}
+- (void)setFillColor:(UIColor *)fillColor {
+    _fillColor = fillColor;
+    
+    [self setNeedsDisplay];
+}
+@dynamic textColor;
+- (UIColor *)textColor {
+    return self.label.textColor;
+}
+- (void)setTextColor:(UIColor *)textColor {
+    [self.label setTextColor:textColor];
 }
 @dynamic font;
 - (UIFont *)font {

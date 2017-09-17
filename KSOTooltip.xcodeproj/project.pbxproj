@@ -19,7 +19,7 @@
 		073CFDB21F6DC13B00C1BD29 /* KSOTooltip.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		073CFDBC1F6DC54C00C1BD29 /* KSOTooltipAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDBA1F6DC54C00C1BD29 /* KSOTooltipAnimation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		073CFDBD1F6DC54C00C1BD29 /* KSOTooltipAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */; };
-		073CFDC01F6DCEC000C1BD29 /* KSOTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		073CFDC01F6DCEC000C1BD29 /* KSOTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		073CFDC11F6DCEC000C1BD29 /* KSOTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDBF1F6DCEC000C1BD29 /* KSOTooltipView.m */; };
 		073CFDC31F6DCFF300C1BD29 /* KSOTooltipDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };

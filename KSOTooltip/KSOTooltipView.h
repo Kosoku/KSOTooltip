@@ -16,9 +16,14 @@
 #import <UIKit/UIKit.h>
 #import <KSOTooltip/KSOTooltipDefines.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface KSOTooltipView : UIView
 
 @property (copy,nonatomic) NSString *text;
+
+@property (strong,nonatomic) UIColor *fillColor;
+@property (strong,nonatomic) UIColor *textColor;
 
 @property (strong,nonatomic) UIFont *font;
 
@@ -34,3 +39,5 @@
 @property (assign,nonatomic) CGRect sourceRect;
 
 @end
+
+NS_ASSUME_NONNULL_END

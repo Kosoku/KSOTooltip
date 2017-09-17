@@ -16,6 +16,8 @@
 #import "ViewController.h"
 
 #import <KSOTooltip/KSOTooltip.h>
+#import <Ditko/Ditko.h>
+#import <Stanley/Stanley.h>
 
 @interface ViewController ()
 @property (strong,nonatomic) UIBarButtonItem *customBarButtonItem;
@@ -45,15 +47,29 @@
 }
 
 - (IBAction)_showTooltipAction:(id)sender {
+    KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
+    KSOTooltipArrowDirection directions = arc4random_uniform((uint32_t)KSOTooltipArrowDirectionAll) + KSOTooltipArrowDirectionUp;
+    
+    KSTLog(@"allowed directions: %@",@(directions));
+    
+    [viewController setAllowedArrowDirections:directions];
+    
     if ([sender isKindOfClass:UISegmentedControl.class]) {
-        [self KSO_presentTooltipViewControllerWithText:@"This tooltip is being presented from a bar button item with a custom view" barButtonItem:self.customBarButtonItem animated:YES completion:nil];
+        [viewController setText:@"This tooltip is being presented from a bar button item with a custom view"];
+        [viewController setBarButtonItem:self.customBarButtonItem];
     }
     else if ([sender isKindOfClass:UIView.class]) {
-        [self KSO_presentTooltipViewControllerWithText:@"The tooltip is being presented from a button" sourceView:sender sourceRect:CGRectZero animated:YES completion:nil];
+        [viewController setBackgroundColor:KDIColorRandomRGB()];
+        [viewController setTextColor:[viewController.backgroundColor KDI_contrastingColor]];
+        [viewController setText:@"The tooltip is being presented from a button"];
+        [viewController setSourceView:sender];
     }
     else {
-        [self KSO_presentTooltipViewControllerWithText:@"This tooltip is being presented from a bar button item" barButtonItem:sender animated:YES completion:nil];
+        [viewController setText:@"This tooltip is being presented from a bar button item"];
+        [viewController setBarButtonItem:sender];
     }
+    
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 @end
