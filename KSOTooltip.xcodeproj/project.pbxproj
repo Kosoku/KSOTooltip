@@ -72,6 +72,7 @@
 		072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KSOTooltipPrivateExtensions.m"; sourceTree = "<group>"; };
 		072FDE021F6E5E3200E73661 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		072FDE031F6E5E5600E73661 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		072FDE111F6EBD2D00E73661 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073CFD861F6DBEE100C1BD29 /* KSOTooltip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSOTooltip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		073CFD891F6DBEE100C1BD29 /* KSOTooltip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSOTooltip.h; sourceTree = "<group>"; };
 		073CFD8A1F6DBEE100C1BD29 /* KSOTooltip-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KSOTooltip-iOS-Info.plist"; sourceTree = "<group>"; };
@@ -311,6 +312,7 @@
 				Base,
 				ja,
 				es,
+				ro,
 			);
 			mainGroup = 073CFD7A1F6DBEB600C1BD29;
 			productRefGroup = 073CFD871F6DBEE100C1BD29 /* Products */;
@@ -401,6 +403,7 @@
 				072FDDFC1F6E5BE600E73661 /* en */,
 				072FDE021F6E5E3200E73661 /* ja */,
 				072FDE031F6E5E5600E73661 /* es */,
+				072FDE111F6EBD2D00E73661 /* ro */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
