@@ -17,6 +17,7 @@
 #import "KSOTooltipAnimation.h"
 #import "KSOTooltipView.h"
 #import "NSBundle+KSOTooltipPrivateExtensions.h"
+#import "KSOTooltipPresentationController.h"
 
 #import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
@@ -63,6 +64,53 @@
     [self.view addSubview:self.tooltipView];
 }
 - (void)viewWillLayoutSubviews {
+//    if (self.isBeingDismissed) {
+//        return;
+//    }
+//    
+//    [self.dismissButton setFrame:self.view.bounds];
+//    
+//    UIView *sourceView;
+//    
+//    if (self.sourceView != nil) {
+//        sourceView = self.sourceView;
+//    }
+//    else if (self.barButtonItem != nil) {
+//        if (self.barButtonItem.customView != nil) {
+//            sourceView = self.barButtonItem.customView;
+//        }
+//        else if ([self.barButtonItem respondsToSelector:@selector(view)]) {
+//            id view = [self.barButtonItem valueForKey:@"view"];
+//            
+//            if ([view isKindOfClass:UIView.class]) {
+//                sourceView = view;
+//            }
+//        }
+//    }
+//    
+//    NSAssert(sourceView != nil, @"sourceView or barButtonItem must not be nil!");
+//    
+//    CGRect sourceRect = CGRectIsEmpty(self.sourceRect) ? sourceView.bounds : self.sourceRect;
+//    
+//    [self.tooltipView setSourceView:sourceView];
+//    [self.tooltipView setSourceRect:sourceRect];
+//    
+//    sourceRect = [self.view convertRect:[self.view.window convertRect:[sourceView convertRect:sourceRect toView:nil] fromWindow:nil] fromView:nil];
+//    
+//    CGRect rect = CGRectZero;
+//    KSOTooltipArrowDirection direction = self.allowedArrowDirections;
+//    
+//    while (![self _getRect:&rect sourceRect:sourceRect allowedArrowDirections:direction]) {
+//        direction &= ~self.tooltipView.arrowDirection;
+//        
+//        if (direction == KSOTooltipArrowDirectionUnknown) {
+//            direction = KSOTooltipArrowDirectionAll;
+//        }
+//    }
+//    
+//    [self.tooltipView setFrame:rect];
+}
+- (void)viewDidLayoutSubviews {
     if (self.isBeingDismissed) {
         return;
     }
@@ -115,7 +163,6 @@
     
     [retval setPresenting:YES];
     [retval setTooltipView:self.tooltipView];
-    [retval setBackgroundColor:self.backgroundColor];
     
     return retval;
 }
@@ -123,6 +170,12 @@
     KSOTooltipAnimation *retval = [[KSOTooltipAnimation alloc] init];
     
     [retval setTooltipView:self.tooltipView];
+    
+    return retval;
+}
+- (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {
+    KSOTooltipPresentationController *retval = [[KSOTooltipPresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
+    
     [retval setBackgroundColor:self.backgroundColor];
     
     return retval;
@@ -184,6 +237,27 @@
 }
 - (void)setArrowStyle:(KSOTooltipArrowStyle)arrowStyle {
     [self.tooltipView setArrowStyle:arrowStyle];
+}
+@dynamic arrowWidth;
+- (CGFloat)arrowWidth {
+    return self.tooltipView.arrowWidth;
+}
+- (void)setArrowWidth:(CGFloat)arrowWidth {
+    [self.tooltipView setArrowWidth:arrowWidth];
+}
+@dynamic arrowHeight;
+- (CGFloat)arrowHeight {
+    return self.tooltipView.arrowHeight;
+}
+- (void)setArrowHeight:(CGFloat)arrowHeight {
+    [self.tooltipView setArrowHeight:arrowHeight];
+}
+@dynamic cornerRadius;
+- (CGFloat)cornerRadius {
+    return self.tooltipView.cornerRadius;
+}
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    [self.tooltipView setCornerRadius:cornerRadius];
 }
 @dynamic accessoryView;
 - (UIView *)accessoryView {

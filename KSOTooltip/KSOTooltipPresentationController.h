@@ -1,8 +1,8 @@
 //
-//  KSOTooltipAnimation.h
+//  KSOTooltipPresentationController.h
 //  KSOTooltip
 //
-//  Created by William Towe on 9/16/17.
+//  Created by William Towe on 9/17/17.
 //  Copyright © 2017 Kosoku Interactive, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,9 +15,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KSOTooltipAnimation : NSObject <UIViewControllerAnimatedTransitioning>
+@interface KSOTooltipPresentationController : UIPresentationController
 
-@property (assign,nonatomic,getter=isPresenting) BOOL presenting;
-@property (strong,nonatomic) UIView *tooltipView;
+@property (strong,nonatomic) UIColor *backgroundColor;
 
 @end

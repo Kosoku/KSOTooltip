@@ -30,6 +30,8 @@
 		0752D1731F6E0871002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1721F6E0871002BA4CC /* Stanley.framework */; };
 		0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; };
 		0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07C914211F6F102F008368F5 /* KSOTooltipPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */; };
+		07C914221F6F102F008368F5 /* KSOTooltipPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */; };
 		07F91A1F1F6DF3CA008DFB8D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */; };
 		07FB2F5F1F6E0D51001A4C8F /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */; };
 		07FB2F611F6E0D58001A4C8F /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F601F6E0D58001A4C8F /* Ditko.framework */; };
@@ -97,6 +99,8 @@
 		073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KSOTooltipExtensions.m"; sourceTree = "<group>"; };
 		0752D1721F6E0871002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
 		0752D1741F6E087A002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipPresentationController.h; sourceTree = "<group>"; };
+		07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOTooltipPresentationController.m; sourceTree = "<group>"; };
 		07F91A1E1F6DF3CA008DFB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ViewController.xib; sourceTree = "<group>"; };
 		07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ditko.framework; path = "Vendor/Ditko/build/Debug-iphoneos/Ditko.framework"; sourceTree = "<group>"; };
 		07FB2F601F6E0D58001A4C8F /* Ditko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ditko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +180,8 @@
 				073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */,
 				073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */,
 				073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */,
+				07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */,
+				07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */,
 				073CFDBA1F6DC54C00C1BD29 /* KSOTooltipAnimation.h */,
 				073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */,
 				073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */,
@@ -230,6 +236,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07C914211F6F102F008368F5 /* KSOTooltipPresentationController.h in Headers */,
 				073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */,
 				073CFD8B1F6DBEE100C1BD29 /* KSOTooltip.h in Headers */,
 				073CFD931F6DBF7E00C1BD29 /* KSOTooltipViewController.h in Headers */,
@@ -373,6 +380,7 @@
 				073CFDBD1F6DC54C00C1BD29 /* KSOTooltipAnimation.m in Sources */,
 				073CFDC71F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m in Sources */,
 				072FDE011F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m in Sources */,
+				07C914221F6F102F008368F5 /* KSOTooltipPresentationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

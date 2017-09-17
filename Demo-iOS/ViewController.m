@@ -54,7 +54,7 @@
     [super didMoveToWindow];
     
     if (self.window != nil) {
-        UIColor *color = [self.viewController.backgroundColor ?: self.tintColor KDI_contrastingColor];
+        UIColor *color = [self.viewController.fillColor ?: self.tintColor KDI_contrastingColor];
         
         [self.badgeButton.button setTintColor:color];
     }
@@ -115,7 +115,7 @@
     [super didMoveToWindow];
     
     if (self.window != nil) {
-        UIColor *color = [self.viewController.backgroundColor ?: self.tintColor KDI_contrastingColor];
+        UIColor *color = [self.viewController.fillColor ?: self.tintColor KDI_contrastingColor];
         
         [self.label setTextColor:color];
         [self.segmentedControl setTintColor:color];
@@ -161,7 +161,7 @@
     
     KSTLog(@"allowed directions: %@",@(directions));
     
-    [viewController setAllowedArrowDirections:KSOTooltipArrowDirectionLeft];
+    [viewController setAllowedArrowDirections:directions];
     
     if (arc4random_uniform(2) % 2 == 0) {
         if (arc4random_uniform(2) % 2 == 0) {
@@ -179,7 +179,7 @@
     }
     else if ([sender isKindOfClass:UIView.class]) {
         [viewController setFillColor:KDIColorRandomRGB()];
-        [viewController setTextColor:[viewController.backgroundColor KDI_contrastingColor]];
+        [viewController setTextColor:[viewController.fillColor KDI_contrastingColor]];
         [viewController setText:@"The tooltip is being presented from a button"];
         [viewController setSourceView:sender];
     }
