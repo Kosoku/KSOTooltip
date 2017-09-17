@@ -64,7 +64,10 @@
         sourceView = self.sourceView;
     }
     else if (self.barButtonItem != nil) {
-        if ([self.barButtonItem respondsToSelector:@selector(view)]) {
+        if (self.barButtonItem.customView != nil) {
+            sourceView = self.barButtonItem.customView;
+        }
+        else if ([self.barButtonItem respondsToSelector:@selector(view)]) {
             id view = [self.barButtonItem valueForKey:@"view"];
             
             if ([view isKindOfClass:UIView.class]) {

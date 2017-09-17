@@ -18,7 +18,7 @@
 #import <KSOTooltip/KSOTooltip.h>
 
 @interface ViewController ()
-
+@property (strong,nonatomic) UIBarButtonItem *customBarButtonItem;
 @end
 
 @implementation ViewController
@@ -30,13 +30,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationItem setLeftBarButtonItems:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_showTooltipAction:)]]];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Show",@"Tooltip"]];
+    
+    [segmentedControl setMomentary:YES];
+    [segmentedControl setApportionsSegmentWidthsByContent:YES];
+    [segmentedControl addTarget:self action:@selector(_showTooltipAction:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl sizeToFit];
+    
+    [self setCustomBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:segmentedControl]];
+    
+    [self.navigationItem setLeftBarButtonItems:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_showTooltipAction:)],self.customBarButtonItem]];
     
     [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithTitle:@"Show Tooltip" style:UIBarButtonItemStylePlain target:self action:@selector(_showTooltipAction:)]]];
 }
 
 - (IBAction)_showTooltipAction:(id)sender {
-    if ([sender isKindOfClass:UIView.class]) {
+    if ([sender isKindOfClass:UISegmentedControl.class]) {
+        [self KSO_presentTooltipViewControllerWithText:@"This tooltip is being presented from a bar button item with a custom view" barButtonItem:self.customBarButtonItem animated:YES completion:nil];
+    }
+    else if ([sender isKindOfClass:UIView.class]) {
         [self KSO_presentTooltipViewControllerWithText:@"The tooltip is being presented from a button" sourceView:sender sourceRect:CGRectZero animated:YES completion:nil];
     }
     else {

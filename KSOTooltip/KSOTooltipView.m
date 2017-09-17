@@ -25,8 +25,6 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self setBackgroundColor:UIColor.blueColor];
-    
     _edgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -37,6 +35,24 @@
     [self addSubview:_label];
     
     return self;
+}
+
+- (void)tintColorDidChange {
+    [super tintColorDidChange];
+    
+    [self setNeedsDisplay];
+}
+
+- (BOOL)isOpaque {
+    return NO;
+}
+- (void)drawRect:(CGRect)rect {
+    if (self.tintColor == nil) {
+        return;
+    }
+    
+    [self.tintColor setFill];
+    UIRectFill(self.bounds);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
