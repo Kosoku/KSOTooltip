@@ -1,5 +1,5 @@
 ﻿/* dismiss button accessibility hint */
-"DISMISS_BUTTON_ACCESSIBILITY_HINT" = "Închideți sfat util";
+"DISMISS_BUTTON_ACCESSIBILITY_HINT" = "Închideți ajutor si suport";
 
 /* dismiss button accessibility label */
 "DISMISS_BUTTON_ACCESSIBILITY_LABEL" = "Închide";
