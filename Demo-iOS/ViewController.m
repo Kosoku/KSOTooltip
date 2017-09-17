@@ -19,6 +19,115 @@
 #import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
 
+@interface AccessoryView : UIView
+@property (strong,nonatomic) KDIBadgeButton *badgeButton;
+@property (weak,nonatomic) KSOTooltipViewController *viewController;
+
+- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController;
+@end
+
+@implementation AccessoryView
+
+- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    _viewController = viewController;
+    
+    _badgeButton = [[KDIBadgeButton alloc] initWithFrame:CGRectZero];
+    [_badgeButton setBadgePosition:KDIBadgeButtonBadgePositionRelativeToImage];
+    [_badgeButton.button setContentEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [_badgeButton.button setTitleEdgeInsets:UIEdgeInsetsMake(8, 0, 0, 0)];
+    [_badgeButton.button setImageContentVerticalAlignment:KDIButtonContentVerticalAlignmentTop];
+    [_badgeButton.button setImageContentHorizontalAlignment:KDIButtonContentHorizontalAlignmentCenter];
+    [_badgeButton.button setTitleContentVerticalAlignment:KDIButtonContentVerticalAlignmentBottom];
+    [_badgeButton.button setTitleContentHorizontalAlignment:KDIButtonContentHorizontalAlignmentCenter];
+    [_badgeButton.button setImage:[UIImage imageNamed:@"ghost"] forState:UIControlStateNormal];
+    [_badgeButton.button setTitle:@"Badge Button" forState:UIControlStateNormal];
+    [_badgeButton.badgeView setBadge:@"123"];
+    [self addSubview:_badgeButton];
+    
+    return self;
+}
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    
+    if (self.window != nil) {
+        UIColor *color = [self.viewController.backgroundColor ?: self.tintColor KDI_contrastingColor];
+        
+        [self.badgeButton.button setTintColor:color];
+    }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGSize size = [self.badgeButton sizeThatFits:self.bounds.size];
+    
+    [self.badgeButton setFrame:KSTCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), self.bounds)];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    return [self.badgeButton sizeThatFits:size];
+}
+
+@end
+
+@interface AccessoryViewWithAutoLayout : UIView
+@property (strong,nonatomic) UILabel *label;
+@property (strong,nonatomic) UISegmentedControl *segmentedControl;
+@property (weak,nonatomic) KSOTooltipViewController *viewController;
+
+- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController;
+@end
+
+@implementation AccessoryViewWithAutoLayout
+
+- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    _viewController = viewController;
+    
+    _label = [[UILabel alloc] initWithFrame:CGRectZero];
+    [_label setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_label setText:@"Accessory"];
+    [_label setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]];
+    [self addSubview:_label];
+    
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"One",@"Two",@"Three"]];
+    [_segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addSubview:_segmentedControl];
+    
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": _label}]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:@{@"view": _label}]];
+    
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[subview]-[view]-|" options:0 metrics:nil views:@{@"view": _segmentedControl, @"subview": _label}]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:@{@"view": _segmentedControl}]];
+    
+    return self;
+}
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+    
+    if (self.window != nil) {
+        UIColor *color = [self.viewController.backgroundColor ?: self.tintColor KDI_contrastingColor];
+        
+        [self.label setTextColor:color];
+        [self.segmentedControl setTintColor:color];
+    }
+}
+
++ (BOOL)requiresConstraintBasedLayout {
+    return YES;
+}
+
+@end
+
 @interface ViewController ()
 @property (strong,nonatomic) UIBarButtonItem *customBarButtonItem;
 @end
@@ -53,6 +162,15 @@
     KSTLog(@"allowed directions: %@",@(directions));
     
     [viewController setAllowedArrowDirections:directions];
+    
+    if (arc4random_uniform(2) % 2 == 0) {
+        if (arc4random_uniform(2) % 2 == 0) {
+            [viewController setAccessoryView:[[AccessoryViewWithAutoLayout alloc] initWithFrame:CGRectZero viewController:viewController]];
+        }
+        else {
+            [viewController setAccessoryView:[[AccessoryView alloc] initWithFrame:CGRectZero viewController:viewController]];
+        }
+    }
     
     if ([sender isKindOfClass:UISegmentedControl.class]) {
         [viewController setText:@"This tooltip is being presented from a bar button item with a custom view"];

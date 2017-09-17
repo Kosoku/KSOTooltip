@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak,nonatomic) UIView *sourceView;
 @property (assign,nonatomic) CGRect sourceRect;
 
+@property (strong,nonatomic,nullable) UIView *accessoryView;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,11 +15,14 @@
 
 #import "KSOTooltipView.h"
 
+#import <Stanley/Stanley.h>
+
 @interface KSOTooltipView ()
 @property (strong,nonatomic) UILabel *label;
 
 - (CGRect)_backgroundRectForBounds:(CGRect)bounds;
 - (CGRect)_arrowRectForBounds:(CGRect)bounds;
+- (CGRect)_accessoryViewRectForBounds:(CGRect)bounds;
 @end
 
 @implementation KSOTooltipView
@@ -105,13 +108,16 @@
 
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize retval = CGSizeZero;
+    CGFloat maxWidth = size.width;
     
     switch (self.arrowStyle) {
         case KSOTooltipArrowStyleDefault: {
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
                 case KSOTooltipArrowDirectionDown: {
-                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(size.width - self.edgeInsets.left - self.edgeInsets.right, size.height - self.edgeInsets.top - self.edgeInsets.bottom - self.arrowHeight)];
+                    maxWidth -= self.edgeInsets.left + self.edgeInsets.right;
+                    
+                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom - self.arrowHeight)];
                     
                     retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right;
                     retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom + self.arrowHeight;
@@ -119,7 +125,9 @@
                     break;
                 case KSOTooltipArrowDirectionLeft:
                 case KSOTooltipArrowDirectionRight: {
-                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(size.width - self.edgeInsets.left - self.edgeInsets.right - self.arrowWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom)];
+                    maxWidth -= self.edgeInsets.left + self.edgeInsets.right + self.arrowWidth;
+                    
+                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom)];
                     
                     retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right + self.arrowWidth;
                     retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom;
@@ -131,12 +139,28 @@
         }
             break;
         case KSOTooltipArrowStyleNone: {
-            CGSize labelSize = [self.label sizeThatFits:CGSizeMake(size.width - self.edgeInsets.left - self.edgeInsets.right, size.height - self.edgeInsets.top - self.edgeInsets.bottom)];
+            maxWidth -= self.edgeInsets.left + self.edgeInsets.right;
+            
+            CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom)];
             
             retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right;
             retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom;
         }
             break;
+    }
+    
+    if (self.accessoryView != nil) {
+        CGSize accessorySize = CGSizeZero;
+        
+        if ([self.accessoryView.class requiresConstraintBasedLayout]) {
+            accessorySize = [self.accessoryView systemLayoutSizeFittingSize:CGSizeMake(maxWidth, size.height)];
+        }
+        else {
+            accessorySize = [self.accessoryView sizeThatFits:CGSizeMake(maxWidth, size.height)];
+        }
+        
+        retval.width = KSTBoundedValue(accessorySize.width, retval.width, maxWidth);
+        retval.height += accessorySize.height;
     }
     
     return retval;
@@ -169,6 +193,12 @@
             break;
         default:
             break;
+    }
+    
+    if (self.accessoryView != nil) {
+        [self.accessoryView setFrame:[self _accessoryViewRectForBounds:self.bounds]];
+        
+        [self.label setFrame:CGRectMake(CGRectGetMinX(self.label.frame), CGRectGetMinY(self.label.frame), CGRectGetWidth(self.label.frame), CGRectGetHeight(self.label.frame) - CGRectGetHeight(self.accessoryView.frame))];
     }
 }
 
@@ -212,6 +242,18 @@
 }
 - (void)setArrowStyle:(KSOTooltipArrowStyle)arrowStyle {
     _arrowStyle = arrowStyle;
+    
+    [self setNeedsDisplay];
+    [self setNeedsLayout];
+}
+- (void)setAccessoryView:(UIView *)accessoryView {
+    [_accessoryView removeFromSuperview];
+    
+    _accessoryView = accessoryView;
+    
+    if (_accessoryView != nil) {
+        [self addSubview:_accessoryView];
+    }
     
     [self setNeedsDisplay];
     [self setNeedsLayout];
@@ -273,6 +315,24 @@
             default:
                 break;
         }
+    }
+    
+    return retval;
+}
+- (CGRect)_accessoryViewRectForBounds:(CGRect)bounds {
+    CGRect retval = CGRectZero;
+    
+    if (self.accessoryView != nil) {
+        CGSize accessorySize = CGSizeZero;
+        
+        if ([self.accessoryView.class requiresConstraintBasedLayout]) {
+            accessorySize = [self.accessoryView systemLayoutSizeFittingSize:CGSizeMake(CGRectGetWidth(bounds), CGRectGetHeight(bounds))];
+        }
+        else {
+            accessorySize = [self.accessoryView sizeThatFits:CGSizeMake(CGRectGetWidth(bounds), CGRectGetHeight(bounds))];
+        }
+        
+        retval = CGRectMake(0, CGRectGetMaxY([self _backgroundRectForBounds:bounds]) - accessorySize.height, CGRectGetWidth(bounds), accessorySize.height);
     }
     
     return retval;

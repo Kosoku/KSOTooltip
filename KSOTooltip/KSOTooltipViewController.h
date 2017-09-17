@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,nonatomic) KSOTooltipArrowDirection arrowDirection;
 @property (assign,nonatomic) KSOTooltipArrowStyle arrowStyle;
 
+@property (strong,nonatomic,nullable) UIView *accessoryView;
+
 @end
 
 NS_ASSUME_NONNULL_END

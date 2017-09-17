@@ -180,6 +180,13 @@
 - (void)setArrowStyle:(KSOTooltipArrowStyle)arrowStyle {
     [self.tooltipView setArrowStyle:arrowStyle];
 }
+@dynamic accessoryView;
+- (UIView *)accessoryView {
+    return self.tooltipView.accessoryView;
+}
+- (void)setAccessoryView:(UIView *)accessoryView {
+    [self.tooltipView setAccessoryView:accessoryView];
+}
 #pragma mark *** Private Methods ***
 - (BOOL)_getRect:(CGRect *)outRect sourceRect:(CGRect)sourceRect allowedArrowDirections:(KSOTooltipArrowDirection)allowedArrowDirections; {
     BOOL retval = YES;
