@@ -19,5 +19,6 @@
 
 @property (assign,nonatomic,getter=isPresenting) BOOL presenting;
 @property (strong,nonatomic) UIView *tooltipView;
+@property (strong,nonatomic) UIColor *backgroundColor;
 
 @end

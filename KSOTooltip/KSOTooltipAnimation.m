@@ -33,6 +33,7 @@
     
     if (self.isPresenting) {
         [viewController.view setAlpha:0.0];
+        [viewController.view setBackgroundColor:self.backgroundColor];
         [self.tooltipView setTransform:CGAffineTransformMakeScale(0.5, 0.5)];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0 options:0 animations:^{

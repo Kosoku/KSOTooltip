@@ -173,16 +173,18 @@
     }
     
     if ([sender isKindOfClass:UISegmentedControl.class]) {
+        [viewController setBackgroundColor:KDIColorWA(0, 0.5)];
         [viewController setText:@"This tooltip is being presented from a bar button item with a custom view"];
         [viewController setBarButtonItem:self.customBarButtonItem];
     }
     else if ([sender isKindOfClass:UIView.class]) {
-        [viewController setBackgroundColor:KDIColorRandomRGB()];
+        [viewController setFillColor:KDIColorRandomRGB()];
         [viewController setTextColor:[viewController.backgroundColor KDI_contrastingColor]];
         [viewController setText:@"The tooltip is being presented from a button"];
         [viewController setSourceView:sender];
     }
     else {
+        [viewController setBackgroundColor:KDIColorWA(0, 0.5)];
         [viewController setText:@"This tooltip is being presented from a bar button item"];
         [viewController setBarButtonItem:sender];
     }

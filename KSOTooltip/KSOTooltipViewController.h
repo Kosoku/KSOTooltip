@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic) NSString *text;
 
 @property (strong,nonatomic,nullable) UIColor *backgroundColor;
+@property (strong,nonatomic,nullable) UIColor *fillColor;
 @property (strong,nonatomic) UIColor *textColor;
 
 @property (strong,nonatomic) UIFont *font;

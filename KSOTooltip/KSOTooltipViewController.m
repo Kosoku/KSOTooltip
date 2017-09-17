@@ -115,6 +115,7 @@
     
     [retval setPresenting:YES];
     [retval setTooltipView:self.tooltipView];
+    [retval setBackgroundColor:self.backgroundColor];
     
     return retval;
 }
@@ -122,6 +123,7 @@
     KSOTooltipAnimation *retval = [[KSOTooltipAnimation alloc] init];
     
     [retval setTooltipView:self.tooltipView];
+    [retval setBackgroundColor:self.backgroundColor];
     
     return retval;
 }
@@ -138,12 +140,12 @@
 - (void)setText:(NSString *)text {
     [self.tooltipView setText:text];
 }
-@dynamic backgroundColor;
-- (UIColor *)backgroundColor {
+@dynamic fillColor;
+- (UIColor *)fillColor {
     return self.tooltipView.fillColor;
 }
-- (void)setBackgroundColor:(UIColor *)backgroundColor {
-    [self.tooltipView setFillColor:backgroundColor];
+- (void)setFillColor:(UIColor *)fillColor {
+    [self.tooltipView setFillColor:fillColor];
 }
 @dynamic textColor;
 - (UIColor *)textColor {
