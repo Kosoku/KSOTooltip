@@ -126,7 +126,7 @@
     return retval;
 }
 #pragma mark KDIDynamicTypeObject
-- (SEL)KDI_dynamicTypeSetFontSelector {
+- (SEL)dynamicTypeSetFontSelector {
     return @selector(setFont:);
 }
 #pragma mark *** Public Methods ***
