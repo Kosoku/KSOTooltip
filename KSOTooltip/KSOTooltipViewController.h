@@ -15,11 +15,10 @@
 
 #import <UIKit/UIKit.h>
 #import <KSOTooltip/KSOTooltipDefines.h>
-#import <Ditko/UIFont+KDIDynamicTypeExtensions.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KSOTooltipViewController : UIViewController <KDIDynamicTypeObject>
+@interface KSOTooltipViewController : UIViewController
 
 @property (copy,nonatomic) NSString *text;
 

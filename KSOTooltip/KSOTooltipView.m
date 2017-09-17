@@ -33,6 +33,7 @@
     _arrowDirection = KSOTooltipArrowDirectionUp;
     _arrowWidth = 8.0;
     _arrowHeight = 8.0;
+    _cornerRadius = 5.0;
     
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     [_label setNumberOfLines:0];

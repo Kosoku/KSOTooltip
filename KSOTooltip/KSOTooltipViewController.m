@@ -17,9 +17,10 @@
 #import "KSOTooltipAnimation.h"
 #import "KSOTooltipView.h"
 
+#import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
 
-@interface KSOTooltipViewController () <UIViewControllerTransitioningDelegate>
+@interface KSOTooltipViewController () <KDIDynamicTypeObject,UIViewControllerTransitioningDelegate>
 @property (strong,nonatomic) UIButton *dismissButton;
 @property (strong,nonatomic) KSOTooltipView *tooltipView;
 @end
