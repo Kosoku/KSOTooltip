@@ -35,6 +35,8 @@
     
     retval->_minimumEdgeInsets = _minimumEdgeInsets;
     
+    retval->_arrowStyle = _arrowStyle;
+    
     return retval;
 }
 

@@ -173,6 +173,7 @@
     [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
     [theme setTextStyle:UIFontTextStyleFootnote];
     [theme setMinimumEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 20)];
+    [theme setArrowStyle:KSTBoundedValue(arc4random_uniform(KSOTooltipArrowStyleNone + 1), KSOTooltipArrowStyleDefault, KSOTooltipArrowStyleNone)];
     
     [viewController setTheme:theme];
     

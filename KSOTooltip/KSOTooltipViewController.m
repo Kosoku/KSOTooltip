@@ -151,13 +151,6 @@
 - (KSOTooltipArrowDirection)arrowDirection {
     return self.tooltipView.arrowDirection;
 }
-@dynamic arrowStyle;
-- (KSOTooltipArrowStyle)arrowStyle {
-    return self.tooltipView.arrowStyle;
-}
-- (void)setArrowStyle:(KSOTooltipArrowStyle)arrowStyle {
-    [self.tooltipView setArrowStyle:arrowStyle];
-}
 @dynamic arrowWidth;
 - (CGFloat)arrowWidth {
     return self.tooltipView.arrowWidth;

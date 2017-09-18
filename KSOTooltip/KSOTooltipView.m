@@ -90,7 +90,7 @@
     
     [path fill];
     
-    if (self.arrowStyle == KSOTooltipArrowStyleDefault) {
+    if (self.theme.arrowStyle == KSOTooltipArrowStyleDefault) {
         CGRect arrowRect = [self _arrowRectForBounds:self.bounds];
         
         path = [UIBezierPath bezierPath];
@@ -134,7 +134,7 @@
     CGSize retval = CGSizeZero;
     CGFloat maxWidth = size.width;
     
-    switch (self.arrowStyle) {
+    switch (self.theme.arrowStyle) {
         case KSOTooltipArrowStyleDefault: {
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
@@ -193,7 +193,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    switch (self.arrowStyle) {
+    switch (self.theme.arrowStyle) {
         case KSOTooltipArrowStyleDefault:
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
@@ -241,12 +241,6 @@
     [self setNeedsDisplay];
     [self setNeedsLayout];
 }
-- (void)setArrowStyle:(KSOTooltipArrowStyle)arrowStyle {
-    _arrowStyle = arrowStyle;
-    
-    [self setNeedsDisplay];
-    [self setNeedsLayout];
-}
 - (void)setAccessoryView:(UIView *)accessoryView {
     [_accessoryView removeFromSuperview];
     
@@ -263,7 +257,7 @@
 - (CGRect)_backgroundRectForBounds:(CGRect)bounds; {
     CGRect retval = CGRectZero;
     
-    switch (self.arrowStyle) {
+    switch (self.theme.arrowStyle) {
         case KSOTooltipArrowStyleDefault:
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
@@ -294,7 +288,7 @@
 - (CGRect)_arrowRectForBounds:(CGRect)bounds; {
     CGRect retval = CGRectZero;
     
-    if (self.arrowStyle == KSOTooltipArrowStyleDefault) {
+    if (self.theme.arrowStyle == KSOTooltipArrowStyleDefault) {
         CGRect sourceRect = self.sourceRect;
         
         CGPoint arrowPoint = [self convertPoint:[self.window convertPoint:[self.sourceView convertPoint:CGPointMake(CGRectGetMidX(sourceRect), CGRectGetMidY(sourceRect)) toView:nil] fromWindow:self.sourceView.window] fromView:nil];
