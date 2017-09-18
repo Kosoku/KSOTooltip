@@ -33,7 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign,nonatomic) UIEdgeInsets minimumEdgeInsets;
 
+@property (assign,nonatomic) CGFloat cornerRadius;
+
 @property (assign,nonatomic) KSOTooltipArrowStyle arrowStyle;
+@property (assign,nonatomic) CGFloat arrowWidth;
+@property (assign,nonatomic) CGFloat arrowHeight;
 
 - (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 

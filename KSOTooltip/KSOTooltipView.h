@@ -29,9 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) UIEdgeInsets edgeInsets;
 
 @property (assign,nonatomic) KSOTooltipArrowDirection arrowDirection;
-@property (assign,nonatomic) CGFloat arrowWidth;
-@property (assign,nonatomic) CGFloat arrowHeight;
-@property (assign,nonatomic) CGFloat cornerRadius;
 
 @property (weak,nonatomic) UIView *sourceView;
 @property (assign,nonatomic) CGRect sourceRect;

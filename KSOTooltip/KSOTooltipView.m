@@ -36,11 +36,6 @@
     
     _edgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     
-    _arrowDirection = KSOTooltipArrowDirectionUnknown;
-    _arrowWidth = 8.0;
-    _arrowHeight = 8.0;
-    _cornerRadius = 5.0;
-    
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     [_label setNumberOfLines:0];
     [self addSubview:_label];
@@ -84,7 +79,7 @@
 - (void)drawRect:(CGRect)rect {
     CGRect backgroundRect = [self _backgroundRectForBounds:self.bounds];
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:backgroundRect cornerRadius:self.cornerRadius];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:backgroundRect cornerRadius:self.theme.cornerRadius];
     
     [self.theme.fillColor ?: self.tintColor setFill];
     
@@ -141,19 +136,19 @@
                 case KSOTooltipArrowDirectionDown: {
                     maxWidth -= self.edgeInsets.left + self.edgeInsets.right;
                     
-                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom - self.arrowHeight)];
+                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom - self.theme.arrowHeight)];
                     
                     retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right;
-                    retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom + self.arrowHeight;
+                    retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom + self.theme.arrowHeight;
                 }
                     break;
                 case KSOTooltipArrowDirectionLeft:
                 case KSOTooltipArrowDirectionRight: {
-                    maxWidth -= self.edgeInsets.left + self.edgeInsets.right + self.arrowWidth;
+                    maxWidth -= self.edgeInsets.left + self.edgeInsets.right + self.theme.arrowWidth;
                     
                     CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom)];
                     
-                    retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right + self.arrowWidth;
+                    retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right + self.theme.arrowWidth;
                     retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom;
                 }
                     break;
@@ -197,16 +192,16 @@
         case KSOTooltipArrowStyleDefault:
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
-                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.arrowHeight + self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right, CGRectGetHeight(self.bounds) - self.edgeInsets.bottom - self.edgeInsets.top - self.arrowHeight)];
+                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.theme.arrowHeight + self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right, CGRectGetHeight(self.bounds) - self.edgeInsets.bottom - self.edgeInsets.top - self.theme.arrowHeight)];
                     break;
                 case KSOTooltipArrowDirectionLeft:
-                    [self.label setFrame:CGRectMake(self.arrowWidth + self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right - self.arrowWidth, CGRectGetHeight(self.bounds) - self.edgeInsets.top - self.edgeInsets.bottom)];
+                    [self.label setFrame:CGRectMake(self.theme.arrowWidth + self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right - self.theme.arrowWidth, CGRectGetHeight(self.bounds) - self.edgeInsets.top - self.edgeInsets.bottom)];
                     break;
                 case KSOTooltipArrowDirectionDown:
-                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right, CGRectGetHeight(self.bounds) - self.edgeInsets.top - self.edgeInsets.bottom - self.arrowHeight)];
+                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right, CGRectGetHeight(self.bounds) - self.edgeInsets.top - self.edgeInsets.bottom - self.theme.arrowHeight)];
                     break;
                 case KSOTooltipArrowDirectionRight:
-                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right - self.arrowWidth, CGRectGetHeight(self.bounds) - self.edgeInsets.left - self.edgeInsets.right)];
+                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right - self.theme.arrowWidth, CGRectGetHeight(self.bounds) - self.edgeInsets.left - self.edgeInsets.right)];
                     break;
                 default:
                     break;
@@ -261,16 +256,16 @@
         case KSOTooltipArrowStyleDefault:
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
-                    retval = CGRectMake(0, self.arrowHeight, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.arrowHeight);
+                    retval = CGRectMake(0, self.theme.arrowHeight, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.theme.arrowHeight);
                     break;
                 case KSOTooltipArrowDirectionLeft:
-                    retval = CGRectMake(self.arrowWidth, 0, CGRectGetWidth(bounds) - self.arrowWidth, CGRectGetHeight(bounds));
+                    retval = CGRectMake(self.theme.arrowWidth, 0, CGRectGetWidth(bounds) - self.theme.arrowWidth, CGRectGetHeight(bounds));
                     break;
                 case KSOTooltipArrowDirectionDown:
-                    retval = CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.arrowHeight);
+                    retval = CGRectMake(0, 0, CGRectGetWidth(bounds), CGRectGetHeight(bounds) - self.theme.arrowHeight);
                     break;
                 case KSOTooltipArrowDirectionRight:
-                    retval = CGRectMake(0, 0, CGRectGetWidth(bounds) - self.arrowWidth, CGRectGetHeight(bounds));
+                    retval = CGRectMake(0, 0, CGRectGetWidth(bounds) - self.theme.arrowWidth, CGRectGetHeight(bounds));
                     break;
                 default:
                     break;
@@ -292,20 +287,20 @@
         CGRect sourceRect = self.sourceRect;
         
         CGPoint arrowPoint = [self convertPoint:[self.window convertPoint:[self.sourceView convertPoint:CGPointMake(CGRectGetMidX(sourceRect), CGRectGetMidY(sourceRect)) toView:nil] fromWindow:self.sourceView.window] fromView:nil];
-        CGFloat arrowHalfWidth = floor(self.arrowWidth * 0.5);
+        CGFloat arrowHalfWidth = floor(self.theme.arrowWidth * 0.5);
         
         switch (self.arrowDirection) {
             case KSOTooltipArrowDirectionUp:
-                retval = CGRectMake(arrowPoint.x - arrowHalfWidth, 0, self.arrowWidth, self.arrowHeight);
+                retval = CGRectMake(arrowPoint.x - arrowHalfWidth, 0, self.theme.arrowWidth, self.theme.arrowHeight);
                 break;
             case KSOTooltipArrowDirectionLeft:
-                retval = CGRectMake(0, arrowPoint.y - arrowHalfWidth, self.arrowWidth, self.arrowHeight);
+                retval = CGRectMake(0, arrowPoint.y - arrowHalfWidth, self.theme.arrowWidth, self.theme.arrowHeight);
                 break;
             case KSOTooltipArrowDirectionDown:
-                retval = CGRectMake(arrowPoint.x - arrowHalfWidth, CGRectGetHeight(bounds) - self.arrowHeight, self.arrowWidth, self.arrowHeight);
+                retval = CGRectMake(arrowPoint.x - arrowHalfWidth, CGRectGetHeight(bounds) - self.theme.arrowHeight, self.theme.arrowWidth, self.theme.arrowHeight);
                 break;
             case KSOTooltipArrowDirectionRight:
-                retval = CGRectMake(CGRectGetWidth(bounds) - self.arrowWidth, arrowPoint.y - arrowHalfWidth, self.arrowWidth, self.arrowHeight);
+                retval = CGRectMake(CGRectGetWidth(bounds) - self.theme.arrowWidth, arrowPoint.y - arrowHalfWidth, self.theme.arrowWidth, self.theme.arrowHeight);
                 break;
             default:
                 break;

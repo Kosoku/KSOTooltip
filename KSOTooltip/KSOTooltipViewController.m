@@ -151,27 +151,6 @@
 - (KSOTooltipArrowDirection)arrowDirection {
     return self.tooltipView.arrowDirection;
 }
-@dynamic arrowWidth;
-- (CGFloat)arrowWidth {
-    return self.tooltipView.arrowWidth;
-}
-- (void)setArrowWidth:(CGFloat)arrowWidth {
-    [self.tooltipView setArrowWidth:arrowWidth];
-}
-@dynamic arrowHeight;
-- (CGFloat)arrowHeight {
-    return self.tooltipView.arrowHeight;
-}
-- (void)setArrowHeight:(CGFloat)arrowHeight {
-    [self.tooltipView setArrowHeight:arrowHeight];
-}
-@dynamic cornerRadius;
-- (CGFloat)cornerRadius {
-    return self.tooltipView.cornerRadius;
-}
-- (void)setCornerRadius:(CGFloat)cornerRadius {
-    [self.tooltipView setCornerRadius:cornerRadius];
-}
 @dynamic accessoryView;
 - (UIView *)accessoryView {
     return self.tooltipView.accessoryView;

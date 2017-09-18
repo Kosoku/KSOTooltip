@@ -35,9 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign,nonatomic) KSOTooltipArrowDirection allowedArrowDirections;
 @property (readonly,nonatomic) KSOTooltipArrowDirection arrowDirection;
-@property (assign,nonatomic) CGFloat arrowWidth;
-@property (assign,nonatomic) CGFloat arrowHeight;
-@property (assign,nonatomic) CGFloat cornerRadius;
 
 @property (strong,nonatomic,nullable) UIView *accessoryView;
 
