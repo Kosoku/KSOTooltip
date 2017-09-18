@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070439381F70369500F01D6E /* KSOTooltipTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 070439361F70369500F01D6E /* KSOTooltipTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		070439391F70369500F01D6E /* KSOTooltipTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 070439371F70369500F01D6E /* KSOTooltipTheme.m */; };
 		072FDDFD1F6E5BE600E73661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 072FDDFB1F6E5BE600E73661 /* Localizable.strings */; };
 		072FDE001F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		072FDE011F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */; };
@@ -69,6 +71,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070439361F70369500F01D6E /* KSOTooltipTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipTheme.h; sourceTree = "<group>"; };
+		070439371F70369500F01D6E /* KSOTooltipTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOTooltipTheme.m; sourceTree = "<group>"; };
 		072FDDFC1F6E5BE600E73661 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KSOTooltipPrivateExtensions.h"; sourceTree = "<group>"; };
 		072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KSOTooltipPrivateExtensions.m"; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */,
+				070439361F70369500F01D6E /* KSOTooltipTheme.h */,
+				070439371F70369500F01D6E /* KSOTooltipTheme.m */,
 				073CFD911F6DBF7E00C1BD29 /* KSOTooltipViewController.h */,
 				073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */,
 				073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */,
@@ -240,6 +246,7 @@
 				073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */,
 				073CFD8B1F6DBEE100C1BD29 /* KSOTooltip.h in Headers */,
 				073CFD931F6DBF7E00C1BD29 /* KSOTooltipViewController.h in Headers */,
+				070439381F70369500F01D6E /* KSOTooltipTheme.h in Headers */,
 				072FDE001F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h in Headers */,
 				073CFDC31F6DCFF300C1BD29 /* KSOTooltipDefines.h in Headers */,
 				073CFDC01F6DCEC000C1BD29 /* KSOTooltipView.h in Headers */,
@@ -378,6 +385,7 @@
 				073CFD941F6DBF7E00C1BD29 /* KSOTooltipViewController.m in Sources */,
 				073CFDC11F6DCEC000C1BD29 /* KSOTooltipView.m in Sources */,
 				073CFDBD1F6DC54C00C1BD29 /* KSOTooltipAnimation.m in Sources */,
+				070439391F70369500F01D6E /* KSOTooltipTheme.m in Sources */,
 				073CFDC71F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m in Sources */,
 				072FDE011F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m in Sources */,
 				07C914221F6F102F008368F5 /* KSOTooltipPresentationController.m in Sources */,

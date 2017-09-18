@@ -18,6 +18,7 @@
 #import "KSOTooltipView.h"
 #import "NSBundle+KSOTooltipPrivateExtensions.h"
 #import "KSOTooltipPresentationController.h"
+#import "KSOTooltipTheme.h"
 
 #import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
@@ -44,11 +45,13 @@
     
     [self setTransitioningDelegate:self];
     
+    _theme = KSOTooltipTheme.defaultTheme;
     _textStyle = UIFontTextStyleFootnote;
     _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     _allowedArrowDirections = KSOTooltipArrowDirectionAll;
     
     _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
+    [_tooltipView setTheme:_theme];
     
     [NSObject KDI_registerDynamicTypeObject:self forTextStyle:_textStyle];
     
@@ -132,7 +135,7 @@
 - (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source {
     KSOTooltipPresentationController *retval = [[KSOTooltipPresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
     
-    [retval setBackgroundColor:self.backgroundColor];
+    [retval setBackgroundColor:self.theme.backgroundColor];
     
     return retval;
 }
@@ -142,26 +145,17 @@
 }
 #pragma mark *** Public Methods ***
 #pragma mark Properties
+- (void)setTheme:(KSOTooltipTheme *)theme {
+    _theme = theme ?: KSOTooltipTheme.defaultTheme;
+    
+    [self.tooltipView setTheme:_theme];
+}
 @dynamic text;
 - (NSString *)text {
     return self.tooltipView.text;
 }
 - (void)setText:(NSString *)text {
     [self.tooltipView setText:text];
-}
-@dynamic fillColor;
-- (UIColor *)fillColor {
-    return self.tooltipView.fillColor;
-}
-- (void)setFillColor:(UIColor *)fillColor {
-    [self.tooltipView setFillColor:fillColor];
-}
-@dynamic textColor;
-- (UIColor *)textColor {
-    return self.tooltipView.textColor;
-}
-- (void)setTextColor:(UIColor *)textColor {
-    [self.tooltipView setTextColor:textColor];
 }
 @dynamic font;
 - (UIFont *)font {

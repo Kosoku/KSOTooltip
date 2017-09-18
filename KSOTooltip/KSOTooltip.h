@@ -24,5 +24,6 @@ FOUNDATION_EXPORT const unsigned char KSOTooltipVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <KSOTooltip/PublicHeader.h>
 
 #import <KSOTooltip/KSOTooltipDefines.h>
+#import <KSOTooltip/KSOTooltipTheme.h>
 #import <KSOTooltip/KSOTooltipViewController.h>
 #import <KSOTooltip/UIViewController+KSOTooltipExtensions.h>

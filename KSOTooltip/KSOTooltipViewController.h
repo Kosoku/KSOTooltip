@@ -18,17 +18,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class KSOTooltipTheme;
 @protocol KSOTooltipViewControllerDelegate;
 
 @interface KSOTooltipViewController : UIViewController
 
 @property (weak,nonatomic,nullable) id<KSOTooltipViewControllerDelegate> delegate;
 
-@property (copy,nonatomic) NSString *text;
+@property (strong,nonatomic,null_resettable) KSOTooltipTheme *theme;
 
-@property (strong,nonatomic,nullable) UIColor *backgroundColor;
-@property (strong,nonatomic,nullable) UIColor *fillColor;
-@property (strong,nonatomic) UIColor *textColor;
+@property (copy,nonatomic) NSString *text;
 
 @property (strong,nonatomic) UIFont *font;
 @property (copy,nonatomic) UIFontTextStyle textStyle;

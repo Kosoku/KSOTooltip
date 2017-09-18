@@ -1,8 +1,8 @@
 //
-//  KSOTooltipView.h
+//  KSOTooltipTheme.h
 //  KSOTooltip
 //
-//  Created by William Towe on 9/16/17.
+//  Created by William Towe on 9/18/17.
 //  Copyright © 2017 Kosoku Interactive, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,35 +14,23 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
-#import <KSOTooltip/KSOTooltipDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class KSOTooltipTheme;
+@interface KSOTooltipTheme : NSObject <NSCopying>
 
-@interface KSOTooltipView : UIView
+@property (class,readonly,nonatomic) KSOTooltipTheme *defaultTheme;
 
-@property (strong,nonatomic,nullable) KSOTooltipTheme *theme;
+@property (readonly,copy,nonatomic) NSString *identifier;
 
-@property (copy,nonatomic) NSString *text;
+@property (strong,nonatomic,nullable) UIColor *backgroundColor;
+@property (strong,nonatomic,nullable) UIColor *fillColor;
+@property (strong,nonatomic,nullable) UIColor *textColor;
 
-@property (strong,nonatomic) UIColor *fillColor;
-@property (strong,nonatomic) UIColor *textColor;
+- (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 
-@property (strong,nonatomic) UIFont *font;
-
-@property (assign,nonatomic) UIEdgeInsets edgeInsets;
-
-@property (assign,nonatomic) KSOTooltipArrowDirection arrowDirection;
-@property (assign,nonatomic) KSOTooltipArrowStyle arrowStyle;
-@property (assign,nonatomic) CGFloat arrowWidth;
-@property (assign,nonatomic) CGFloat arrowHeight;
-@property (assign,nonatomic) CGFloat cornerRadius;
-
-@property (weak,nonatomic) UIView *sourceView;
-@property (assign,nonatomic) CGRect sourceRect;
-
-@property (strong,nonatomic,nullable) UIView *accessoryView;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end
 

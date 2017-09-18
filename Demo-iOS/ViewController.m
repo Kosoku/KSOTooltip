@@ -54,7 +54,7 @@
     [super didMoveToWindow];
     
     if (self.window != nil) {
-        UIColor *color = [self.viewController.fillColor ?: self.tintColor KDI_contrastingColor];
+        UIColor *color = [self.viewController.theme.fillColor ?: self.tintColor KDI_contrastingColor];
         
         [self.badgeButton.button setTintColor:color];
     }
@@ -115,7 +115,7 @@
     [super didMoveToWindow];
     
     if (self.window != nil) {
-        UIColor *color = [self.viewController.fillColor ?: self.tintColor KDI_contrastingColor];
+        UIColor *color = [self.viewController.theme.fillColor ?: self.tintColor KDI_contrastingColor];
         
         [self.label setTextColor:color];
         [self.segmentedControl setTintColor:color];
@@ -173,18 +173,14 @@
     }
     
     if ([sender isKindOfClass:UISegmentedControl.class]) {
-        [viewController setBackgroundColor:KDIColorWA(0, 0.5)];
         [viewController setText:@"This tooltip is being presented from a bar button item with a custom view"];
         [viewController setBarButtonItem:self.customBarButtonItem];
     }
     else if ([sender isKindOfClass:UIView.class]) {
-        [viewController setFillColor:KDIColorRandomRGB()];
-        [viewController setTextColor:[viewController.fillColor KDI_contrastingColor]];
         [viewController setText:@"The tooltip is being presented from a button"];
         [viewController setSourceView:sender];
     }
     else {
-        [viewController setBackgroundColor:KDIColorWA(0, 0.5)];
         [viewController setText:@"This tooltip is being presented from a bar button item"];
         [viewController setBarButtonItem:sender];
     }
