@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,nullable) UIView *sourceView;
 @property (assign,nonatomic) CGRect sourceRect;
+@property (assign,nonatomic) BOOL canOverlapSourceRect;
+
 @property (strong,nonatomic,nullable) UIBarButtonItem *barButtonItem;
 
 @property (assign,nonatomic) KSOTooltipArrowDirection allowedArrowDirections;
