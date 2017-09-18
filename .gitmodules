@@ -7,3 +7,6 @@
 [submodule "Vendor/Loki"]
 	path = Vendor/Loki
 	url = https://github.com/Kosoku/Loki.git
+[submodule "Vendor/Agamotto"]
+	path = Vendor/Agamotto
+	url = https://github.com/Kosoku/Agamotto.git
