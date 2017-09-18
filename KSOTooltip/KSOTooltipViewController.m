@@ -223,9 +223,7 @@
     }
     
     if (CGRectIntersectsRect(rect, sourceRect)) {
-        if (!self.canOverlapSourceRect) {
-            retval = NO;
-        }
+        retval = NO;
     }
     
     *outRect = rect;
