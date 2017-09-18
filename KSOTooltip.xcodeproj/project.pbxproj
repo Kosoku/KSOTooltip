@@ -32,6 +32,9 @@
 		0752D1731F6E0871002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1721F6E0871002BA4CC /* Stanley.framework */; };
 		0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; };
 		0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		079ACAE61F704A5700EBFEBF /* Agamotto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079ACAE51F704A5700EBFEBF /* Agamotto.framework */; };
+		079ACAE81F704A6300EBFEBF /* Agamotto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079ACAE71F704A6300EBFEBF /* Agamotto.framework */; };
+		079ACAE91F704A6300EBFEBF /* Agamotto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 079ACAE71F704A6300EBFEBF /* Agamotto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07C914211F6F102F008368F5 /* KSOTooltipPresentationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		07C914221F6F102F008368F5 /* KSOTooltipPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */; };
 		07F91A1F1F6DF3CA008DFB8D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */; };
@@ -63,6 +66,7 @@
 				073CFDB21F6DC13B00C1BD29 /* KSOTooltip.framework in Embed Frameworks */,
 				07FB2F671F6E0DBC001A4C8F /* Loki.framework in Embed Frameworks */,
 				0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */,
+				079ACAE91F704A6300EBFEBF /* Agamotto.framework in Embed Frameworks */,
 				07FB2F621F6E0D58001A4C8F /* Ditko.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -103,6 +107,8 @@
 		073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KSOTooltipExtensions.m"; sourceTree = "<group>"; };
 		0752D1721F6E0871002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
 		0752D1741F6E087A002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		079ACAE51F704A5700EBFEBF /* Agamotto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Agamotto.framework; path = "Vendor/Agamotto/build/Debug-iphoneos/Agamotto.framework"; sourceTree = "<group>"; };
+		079ACAE71F704A6300EBFEBF /* Agamotto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Agamotto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipPresentationController.h; sourceTree = "<group>"; };
 		07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOTooltipPresentationController.m; sourceTree = "<group>"; };
 		07F91A1E1F6DF3CA008DFB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ViewController.xib; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				079ACAE61F704A5700EBFEBF /* Agamotto.framework in Frameworks */,
 				07FB2F641F6E0DB6001A4C8F /* Loki.framework in Frameworks */,
 				07FB2F5F1F6E0D51001A4C8F /* Ditko.framework in Frameworks */,
 				0752D1731F6E0871002BA4CC /* Stanley.framework in Frameworks */,
@@ -130,6 +137,7 @@
 				073CFDB11F6DC13B00C1BD29 /* KSOTooltip.framework in Frameworks */,
 				07FB2F661F6E0DBC001A4C8F /* Loki.framework in Frameworks */,
 				0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */,
+				079ACAE81F704A6300EBFEBF /* Agamotto.framework in Frameworks */,
 				07FB2F611F6E0D58001A4C8F /* Ditko.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +233,8 @@
 		0752D1711F6E0871002BA4CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				079ACAE71F704A6300EBFEBF /* Agamotto.framework */,
+				079ACAE51F704A5700EBFEBF /* Agamotto.framework */,
 				07FB2F651F6E0DBC001A4C8F /* Loki.framework */,
 				07FB2F631F6E0DB6001A4C8F /* Loki.framework */,
 				07FB2F601F6E0D58001A4C8F /* Ditko.framework */,
@@ -496,6 +506,7 @@
 					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Agamotto/build/Debug-iphoneos",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -568,6 +579,7 @@
 					"$(PROJECT_DIR)/Vendor/Stanley/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Vendor/Ditko/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Vendor/Loki/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Vendor/Agamotto/build/Debug-iphoneos",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;

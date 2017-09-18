@@ -45,19 +45,10 @@
     [_badgeButton.button setImage:[UIImage imageNamed:@"ghost"] forState:UIControlStateNormal];
     [_badgeButton.button setTitle:@"Badge Button" forState:UIControlStateNormal];
     [_badgeButton.badgeView setBadge:@"123"];
+    [_badgeButton.button setTintColor:_viewController.theme.textColor];
     [self addSubview:_badgeButton];
     
     return self;
-}
-
-- (void)didMoveToWindow {
-    [super didMoveToWindow];
-    
-    if (self.window != nil) {
-        UIColor *color = [self.viewController.theme.fillColor ?: self.tintColor KDI_contrastingColor];
-        
-        [self.badgeButton.button setTintColor:color];
-    }
 }
 
 - (void)layoutSubviews {
@@ -96,10 +87,12 @@
     [_label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_label setText:@"Accessory"];
     [_label setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]];
+    [_label setTextColor:_viewController.theme.textColor];
     [self addSubview:_label];
     
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"One",@"Two",@"Three"]];
     [_segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_segmentedControl setTintColor:_viewController.theme.textColor];
     [self addSubview:_segmentedControl];
     
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": _label}]];
@@ -109,17 +102,6 @@
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:@{@"view": _segmentedControl}]];
     
     return self;
-}
-
-- (void)didMoveToWindow {
-    [super didMoveToWindow];
-    
-    if (self.window != nil) {
-        UIColor *color = [self.viewController.theme.fillColor ?: self.tintColor KDI_contrastingColor];
-        
-        [self.label setTextColor:color];
-        [self.segmentedControl setTintColor:color];
-    }
 }
 
 + (BOOL)requiresConstraintBasedLayout {
@@ -162,6 +144,14 @@
     KSTLog(@"allowed directions: %@",@(directions));
     
     [viewController setAllowedArrowDirections:directions];
+    
+    KSOTooltipTheme *theme = [viewController.theme copy];
+    
+    [theme setBackgroundColor:[KDIColorRandomRGB() colorWithAlphaComponent:0.5]];
+    [theme setFillColor:KDIColorRandomRGB()];
+    [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
+    
+    [viewController setTheme:theme];
     
     if (arc4random_uniform(2) % 2 == 0) {
         if (arc4random_uniform(2) % 2 == 0) {

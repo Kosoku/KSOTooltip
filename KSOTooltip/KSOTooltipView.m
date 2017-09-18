@@ -16,6 +16,8 @@
 #import "KSOTooltipView.h"
 #import "KSOTooltipTheme.h"
 
+#import <Agamotto/Agamotto.h>
+#import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
 
 @interface KSOTooltipView ()
@@ -41,8 +43,17 @@
     
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     [_label setNumberOfLines:0];
-    [_label setTextColor:UIColor.whiteColor];
     [self addSubview:_label];
+    
+    kstWeakify(self);
+    [self KAG_addObserverForKeyPath:@kstKeypath(self,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull keyPath, id  _Nullable value, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
+        kstStrongify(self);
+        KSTDispatchMainAsync(^{
+            [self.label setTextColor:self.theme.textColor];
+            
+            [self setNeedsDisplay];
+        });
+    }];
     
     return self;
 }
@@ -50,7 +61,10 @@
 - (void)tintColorDidChange {
     [super tintColorDidChange];
     
-    if (self.fillColor == nil) {
+    if (self.theme.fillColor == nil) {
+        if (self.theme.textColor == nil) {
+            [self.label setTextColor:[self.tintColor KDI_contrastingColor]];
+        }
         [self setNeedsDisplay];
     }
 }
@@ -63,7 +77,7 @@
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:backgroundRect cornerRadius:self.cornerRadius];
     
-    [self.fillColor ?: self.tintColor setFill];
+    [self.theme.fillColor ?: self.tintColor setFill];
     
     [path fill];
     
@@ -101,7 +115,7 @@
                 break;
         }
         
-        [self.fillColor ?: self.tintColor setFill];
+        [self.theme.fillColor ?: self.tintColor setFill];
         
         [path fill];
     }
@@ -211,18 +225,6 @@
     
     [self setNeedsDisplay];
     [self setNeedsLayout];
-}
-- (void)setFillColor:(UIColor *)fillColor {
-    _fillColor = fillColor;
-    
-    [self setNeedsDisplay];
-}
-@dynamic textColor;
-- (UIColor *)textColor {
-    return self.label.textColor;
-}
-- (void)setTextColor:(UIColor *)textColor {
-    [self.label setTextColor:textColor];
 }
 @dynamic font;
 - (UIFont *)font {
