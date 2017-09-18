@@ -35,6 +35,10 @@
     return UIModalPresentationCustom;
 }
 
+- (BOOL)automaticallyAdjustsScrollViewInsets {
+    return NO;
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
         return nil;
