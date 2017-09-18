@@ -33,8 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) CGRect sourceRect;
 @property (strong,nonatomic,nullable) UIBarButtonItem *barButtonItem;
 
-@property (assign,nonatomic) UIEdgeInsets minimumEdgeInsets;
-
 @property (assign,nonatomic) KSOTooltipArrowDirection allowedArrowDirections;
 @property (readonly,nonatomic) KSOTooltipArrowDirection arrowDirection;
 @property (assign,nonatomic) KSOTooltipArrowStyle arrowStyle;

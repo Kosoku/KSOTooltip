@@ -45,7 +45,6 @@
     [self setTransitioningDelegate:self];
     
     _theme = KSOTooltipTheme.defaultTheme;
-    _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     _allowedArrowDirections = KSOTooltipArrowDirectionAll;
     
     _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
@@ -205,7 +204,7 @@
         [self.tooltipView setArrowDirection:KSOTooltipArrowDirectionRight];
     }
     
-    size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.left - self.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.top - self.minimumEdgeInsets.bottom)];
+    size = [self.tooltipView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - self.theme.minimumEdgeInsets.left - self.theme.minimumEdgeInsets.right, CGRectGetHeight(self.view.bounds) - self.theme.minimumEdgeInsets.top - self.theme.minimumEdgeInsets.bottom)];
     
     CGRect rect = CGRectZero;
     
@@ -227,21 +226,21 @@
     }
     
     // check left edge
-    if (CGRectGetMinX(rect) < self.minimumEdgeInsets.left) {
-        rect.origin.x = self.minimumEdgeInsets.left;
+    if (CGRectGetMinX(rect) < self.theme.minimumEdgeInsets.left) {
+        rect.origin.x = self.theme.minimumEdgeInsets.left;
     }
     // check right edge
-    else if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.minimumEdgeInsets.right) {
-        rect.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(rect) - self.minimumEdgeInsets.right;
+    else if (CGRectGetMaxX(rect) > CGRectGetWidth(self.view.bounds) - self.theme.minimumEdgeInsets.right) {
+        rect.origin.x = CGRectGetWidth(self.view.bounds) - CGRectGetWidth(rect) - self.theme.minimumEdgeInsets.right;
     }
     
     // check top edge
-    if (CGRectGetMinY(rect) < self.topLayoutGuide.length + self.minimumEdgeInsets.top) {
-        rect.origin.y = self.topLayoutGuide.length + self.minimumEdgeInsets.top;
+    if (CGRectGetMinY(rect) < self.topLayoutGuide.length + self.theme.minimumEdgeInsets.top) {
+        rect.origin.y = self.topLayoutGuide.length + self.theme.minimumEdgeInsets.top;
     }
     // check bottom edge
-    else if (CGRectGetMaxY(rect) > CGRectGetHeight(self.view.bounds) - self.minimumEdgeInsets.bottom) {
-        rect.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(rect) - self.minimumEdgeInsets.bottom;
+    else if (CGRectGetMaxY(rect) > CGRectGetHeight(self.view.bounds) - self.theme.minimumEdgeInsets.bottom) {
+        rect.origin.y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(rect) - self.theme.minimumEdgeInsets.bottom;
     }
     
     if (CGRectIntersectsRect(rect, sourceRect)) {

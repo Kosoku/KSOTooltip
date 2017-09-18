@@ -130,6 +130,7 @@
 
 @interface ViewController ()
 @property (strong,nonatomic) UIBarButtonItem *customBarButtonItem;
+@property (strong,nonatomic) UIView *customView;
 @end
 
 @implementation ViewController
@@ -141,16 +142,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Show",@"Tooltip"]];
+    KDIBadgeButton *customView = [[KDIBadgeButton alloc] initWithFrame:CGRectZero];
     
-    [segmentedControl setMomentary:YES];
-    [segmentedControl setApportionsSegmentWidthsByContent:YES];
-    [segmentedControl addTarget:self action:@selector(_showTooltipAction:) forControlEvents:UIControlEventValueChanged];
-    [segmentedControl sizeToFit];
+    [customView.button setImage:[UIImage imageNamed:@"ticket"] forState:UIControlStateNormal];
+    [customView.badgeView setBadge:@"12"];
+    [customView.button addTarget:self action:@selector(_showTooltipAction:) forControlEvents:UIControlEventTouchUpInside];
+    [customView sizeToFit];
     
-    [self setCustomBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:segmentedControl]];
+    [self setCustomView:customView.button];
     
-    [self.navigationItem setLeftBarButtonItems:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_showTooltipAction:)],self.customBarButtonItem]];
+    [self setCustomBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:customView]];
+    
+    [self.navigationItem setLeftBarButtonItems:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_showTooltipAction:)],self.customBarButtonItem]];
     
     [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithTitle:@"Show Tooltip" style:UIBarButtonItemStylePlain target:self action:@selector(_showTooltipAction:)]]];
 }
@@ -169,6 +172,7 @@
     [theme setFillColor:KDIColorRandomRGB()];
     [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
     [theme setTextStyle:UIFontTextStyleFootnote];
+    [theme setMinimumEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 20)];
     
     [viewController setTheme:theme];
     
@@ -181,11 +185,11 @@
         }
     }
     
-    if ([sender isKindOfClass:UISegmentedControl.class]) {
+    if ([sender isEqual:self.customView]) {
         [viewController setText:@"This tooltip is being presented from a bar button item with a custom view"];
         [viewController setBarButtonItem:self.customBarButtonItem];
     }
-    else if ([sender isKindOfClass:UIView.class]) {
+    else if ([sender isKindOfClass:UIButton.class]) {
         [viewController setText:@"The tooltip is being presented from a button"];
         [viewController setSourceView:sender];
     }

@@ -33,6 +33,8 @@
     retval->_font = _font;
     retval->_textStyle = _textStyle;
     
+    retval->_minimumEdgeInsets = _minimumEdgeInsets;
+    
     return retval;
 }
 
@@ -41,6 +43,7 @@
         return nil;
     
     _font = [self.class _defaultFont];
+    _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     
     return self;
 }
