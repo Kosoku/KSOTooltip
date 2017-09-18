@@ -18,17 +18,47 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Enum for possible arrow styles.
+ */
 typedef NS_ENUM(NSInteger, KSOTooltipArrowStyle) {
+    /**
+     The default arrow style.
+     */
     KSOTooltipArrowStyleDefault,
+    /**
+     The arrow is not drawn.
+     */
     KSOTooltipArrowStyleNone
 };
 
+/**
+ Options mask for possible arrow directions.
+ */
 typedef NS_OPTIONS(NSUInteger, KSOTooltipArrowDirection) {
+    /**
+     The arrow direction is unknown.
+     */
     KSOTooltipArrowDirectionUnknown = 0,
+    /**
+     The arrow is pointing up.
+     */
     KSOTooltipArrowDirectionUp = 1 << 0,
+    /**
+     The arrow is pointing left.
+     */
     KSOTooltipArrowDirectionLeft = 1 << 1,
+    /**
+     The arrow is pointing down.
+     */
     KSOTooltipArrowDirectionDown = 1 << 2,
+    /**
+     The arrow is pointing right.
+     */
     KSOTooltipArrowDirectionRight = 1 << 3,
+    /**
+     All valid arrow directions (top, left, down, right).
+     */
     KSOTooltipArrowDirectionAll = KSOTooltipArrowDirectionUp|KSOTooltipArrowDirectionLeft|KSOTooltipArrowDirectionDown|KSOTooltipArrowDirectionRight
 };
 

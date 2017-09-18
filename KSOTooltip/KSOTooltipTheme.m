@@ -15,6 +15,8 @@
 
 #import "KSOTooltipTheme.h"
 
+#import <Stanley/Stanley.h>
+
 @interface KSOTooltipTheme ()
 @property (readwrite,copy,nonatomic) NSString *identifier;
 
@@ -22,6 +24,10 @@
 @end
 
 @implementation KSOTooltipTheme
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p> %@: %@ %@: %@ %@: %@ %@: %@ %@: %@ %@: %@ %@: %@ %@: %@ %@: %@ %@: %@ %@: %@ %@: %@",NSStringFromClass(self.class),self,@kstKeypath(self,identifier),self.identifier,@kstKeypath(self,backgroundColor),self.backgroundColor,@kstKeypath(self,fillColor),self.fillColor,@kstKeypath(self,textColor),self.textColor,@kstKeypath(self,font),self.font,@kstKeypath(self,textStyle),self.textStyle,@kstKeypath(self,minimumEdgeInsets),NSStringFromUIEdgeInsets(self.minimumEdgeInsets),@kstKeypath(self,textEdgeInsets),NSStringFromUIEdgeInsets(self.textEdgeInsets),@kstKeypath(self,cornerRadius),@(self.cornerRadius),@kstKeypath(self,arrowStyle),@(self.arrowStyle),@kstKeypath(self,arrowWidth),@(self.arrowWidth),@kstKeypath(self,arrowHeight),@(self.arrowHeight)];
+}
 
 - (id)copyWithZone:(NSZone *)zone {
     KSOTooltipTheme *retval = [[[self class] alloc] initWithIdentifier:[NSString stringWithFormat:@"%@.copy",self.identifier]];
@@ -49,9 +55,10 @@
     if (!(self = [super init]))
         return nil;
     
+    _identifier = [identifier copy];
     _font = [self.class _defaultFont];
-    _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
-    _textEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
+    _minimumEdgeInsets = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
+    _textEdgeInsets = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
     _cornerRadius = 5.0;
     _arrowWidth = 8.0;
     _arrowHeight = 8.0;
@@ -60,12 +67,7 @@
 }
 
 + (KSOTooltipTheme *)defaultTheme {
-    static KSOTooltipTheme *kRetval;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        kRetval = [[KSOTooltipTheme alloc] initWithIdentifier:@"com.kosoku.ksotooltip.theme.default"];
-    });
-    return kRetval;
+    return [[KSOTooltipTheme alloc] initWithIdentifier:@"com.kosoku.ksotooltip.theme.default"];
 }
 
 - (void)setFont:(UIFont *)font {

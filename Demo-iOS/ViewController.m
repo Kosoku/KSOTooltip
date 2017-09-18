@@ -243,6 +243,8 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
     [theme setArrowWidth:(CGFloat)arc4random_uniform(20)];
     [theme setArrowHeight:(CGFloat)arc4random_uniform(15)];
     
+    KSTLogObject(theme);
+    
     [viewController setTheme:theme];
     
     if ([sender isEqual:self.customView]) {
