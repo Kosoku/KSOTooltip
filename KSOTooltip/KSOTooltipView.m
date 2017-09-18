@@ -50,8 +50,17 @@
         kstStrongify(self);
         KSTDispatchMainAsync(^{
             [self.label setTextColor:self.theme.textColor];
+            [self.label setFont:self.theme.font];
+            
+            if (self.theme.textStyle == nil) {
+                [NSObject KDI_unregisterDynamicTypeObject:self.label];
+            }
+            else {
+                [NSObject KDI_registerDynamicTypeObject:self.label forTextStyle:self.theme.textStyle];
+            }
             
             [self setNeedsDisplay];
+            [self setNeedsLayout];
         });
     }];
     
@@ -222,16 +231,6 @@
 }
 - (void)setText:(NSString *)text {
     [self.label setText:text];
-    
-    [self setNeedsDisplay];
-    [self setNeedsLayout];
-}
-@dynamic font;
-- (UIFont *)font {
-    return self.label.font;
-}
-- (void)setFont:(UIFont *)font {
-    [self.label setFont:font];
     
     [self setNeedsDisplay];
     [self setNeedsLayout];

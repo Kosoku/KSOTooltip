@@ -19,6 +19,24 @@
 #import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
 
+@interface UIFont (DynamicTypeTest)
++ (UIFont *)iOSDemo_fontForTextStyle:(UIFontTextStyle)textStyle;
+@end
+
+@implementation UIFont (DynamicTypeTest)
+
++ (void)load {
+    [UIFont setKDI_dynamicTypeFontForTextStyleSelector:@selector(iOSDemo_fontForTextStyle:)];
+}
+
++ (UIFont *)iOSDemo_fontForTextStyle:(UIFontTextStyle)textStyle {
+    UIFontDescriptor *fontDesc = [UIFontDescriptor preferredFontDescriptorWithTextStyle:textStyle];
+    
+    return [UIFont boldSystemFontOfSize:fontDesc.pointSize];
+}
+
+@end
+
 @interface AccessoryView : UIView
 @property (strong,nonatomic) KDIBadgeButton *badgeButton;
 @property (weak,nonatomic) KSOTooltipViewController *viewController;
@@ -150,6 +168,7 @@
     [theme setBackgroundColor:[KDIColorRandomRGB() colorWithAlphaComponent:0.5]];
     [theme setFillColor:KDIColorRandomRGB()];
     [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
+    [theme setTextStyle:UIFontTextStyleFootnote];
     
     [viewController setTheme:theme];
     

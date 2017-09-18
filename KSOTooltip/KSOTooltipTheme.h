@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,nullable) UIColor *fillColor;
 @property (strong,nonatomic,nullable) UIColor *textColor;
 
+@property (strong,nonatomic,null_resettable) UIFont *font;
+@property (copy,nonatomic,nullable) UIFontTextStyle textStyle;
+
 - (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init NS_UNAVAILABLE;

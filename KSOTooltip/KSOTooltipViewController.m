@@ -20,10 +20,9 @@
 #import "KSOTooltipPresentationController.h"
 #import "KSOTooltipTheme.h"
 
-#import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
 
-@interface KSOTooltipViewController () <KDIDynamicTypeObject,UIViewControllerTransitioningDelegate>
+@interface KSOTooltipViewController () <UIViewControllerTransitioningDelegate>
 @property (strong,nonatomic) UIButton *dismissButton;
 @property (strong,nonatomic) KSOTooltipView *tooltipView;
 
@@ -46,14 +45,11 @@
     [self setTransitioningDelegate:self];
     
     _theme = KSOTooltipTheme.defaultTheme;
-    _textStyle = UIFontTextStyleFootnote;
     _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     _allowedArrowDirections = KSOTooltipArrowDirectionAll;
     
     _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
     [_tooltipView setTheme:_theme];
-    
-    [NSObject KDI_registerDynamicTypeObject:self forTextStyle:_textStyle];
     
     return self;
 }
@@ -139,10 +135,6 @@
     
     return retval;
 }
-#pragma mark KDIDynamicTypeObject
-- (SEL)dynamicTypeSetFontSelector {
-    return @selector(setFont:);
-}
 #pragma mark *** Public Methods ***
 #pragma mark Properties
 - (void)setTheme:(KSOTooltipTheme *)theme {
@@ -156,27 +148,6 @@
 }
 - (void)setText:(NSString *)text {
     [self.tooltipView setText:text];
-}
-@dynamic font;
-- (UIFont *)font {
-    return self.tooltipView.font;
-}
-- (void)setFont:(UIFont *)font {
-    [self.tooltipView setFont:font];
-    
-    if (self.isViewLoaded) {
-        [self.view setNeedsLayout];
-    }
-}
-- (void)setTextStyle:(UIFontTextStyle)textStyle {
-    _textStyle = textStyle;
-    
-    if (_textStyle == nil) {
-        [NSObject KDI_unregisterDynamicTypeObject:self];
-    }
-    else {
-        [NSObject KDI_registerDynamicTypeObject:self forTextStyle:_textStyle];
-    }
 }
 - (KSOTooltipArrowDirection)arrowDirection {
     return self.tooltipView.arrowDirection;

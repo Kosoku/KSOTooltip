@@ -18,7 +18,7 @@
 @interface KSOTooltipTheme ()
 @property (readwrite,copy,nonatomic) NSString *identifier;
 
-
++ (UIFont *)_defaultFont;
 @end
 
 @implementation KSOTooltipTheme
@@ -30,6 +30,9 @@
     retval->_fillColor = _fillColor;
     retval->_textColor = _textColor;
     
+    retval->_font = _font;
+    retval->_textStyle = _textStyle;
+    
     return retval;
 }
 
@@ -37,7 +40,7 @@
     if (!(self = [super init]))
         return nil;
     
-    
+    _font = [self.class _defaultFont];
     
     return self;
 }
@@ -49,6 +52,14 @@
         kRetval = [[KSOTooltipTheme alloc] initWithIdentifier:@"com.kosoku.ksotooltip.theme.default"];
     });
     return kRetval;
+}
+
+- (void)setFont:(UIFont *)font {
+    _font = font ?: [self.class _defaultFont];
+}
+
++ (UIFont *)_defaultFont {
+    return [UIFont systemFontOfSize:12.0];
 }
 
 @end
