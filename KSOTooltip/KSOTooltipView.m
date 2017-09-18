@@ -34,8 +34,6 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    _edgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
-    
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     [_label setNumberOfLines:0];
     [self addSubview:_label];
@@ -134,22 +132,22 @@
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
                 case KSOTooltipArrowDirectionDown: {
-                    maxWidth -= self.edgeInsets.left + self.edgeInsets.right;
+                    maxWidth -= self.theme.textEdgeInsets.left + self.theme.textEdgeInsets.right;
                     
-                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom - self.theme.arrowHeight)];
+                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.theme.textEdgeInsets.top - self.theme.textEdgeInsets.bottom - self.theme.arrowHeight)];
                     
-                    retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right;
-                    retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom + self.theme.arrowHeight;
+                    retval.width += self.theme.textEdgeInsets.left + labelSize.width + self.theme.textEdgeInsets.right;
+                    retval.height += self.theme.textEdgeInsets.top + labelSize.height + self.theme.textEdgeInsets.bottom + self.theme.arrowHeight;
                 }
                     break;
                 case KSOTooltipArrowDirectionLeft:
                 case KSOTooltipArrowDirectionRight: {
-                    maxWidth -= self.edgeInsets.left + self.edgeInsets.right + self.theme.arrowWidth;
+                    maxWidth -= self.theme.textEdgeInsets.left + self.theme.textEdgeInsets.right + self.theme.arrowWidth;
                     
-                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom)];
+                    CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.theme.textEdgeInsets.top - self.theme.textEdgeInsets.bottom)];
                     
-                    retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right + self.theme.arrowWidth;
-                    retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom;
+                    retval.width += self.theme.textEdgeInsets.left + labelSize.width + self.theme.textEdgeInsets.right + self.theme.arrowWidth;
+                    retval.height += self.theme.textEdgeInsets.top + labelSize.height + self.theme.textEdgeInsets.bottom;
                 }
                     break;
                 default:
@@ -158,12 +156,12 @@
         }
             break;
         case KSOTooltipArrowStyleNone: {
-            maxWidth -= self.edgeInsets.left + self.edgeInsets.right;
+            maxWidth -= self.theme.textEdgeInsets.left + self.theme.textEdgeInsets.right;
             
-            CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.edgeInsets.top - self.edgeInsets.bottom)];
+            CGSize labelSize = [self.label sizeThatFits:CGSizeMake(maxWidth, size.height - self.theme.textEdgeInsets.top - self.theme.textEdgeInsets.bottom)];
             
-            retval.width += self.edgeInsets.left + labelSize.width + self.edgeInsets.right;
-            retval.height += self.edgeInsets.top + labelSize.height + self.edgeInsets.bottom;
+            retval.width += self.theme.textEdgeInsets.left + labelSize.width + self.theme.textEdgeInsets.right;
+            retval.height += self.theme.textEdgeInsets.top + labelSize.height + self.theme.textEdgeInsets.bottom;
         }
             break;
     }
@@ -192,23 +190,23 @@
         case KSOTooltipArrowStyleDefault:
             switch (self.arrowDirection) {
                 case KSOTooltipArrowDirectionUp:
-                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.theme.arrowHeight + self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right, CGRectGetHeight(self.bounds) - self.edgeInsets.bottom - self.edgeInsets.top - self.theme.arrowHeight)];
+                    [self.label setFrame:CGRectMake(self.theme.textEdgeInsets.left, self.theme.arrowHeight + self.theme.textEdgeInsets.top, CGRectGetWidth(self.bounds) - self.theme.textEdgeInsets.left - self.theme.textEdgeInsets.right, CGRectGetHeight(self.bounds) - self.theme.textEdgeInsets.bottom - self.theme.textEdgeInsets.top - self.theme.arrowHeight)];
                     break;
                 case KSOTooltipArrowDirectionLeft:
-                    [self.label setFrame:CGRectMake(self.theme.arrowWidth + self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right - self.theme.arrowWidth, CGRectGetHeight(self.bounds) - self.edgeInsets.top - self.edgeInsets.bottom)];
+                    [self.label setFrame:CGRectMake(self.theme.arrowWidth + self.theme.textEdgeInsets.left, self.theme.textEdgeInsets.top, CGRectGetWidth(self.bounds) - self.theme.textEdgeInsets.left - self.theme.textEdgeInsets.right - self.theme.arrowWidth, CGRectGetHeight(self.bounds) - self.theme.textEdgeInsets.top - self.theme.textEdgeInsets.bottom)];
                     break;
                 case KSOTooltipArrowDirectionDown:
-                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right, CGRectGetHeight(self.bounds) - self.edgeInsets.top - self.edgeInsets.bottom - self.theme.arrowHeight)];
+                    [self.label setFrame:CGRectMake(self.theme.textEdgeInsets.left, self.theme.textEdgeInsets.top, CGRectGetWidth(self.bounds) - self.theme.textEdgeInsets.left - self.theme.textEdgeInsets.right, CGRectGetHeight(self.bounds) - self.theme.textEdgeInsets.top - self.theme.textEdgeInsets.bottom - self.theme.arrowHeight)];
                     break;
                 case KSOTooltipArrowDirectionRight:
-                    [self.label setFrame:CGRectMake(self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right - self.theme.arrowWidth, CGRectGetHeight(self.bounds) - self.edgeInsets.left - self.edgeInsets.right)];
+                    [self.label setFrame:CGRectMake(self.theme.textEdgeInsets.left, self.theme.textEdgeInsets.top, CGRectGetWidth(self.bounds) - self.theme.textEdgeInsets.left - self.theme.textEdgeInsets.right - self.theme.arrowWidth, CGRectGetHeight(self.bounds) - self.theme.textEdgeInsets.left - self.theme.textEdgeInsets.right)];
                     break;
                 default:
                     break;
             }
             break;
         case KSOTooltipArrowStyleNone:
-            [self.label setFrame:CGRectMake(self.edgeInsets.left, self.edgeInsets.top, CGRectGetWidth(self.bounds) - self.edgeInsets.left - self.edgeInsets.right, CGRectGetHeight(self.bounds) - self.edgeInsets.top - self.edgeInsets.bottom)];
+            [self.label setFrame:CGRectMake(self.theme.textEdgeInsets.left, self.theme.textEdgeInsets.top, CGRectGetWidth(self.bounds) - self.theme.textEdgeInsets.left - self.theme.textEdgeInsets.right, CGRectGetHeight(self.bounds) - self.theme.textEdgeInsets.top - self.theme.textEdgeInsets.bottom)];
             break;
         default:
             break;

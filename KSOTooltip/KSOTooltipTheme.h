@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy,nonatomic,nullable) UIFontTextStyle textStyle;
 
 @property (assign,nonatomic) UIEdgeInsets minimumEdgeInsets;
+@property (assign,nonatomic) UIEdgeInsets textEdgeInsets;
 
 @property (assign,nonatomic) CGFloat cornerRadius;
 

@@ -34,6 +34,7 @@
     retval->_textStyle = _textStyle;
     
     retval->_minimumEdgeInsets = _minimumEdgeInsets;
+    retval->_textEdgeInsets = _textEdgeInsets;
     
     retval->_cornerRadius = _cornerRadius;
     
@@ -50,6 +51,7 @@
     
     _font = [self.class _defaultFont];
     _minimumEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
+    _textEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
     _cornerRadius = 5.0;
     _arrowWidth = 8.0;
     _arrowHeight = 8.0;

@@ -26,8 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy,nonatomic) NSString *text;
 
-@property (assign,nonatomic) UIEdgeInsets edgeInsets;
-
 @property (assign,nonatomic) KSOTooltipArrowDirection arrowDirection;
 
 @property (weak,nonatomic) UIView *sourceView;
