@@ -37,6 +37,65 @@
 
 @end
 
+@interface CheckmarkAccessoryView : UIView <KSOTooltipViewControllerDelegate>
+@property (weak,nonatomic) KSOTooltipViewController *viewController;
+@property (strong,nonatomic) KDIButton *button;
+- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController;
+@end
+
+@implementation CheckmarkAccessoryView
+
+- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController {
+    if (!(self = [super initWithFrame:frame]))
+        return nil;
+    
+    _viewController = viewController;
+    [_viewController setDelegate:self];
+    
+    _button = [KDIButton buttonWithType:UIButtonTypeSystem];
+    [_button setTintColor:_viewController.theme.textColor];
+    [_button setImage:[UIImage imageNamed:@"checkmark"] forState:UIControlStateNormal];
+    [_button setTitle:@"Tap to toggle selected" forState:UIControlStateNormal];
+    [_button setContentEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [_button setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
+    [_button setKDI_cornerRadius:5.0];
+    [_button setRounded:YES];
+    [_button addTarget:self action:@selector(_buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_button];
+    
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self.button setFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - 8)];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    CGSize retval = [self.button sizeThatFits:size];
+    
+    retval.height += 8;
+    
+    return retval;
+}
+
+- (BOOL)tooltipViewControllerShouldDismiss:(KSOTooltipViewController *)tooltipViewController {
+    BOOL retval = self.button.isInverted;
+    
+    if (!retval) {
+        [UIAlertController KDI_presentAlertControllerWithTitle:nil message:@"Toggle the checkmark button in order to dismiss!" cancelButtonTitle:nil otherButtonTitles:nil completion:nil];
+    }
+    
+    return retval;
+}
+
+- (IBAction)_buttonAction:(id)sender {
+    [self.button setInverted:!self.button.isInverted];
+}
+
+@end
+
 @interface AccessoryView : UIView
 @property (strong,nonatomic) KDIBadgeButton *badgeButton;
 @property (weak,nonatomic) KSOTooltipViewController *viewController;
@@ -197,6 +256,7 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
             retval;
         })];
         [viewController setBarButtonItem:self.customBarButtonItem];
+        [viewController setAccessoryView:[[CheckmarkAccessoryView alloc] initWithFrame:CGRectZero viewController:viewController]];
     }
     else if ([sender isKindOfClass:UIButton.class]) {
         switch ((ButtonTag)[(UIButton *)sender tag]) {
