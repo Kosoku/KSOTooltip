@@ -148,6 +148,13 @@
 - (void)setText:(NSString *)text {
     [self.tooltipView setText:text];
 }
+@dynamic attributedText;
+- (NSAttributedString *)attributedText {
+    return self.tooltipView.attributedText;
+}
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+    [self.tooltipView setAttributedText:attributedText];
+}
 - (KSOTooltipArrowDirection)arrowDirection {
     return self.tooltipView.arrowDirection;
 }

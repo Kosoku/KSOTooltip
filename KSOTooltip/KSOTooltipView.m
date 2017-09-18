@@ -220,10 +220,17 @@
 }
 @dynamic text;
 - (NSString *)text {
-    return self.label.text;
+    return self.attributedText.string;
 }
 - (void)setText:(NSString *)text {
-    [self.label setText:text];
+    [self setAttributedText:[[NSAttributedString alloc] initWithString:text ?: @"" attributes:@{NSFontAttributeName: self.theme.font}]];
+}
+@dynamic attributedText;
+- (NSAttributedString *)attributedText {
+    return self.label.attributedText;
+}
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+    [self.label setAttributedText:attributedText];
     
     [self setNeedsDisplay];
     [self setNeedsLayout];

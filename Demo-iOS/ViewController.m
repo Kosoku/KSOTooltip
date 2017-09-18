@@ -190,7 +190,15 @@
     }
     
     if ([sender isEqual:self.customView]) {
-        [viewController setText:@"This tooltip is being presented from a bar button item with a custom view"];
+        [viewController setAttributedText:({
+            NSMutableAttributedString *retval = [[NSMutableAttributedString alloc] initWithString:@"This tooltip is being presented from a bar button item with a custom view" attributes:@{NSFontAttributeName: theme.font}];
+            
+            [retval.string enumerateSubstringsInRange:NSMakeRange(0, retval.length) options:NSStringEnumerationByWords|NSStringEnumerationSubstringNotRequired usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+                [retval addAttribute:NSForegroundColorAttributeName value:KDIColorRandomRGB() range:substringRange];
+            }];
+            
+            retval;
+        })];
         [viewController setBarButtonItem:self.customBarButtonItem];
     }
     else if ([sender isKindOfClass:UIButton.class]) {

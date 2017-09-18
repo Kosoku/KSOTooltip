@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,nullable) KSOTooltipTheme *theme;
 
 @property (copy,nonatomic) NSString *text;
+@property (copy,nonatomic) NSAttributedString *attributedText;
 
 @property (assign,nonatomic) KSOTooltipArrowDirection arrowDirection;
 

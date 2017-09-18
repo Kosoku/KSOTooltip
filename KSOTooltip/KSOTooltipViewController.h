@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic,null_resettable) KSOTooltipTheme *theme;
 
 @property (copy,nonatomic) NSString *text;
+@property (copy,nonatomic) NSAttributedString *attributedText;
 
 @property (strong,nonatomic,nullable) UIView *sourceView;
 @property (assign,nonatomic) CGRect sourceRect;
