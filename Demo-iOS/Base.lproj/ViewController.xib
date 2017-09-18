@@ -19,30 +19,30 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gx-ty-2cl">
-                    <rect key="frame" x="143" y="72" width="89" height="30"/>
-                    <state key="normal" title="Show Tooltip"/>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gx-ty-2cl">
+                    <rect key="frame" x="107" y="72" width="162" height="30"/>
+                    <state key="normal" title="Manual Accessory View"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="dae-rN-RFf"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkR-Bd-BAj">
-                    <rect key="frame" x="16" y="318" width="89" height="30"/>
-                    <state key="normal" title="Show Tooltip"/>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkR-Bd-BAj">
+                    <rect key="frame" x="16" y="318" width="186" height="30"/>
+                    <state key="normal" title="Autolayout Accessory View"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="4QC-m4-Egv"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riR-ts-vMU">
-                    <rect key="frame" x="270" y="318" width="89" height="30"/>
-                    <state key="normal" title="Show Tooltip"/>
+                    <rect key="frame" x="321" y="318" width="38" height="30"/>
+                    <state key="normal" title="Show"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="L21-1Q-4vZ"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpe-eh-vvR">
-                    <rect key="frame" x="143" y="617" width="89" height="30"/>
-                    <state key="normal" title="Show Tooltip"/>
+                    <rect key="frame" x="169" y="617" width="38" height="30"/>
+                    <state key="normal" title="Show"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="02Y-5w-ay6"/>
                     </connections>

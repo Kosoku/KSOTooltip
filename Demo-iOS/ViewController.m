@@ -128,6 +128,12 @@
 
 @end
 
+typedef NS_ENUM(NSInteger, ButtonTag) {
+    ButtonTagNone = 0,
+    ButtonTagAccessoryView = 1,
+    ButtonTagAccessoryViewWithAutolayout = 2
+};
+
 @interface ViewController ()
 @property (strong,nonatomic) UIBarButtonItem *customBarButtonItem;
 @property (strong,nonatomic) UIView *customView;
@@ -153,7 +159,7 @@
     
     [self setCustomBarButtonItem:[[UIBarButtonItem alloc] initWithCustomView:customView]];
     
-    [self.navigationItem setLeftBarButtonItems:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_showTooltipAction:)],self.customBarButtonItem]];
+    [self.navigationItem setLeftBarButtonItems:@[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flick"] style:UIBarButtonItemStylePlain target:self action:@selector(_showTooltipAction:)],self.customBarButtonItem]];
     
     [self.navigationItem setRightBarButtonItems:@[[[UIBarButtonItem alloc] initWithTitle:@"Show Tooltip" style:UIBarButtonItemStylePlain target:self action:@selector(_showTooltipAction:)]]];
 }
@@ -180,15 +186,6 @@
     
     [viewController setTheme:theme];
     
-    if (arc4random_uniform(2) % 2 == 0) {
-        if (arc4random_uniform(2) % 2 == 0) {
-            [viewController setAccessoryView:[[AccessoryViewWithAutoLayout alloc] initWithFrame:CGRectZero viewController:viewController]];
-        }
-        else {
-            [viewController setAccessoryView:[[AccessoryView alloc] initWithFrame:CGRectZero viewController:viewController]];
-        }
-    }
-    
     if ([sender isEqual:self.customView]) {
         [viewController setAttributedText:({
             NSMutableAttributedString *retval = [[NSMutableAttributedString alloc] initWithString:@"This tooltip is being presented from a bar button item with a custom view" attributes:@{NSFontAttributeName: theme.font}];
@@ -202,6 +199,18 @@
         [viewController setBarButtonItem:self.customBarButtonItem];
     }
     else if ([sender isKindOfClass:UIButton.class]) {
+        switch ((ButtonTag)[(UIButton *)sender tag]) {
+            case ButtonTagAccessoryView:
+                [viewController setAccessoryView:[[AccessoryView alloc] initWithFrame:CGRectZero viewController:viewController]];
+                break;
+            case ButtonTagAccessoryViewWithAutolayout:
+                [viewController setAccessoryView:[[AccessoryViewWithAutoLayout alloc] initWithFrame:CGRectZero viewController:viewController]];
+                break;
+            case ButtonTagNone:
+            default:
+                break;
+        }
+        
         [viewController setText:@"The tooltip is being presented from a button"];
         [viewController setSourceView:sender];
     }
