@@ -18,6 +18,13 @@
 
 @implementation UIViewController (KSOTooltipExtensions)
 
+- (void)KSO_presentTooltipViewControllerAnimatedWithText:(NSString *)text sourceView:(UIView *)sourceView; {
+    [self KSO_presentTooltipViewControllerWithText:text sourceView:sourceView sourceRect:CGRectZero animated:YES completion:nil];
+}
+- (void)KSO_presentTooltipViewControllerAnimatedWithText:(NSString *)text barButtonItem:(UIBarButtonItem *)barButtonItem; {
+    [self KSO_presentTooltipViewControllerWithText:text barButtonItem:barButtonItem animated:YES completion:nil];
+}
+
 - (void)KSO_presentTooltipViewControllerWithText:(NSString *)text sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect animated:(BOOL)animated completion:(dispatch_block_t)completion {
     KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
     

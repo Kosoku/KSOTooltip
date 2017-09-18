@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (KSOTooltipExtensions)
 
+- (void)KSO_presentTooltipViewControllerAnimatedWithText:(NSString *)text sourceView:(UIView *)sourceView;
+- (void)KSO_presentTooltipViewControllerAnimatedWithText:(NSString *)text barButtonItem:(UIBarButtonItem *)barButtonItem;
 - (void)KSO_presentTooltipViewControllerWithText:(NSString *)text sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect animated:(BOOL)animated completion:(nullable dispatch_block_t)completion;
 - (void)KSO_presentTooltipViewControllerWithText:(NSString *)text barButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated completion:(nullable dispatch_block_t)completion;
 

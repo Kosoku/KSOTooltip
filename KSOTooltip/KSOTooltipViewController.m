@@ -34,11 +34,10 @@
 - (UIModalPresentationStyle)modalPresentationStyle {
     return UIModalPresentationCustom;
 }
-
 - (BOOL)automaticallyAdjustsScrollViewInsets {
     return NO;
 }
-
+#pragma mark -
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
         return nil;
@@ -290,7 +289,23 @@
 }
 #pragma mark Actions
 - (IBAction)_dismissButtonAction:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    if ([self.delegate respondsToSelector:@selector(tooltipViewControllerShouldDismiss:)] &&
+        ![self.delegate tooltipViewControllerShouldDismiss:self]) {
+        
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(tooltipViewControllerWillDismiss:)]) {
+        [self.delegate tooltipViewControllerWillDismiss:self];
+    }
+    
+    kstWeakify(self);
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        kstStrongify(self);
+        if ([self.delegate respondsToSelector:@selector(tooltipViewControllerDidDismiss:)]) {
+            [self.delegate tooltipViewControllerDidDismiss:self];
+        }
+    }];
 }
 
 @end

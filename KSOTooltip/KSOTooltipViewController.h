@@ -18,7 +18,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol KSOTooltipViewControllerDelegate;
+
 @interface KSOTooltipViewController : UIViewController
+
+@property (weak,nonatomic,nullable) id<KSOTooltipViewControllerDelegate> delegate;
 
 @property (copy,nonatomic) NSString *text;
 
@@ -44,6 +48,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong,nonatomic,nullable) UIView *accessoryView;
 
+@end
+
+@protocol KSOTooltipViewControllerDelegate <NSObject>
+@optional
+- (BOOL)tooltipViewControllerShouldDismiss:(KSOTooltipViewController *)tooltipViewController;
+- (void)tooltipViewControllerWillDismiss:(KSOTooltipViewController *)tooltipViewController;
+- (void)tooltipViewControllerDidDismiss:(KSOTooltipViewController *)tooltipViewController;
 @end
 
 NS_ASSUME_NONNULL_END
