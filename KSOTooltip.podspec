@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 KSOTooltip is an `iOS` framework for displaying informational tooltips modally. It can display instances of `NSString` and `NSAttributedString`, with or without an arrow and with an optional accessory view displayed below the text.
                        DESC
 
-  s.homepage         = 'https://github.com/Kosoku/KSTooltip'
+  s.homepage         = 'https://github.com/Kosoku/KSOTooltip'
   s.screenshots      = ['https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-1.png','https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-2.png','https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-3.png','https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-4.png']
   s.license          = { :type => 'BSD', :file => 'license.txt' }
   s.author           = { 'William Towe' => 'willbur1984@gmail.com' }

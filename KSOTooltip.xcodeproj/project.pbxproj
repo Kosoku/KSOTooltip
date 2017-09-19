@@ -194,14 +194,7 @@
 				073CFD921F6DBF7E00C1BD29 /* KSOTooltipViewController.m */,
 				073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */,
 				073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */,
-				07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */,
-				07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */,
-				073CFDBA1F6DC54C00C1BD29 /* KSOTooltipAnimation.h */,
-				073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */,
-				073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */,
-				073CFDBF1F6DCEC000C1BD29 /* KSOTooltipView.m */,
-				072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */,
-				072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */,
+				079ACAEA1F70CC5200EBFEBF /* Private */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -243,6 +236,21 @@
 				0752D1721F6E0871002BA4CC /* Stanley.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		079ACAEA1F70CC5200EBFEBF /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				07C9141F1F6F102F008368F5 /* KSOTooltipPresentationController.h */,
+				07C914201F6F102F008368F5 /* KSOTooltipPresentationController.m */,
+				073CFDBA1F6DC54C00C1BD29 /* KSOTooltipAnimation.h */,
+				073CFDBB1F6DC54C00C1BD29 /* KSOTooltipAnimation.m */,
+				073CFDBE1F6DCEC000C1BD29 /* KSOTooltipView.h */,
+				073CFDBF1F6DCEC000C1BD29 /* KSOTooltipView.m */,
+				072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */,
+				072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
