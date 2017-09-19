@@ -1,9 +1,9 @@
 ## KSOTooltip
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Version](http://img.shields.io/cocoapods/v/Ditko.svg)](http://cocoapods.org/?q=Ditko)
-[![Platform](http://img.shields.io/cocoapods/p/Ditko.svg)]()
-[![License](http://img.shields.io/cocoapods/l/Ditko.svg)](https://github.com/Kosoku/Ditko/blob/master/license.txt)
+[![Version](http://img.shields.io/cocoapods/v/KSOTooltip.svg)](http://cocoapods.org/?q=KSOTooltip)
+[![Platform](http://img.shields.io/cocoapods/p/KSOTooltip.svg)]()
+[![License](http://img.shields.io/cocoapods/l/KSOTooltip.svg)](https://github.com/Kosoku/KSOTooltip/blob/master/license.txt)
 
 *KSOTooltip* is an iOS framework for displaying informational tooltips. It can display text or attributed text from a view or bar button item. It can display an optional accessory view below the tooltip text.
 
