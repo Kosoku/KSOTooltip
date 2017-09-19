@@ -97,6 +97,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)tooltipViewControllerShouldDismiss:(KSOTooltipViewController *)tooltipViewController;
 /**
+ Returns whether the tooltip view controller dismissal should animate. If this method is not implemented, a return value of YES is assumed.
+ 
+ @param tooltipViewController The sender of the message
+ @return YES if the dismissal should animate, otherwise NO
+ */
+- (BOOL)tooltipViewControllerDismissalShouldAnimate:(KSOTooltipViewController *)tooltipViewController;
+/**
  Called right before the tooltip view controller is dismissed.
  
  @param tooltipViewController The sender of the message

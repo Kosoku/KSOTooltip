@@ -281,7 +281,7 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
         [viewController setBarButtonItem:sender];
     }
     
-    [self presentViewController:viewController animated:YES completion:nil];
+    [self presentViewController:viewController animated:NO completion:nil];
 }
 
 @end

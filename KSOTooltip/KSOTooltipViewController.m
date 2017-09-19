@@ -242,8 +242,10 @@
         [self.delegate tooltipViewControllerWillDismiss:self];
     }
     
+    BOOL animate = ([self.delegate respondsToSelector:@selector(tooltipViewControllerDismissalShouldAnimate:)] && [self.delegate tooltipViewControllerDismissalShouldAnimate:self]) || ![self.delegate respondsToSelector:@selector(tooltipViewControllerDismissalShouldAnimate:)];
+    
     kstWeakify(self);
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+    [self.presentingViewController dismissViewControllerAnimated:animate completion:^{
         kstStrongify(self);
         if ([self.delegate respondsToSelector:@selector(tooltipViewControllerDidDismiss:)]) {
             [self.delegate tooltipViewControllerDidDismiss:self];
