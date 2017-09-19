@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  
     KSOTooltipTheme *myTheme = [KSOTooltipTheme.defaultTheme copy];
  
-    [myTheme setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:-0.5]];
+    [myTheme setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.5]];
  
  Then set *myTheme* as the `theme` property on the KSOTooltipViewController instance before presenting.
  */
