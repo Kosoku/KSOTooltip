@@ -25,6 +25,13 @@
     [self KSO_presentTooltipViewControllerWithText:text barButtonItem:barButtonItem animated:YES completion:nil];
 }
 
+- (void)KSO_presentTooltipViewControllerAnimatedWithAttributedText:(NSAttributedString *)attributedText sourceView:(UIView *)sourceView; {
+    [self KSO_presentTooltipViewControllerWithAttributedText:attributedText sourceView:sourceView sourceRect:CGRectZero animated:YES completion:nil];
+}
+- (void)KSO_presentTooltipViewControllerAnimatedWithAttributedText:(NSAttributedString *)attributedText barButtonItem:(UIBarButtonItem *)barButtonItem; {
+    [self KSO_presentTooltipViewControllerWithAttributedText:attributedText barButtonItem:barButtonItem animated:YES completion:nil];
+}
+
 - (void)KSO_presentTooltipViewControllerWithText:(NSString *)text sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect animated:(BOOL)animated completion:(dispatch_block_t)completion {
     KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
     
@@ -38,6 +45,24 @@
     KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
     
     [viewController setText:text];
+    [viewController setBarButtonItem:barButtonItem];
+    
+    [self presentViewController:viewController animated:animated completion:completion];
+}
+
+- (void)KSO_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect animated:(BOOL)animated completion:(dispatch_block_t)completion; {
+    KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
+    
+    [viewController setAttributedText:attributedText];
+    [viewController setSourceView:sourceView];
+    [viewController setSourceRect:sourceRect];
+    
+    [self presentViewController:viewController animated:animated completion:completion];
+}
+- (void)KSO_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText barButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated completion:(dispatch_block_t)completion; {
+    KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
+    
+    [viewController setAttributedText:attributedText];
     [viewController setBarButtonItem:barButtonItem];
     
     [self presentViewController:viewController animated:animated completion:completion];

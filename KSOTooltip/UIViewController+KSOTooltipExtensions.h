@@ -19,10 +19,75 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (KSOTooltipExtensions)
 
+/**
+ Presents a tooltip with *text* animated from the *sourceView*.
+ 
+ @param text The tooltip text
+ @param sourceView The source view from which to display the tooltip
+ */
 - (void)KSO_presentTooltipViewControllerAnimatedWithText:(NSString *)text sourceView:(UIView *)sourceView;
+/**
+ Presents a tooltip with *text* animated from the *barButtonItem*.
+ 
+ @param text The tooltip text
+ @param barButtonItem The bar button item from which to display the tooltip
+ */
 - (void)KSO_presentTooltipViewControllerAnimatedWithText:(NSString *)text barButtonItem:(UIBarButtonItem *)barButtonItem;
+
+/**
+ Presents a tooltip with *attributedText* animated from the *sourceView*.
+ 
+ @param attributedText The tooltip attributed text
+ @param sourceView The source view from which to display the tooltip
+ */
+- (void)KSO_presentTooltipViewControllerAnimatedWithAttributedText:(NSAttributedString *)attributedText sourceView:(UIView *)sourceView;
+/**
+ Presents a tooltip with *attributedText* animated from the *barButtonItem*.
+ 
+ @param attributedText The tooltip attributed text
+ @param barButtonItem The bar button item from which to display the tooltip
+ */
+- (void)KSO_presentTooltipViewControllerAnimatedWithAttributedText:(NSAttributedString *)attributedText barButtonItem:(UIBarButtonItem *)barButtonItem;
+
+/**
+ Presents a tooltip with *text* from *sourceRect* relative to *sourceView* optionally *animated* and invokes *completion* when after the tooltip is presented.
+ 
+ @param text The tooltip text
+ @param sourceView The source view from which to present the tooltip
+ @param sourceRect The source rect from which to present the tooltip
+ @param animated Whether to animate the presentation
+ @param completion The block to invoke after the presentation completes
+ */
 - (void)KSO_presentTooltipViewControllerWithText:(NSString *)text sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect animated:(BOOL)animated completion:(nullable dispatch_block_t)completion;
+/**
+ Presents a tooltip with *text* from *barButtonItem* optionally *animated* and invokes *completion* when after the tooltip is presented.
+ 
+ @param text The tooltip text
+ @param barButtonItem The bar button item from which to present the tooltip
+ @param animated Whether to animate the presentation
+ @param completion The block to invoke after the presentation completes
+ */
 - (void)KSO_presentTooltipViewControllerWithText:(NSString *)text barButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated completion:(nullable dispatch_block_t)completion;
+
+/**
+ Presents a tooltip with *attributedText* from *sourceRect* relative to *sourceView* optionally *animated* and invokes *completion* when after the tooltip is presented.
+ 
+ @param attributedText The tooltip attributed text
+ @param sourceView The source view from which to present the tooltip
+ @param sourceRect The source rect from which to present the tooltip
+ @param animated Whether to animate the presentation
+ @param completion The block to invoke after the presentation completes
+ */
+- (void)KSO_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText sourceView:(UIView *)sourceView sourceRect:(CGRect)sourceRect animated:(BOOL)animated completion:(nullable dispatch_block_t)completion;
+/**
+ Presents a tooltip with *attributedText* from *barButtonItem* optionally *animated* and invokes *completion* when after the tooltip is presented.
+ 
+ @param attributedText The tooltip attributed text
+ @param barButtonItem The bar button item from which to present the tooltip
+ @param animated Whether to animate the presentation
+ @param completion The block to invoke after the presentation completes
+ */
+- (void)KSO_presentTooltipViewControllerWithAttributedText:(NSAttributedString *)attributedText barButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated completion:(nullable dispatch_block_t)completion;
 
 @end
 
