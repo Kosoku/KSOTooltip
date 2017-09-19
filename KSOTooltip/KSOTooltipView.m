@@ -23,6 +23,8 @@
 @interface KSOTooltipView ()
 @property (strong,nonatomic) UILabel *label;
 
+@property (readonly,nonatomic) UIColor *fillColor;
+
 - (CGRect)_backgroundRectForBounds:(CGRect)bounds;
 - (CGRect)_arrowRectForBounds:(CGRect)bounds;
 - (CGRect)_accessoryViewRectForBounds:(CGRect)bounds;
@@ -42,8 +44,8 @@
     [self KAG_addObserverForKeyPath:@kstKeypath(self,theme) options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull keyPath, id  _Nullable value, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
         kstStrongify(self);
         KSTDispatchMainAsync(^{
-            [self.label setTextColor:self.theme.textColor];
             [self.label setFont:self.theme.font];
+            [self.label setTextColor:self.theme.textColor == nil ? [self.fillColor KDI_contrastingColor] : self.theme.textColor];
             
             if (self.theme.textStyle == nil) {
                 [NSObject KDI_unregisterDynamicTypeObject:self.label];
@@ -63,11 +65,8 @@
 - (void)tintColorDidChange {
     [super tintColorDidChange];
     
-    if (self.theme.fillColor == nil) {
-        if (self.theme.textColor == nil) {
-            [self.label setTextColor:[self.tintColor KDI_contrastingColor]];
-        }
-        [self setNeedsDisplay];
+    if (self.theme.textColor == nil) {
+        [self.label setTextColor:[self.fillColor KDI_contrastingColor]];
     }
 }
 
@@ -333,6 +332,10 @@
     }
     
     return retval;
+}
+
+- (UIColor *)fillColor {
+    return self.theme.fillColor ?: self.tintColor;
 }
 
 @end

@@ -232,7 +232,7 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
     [viewController setAllowedArrowDirections:directions];
     
     KSOTooltipTheme *theme = [viewController.theme copy];
-    
+
     [theme setBackgroundColor:[KDIColorRandomRGB() colorWithAlphaComponent:0.5]];
     [theme setFillColor:KDIColorRandomRGB()];
     [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
@@ -281,7 +281,7 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
         [viewController setBarButtonItem:sender];
     }
     
-    [self presentViewController:viewController animated:NO completion:nil];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 @end
