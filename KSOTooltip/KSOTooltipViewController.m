@@ -42,6 +42,8 @@
     if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
         return nil;
     
+    kstWeakify(self);
+    
     [self setTransitioningDelegate:self];
     
     _theme = KSOTooltipTheme.defaultTheme;

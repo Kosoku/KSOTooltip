@@ -46,14 +46,14 @@
         KSTDispatchMainAsync(^{
             [self.label setFont:self.theme.font];
             [self.label setTextColor:self.theme.textColor == nil ? [self.fillColor KDI_contrastingColor] : self.theme.textColor];
-            
+
             if (self.theme.textStyle == nil) {
                 [NSObject KDI_unregisterDynamicTypeObject:self.label];
             }
             else {
                 [NSObject KDI_registerDynamicTypeObject:self.label forTextStyle:self.theme.textStyle];
             }
-            
+
             [self setNeedsDisplay];
             [self setNeedsLayout];
         });
@@ -222,7 +222,7 @@
     return self.attributedText.string;
 }
 - (void)setText:(NSString *)text {
-    [self setAttributedText:[[NSAttributedString alloc] initWithString:text ?: @"" attributes:@{NSFontAttributeName: self.theme.font}]];
+    [self.label setText:text];
 }
 @dynamic attributedText;
 - (NSAttributedString *)attributedText {
