@@ -20,6 +20,7 @@
 #import "KSOTooltipPresentationController.h"
 #import "KSOTooltipTheme.h"
 
+#import <Agamotto/Agamotto.h>
 #import <Stanley/Stanley.h>
 
 @interface KSOTooltipViewController () <UIViewControllerTransitioningDelegate>
@@ -51,6 +52,20 @@
     
     _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
     [_tooltipView setTheme:_theme];
+    
+    [self KAG_addObserverForNotificationName:UIApplicationDidEnterBackgroundNotification object:nil block:^(NSNotification * _Nonnull notification) {
+        kstStrongify(self);
+        if ([self.delegate respondsToSelector:@selector(tooltipViewControllerWillDismiss:)]) {
+            [self.delegate tooltipViewControllerWillDismiss:self];
+        }
+        
+        [self.presentingViewController dismissViewControllerAnimated:NO completion:^{
+            kstStrongify(self);
+            if ([self.delegate respondsToSelector:@selector(tooltipViewControllerDidDismiss:)]) {
+                [self.delegate tooltipViewControllerDidDismiss:self];
+            }
+        }];
+    }];
     
     return self;
 }
