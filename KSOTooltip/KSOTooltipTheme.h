@@ -24,15 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KSOTooltipTheme : NSObject <NSCopying>
 
 /**
- Returns the default theme. You should copy the return value of this property as a starting point to create your own theme.
+ Set and get the default theme.
  
-    KSOTooltipTheme *myTheme = [KSOTooltipTheme.defaultTheme copy];
- 
-    [myTheme setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.5]];
- 
- Then set *myTheme* as the `theme` property on the KSOTooltipViewController instance before presenting.
+ The default theme uses the default return values described for the properties below.
  */
-@property (class,readonly,nonatomic) KSOTooltipTheme *defaultTheme;
+@property (class,strong,nonatomic,null_resettable) KSOTooltipTheme *defaultTheme;
 
 /**
  Get the identifier of the receiver. Useful for debugging purposes.

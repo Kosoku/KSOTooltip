@@ -17,6 +17,8 @@
 
 #import <Stanley/Stanley.h>
 
+#import <objc/runtime.h>
+
 @interface KSOTooltipTheme ()
 @property (readwrite,copy,nonatomic) NSString *identifier;
 
@@ -66,8 +68,12 @@
     return self;
 }
 
+static void const *kDefaultThemeKey = &kDefaultThemeKey;
 + (KSOTooltipTheme *)defaultTheme {
-    return [[KSOTooltipTheme alloc] initWithIdentifier:@"com.kosoku.ksotooltip.theme.default"];
+    return objc_getAssociatedObject(self, kDefaultThemeKey) ?: [[KSOTooltipTheme alloc] initWithIdentifier:@"com.kosoku.ksotooltip.theme.default"];
+}
++ (void)setDefaultTheme:(KSOTooltipTheme *)defaultTheme {
+    objc_setAssociatedObject(self, kDefaultThemeKey, defaultTheme, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setFont:(UIFont *)font {
