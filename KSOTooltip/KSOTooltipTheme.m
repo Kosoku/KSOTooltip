@@ -59,6 +59,7 @@
     
     _identifier = [identifier copy];
     _font = [self.class _defaultFont];
+    _textStyle = UIFontTextStyleFootnote;
     _minimumEdgeInsets = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
     _textEdgeInsets = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0);
     _cornerRadius = 5.0;
