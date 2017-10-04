@@ -33,7 +33,7 @@
 @implementation KSOTooltipViewController
 #pragma mark *** Subclass Overrides ***
 - (UIModalPresentationStyle)modalPresentationStyle {
-    return UIModalPresentationCustom;
+    return UIModalPresentationOverCurrentContext;
 }
 - (BOOL)automaticallyAdjustsScrollViewInsets {
     return NO;
