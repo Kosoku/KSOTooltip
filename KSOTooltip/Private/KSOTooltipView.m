@@ -21,7 +21,7 @@
 #import <Stanley/Stanley.h>
 
 @interface KSOTooltipView ()
-@property (strong,nonatomic) UILabel *label;
+@property (strong,nonatomic) UITextView *label;
 
 @property (readonly,nonatomic) UIColor *fillColor;
 
@@ -36,8 +36,14 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    _label = [[UILabel alloc] initWithFrame:CGRectZero];
-    [_label setNumberOfLines:0];
+    _label = [[UITextView alloc] initWithFrame:CGRectZero];
+    [_label setBackgroundColor:UIColor.clearColor];
+    [_label setScrollEnabled:NO];
+    [_label setEditable:NO];
+    [_label setSelectable:YES];
+    [_label setContentInset:UIEdgeInsetsZero];
+    [_label setTextContainerInset:UIEdgeInsetsZero];
+    [_label.textContainer setLineFragmentPadding:0.0];
     [self addSubview:_label];
     
     kstWeakify(self);
