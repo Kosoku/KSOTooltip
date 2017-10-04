@@ -272,8 +272,15 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
             default:
                 break;
         }
-        
-        [viewController setText:@"The tooltip is being presented from a button"];
+
+        UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+        UIColor *textColor = [theme.fillColor KDI_contrastingColor];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"The tooltip is being presented from a button and has a link to " attributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor}];
+
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Ars Technica" attributes:@{NSLinkAttributeName: [NSURL URLWithString:@"https://arstechnica.com/"], NSFontAttributeName: font, NSForegroundColorAttributeName: textColor}]];
+        [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@" in it that you can interact with" attributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor}]];
+
+        [viewController setAttributedText:attrString];
         [viewController setSourceView:sender];
     }
     else {

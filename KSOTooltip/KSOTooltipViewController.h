@@ -90,6 +90,16 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol KSOTooltipViewControllerDelegate <NSObject>
 @optional
 /**
+ Returns whether the proposed interaction should be allowed to proceed. This is called when the user interacts with a URL in the tooltip view controller's text or attributedText. Return YES to allow the interaction or NO to prevent it or handle it yourself.
+ 
+ @param tooltipViewController The sender of the message
+ @param URL The URL being interacted with
+ @param interaction The type of interaction
+ @return YES to allow the interaction, otherwise NO
+ */
+- (BOOL)tooltipViewController:(KSOTooltipViewController *)tooltipViewController shouldInteractWithURL:(NSURL *)URL interaction:(UITextItemInteraction)interaction;
+
+/**
  Returns whether the tooltip view controller should be dismissed. Return NO to prevent the dismissal.
  
  @param tooltipViewController The sender of the message

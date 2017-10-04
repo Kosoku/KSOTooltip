@@ -18,9 +18,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class KSOTooltipTheme;
+@class KSOTooltipTheme,KSOTooltipViewController;
 
 @interface KSOTooltipView : UIView
+
+@property (weak,nonatomic,nullable) KSOTooltipViewController *tooltipViewController;
 
 @property (strong,nonatomic,nullable) KSOTooltipTheme *theme;
 

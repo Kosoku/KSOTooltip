@@ -51,6 +51,7 @@
     _allowedArrowDirections = KSOTooltipArrowDirectionAll;
     
     _tooltipView = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
+    [_tooltipView setTooltipViewController:self];
     [_tooltipView setTheme:_theme];
     
     [self KAG_addObserverForNotificationName:UIApplicationDidEnterBackgroundNotification object:nil block:^(NSNotification * _Nonnull notification) {

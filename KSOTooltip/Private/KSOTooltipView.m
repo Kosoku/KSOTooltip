@@ -15,12 +15,13 @@
 
 #import "KSOTooltipView.h"
 #import "KSOTooltipTheme.h"
+#import "KSOTooltipViewController.h"
 
 #import <Agamotto/Agamotto.h>
 #import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
 
-@interface KSOTooltipView ()
+@interface KSOTooltipView () <UITextViewDelegate>
 @property (strong,nonatomic) UITextView *label;
 
 @property (readonly,nonatomic) UIColor *fillColor;
@@ -44,6 +45,9 @@
     [_label setContentInset:UIEdgeInsetsZero];
     [_label setTextContainerInset:UIEdgeInsetsZero];
     [_label.textContainer setLineFragmentPadding:0.0];
+    [_label setDataDetectorTypes:UIDataDetectorTypeLink];
+    [_label setLinkTextAttributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}];
+    [_label setDelegate:self];
     [self addSubview:_label];
     
     kstWeakify(self);
@@ -223,6 +227,14 @@
         [self.label setFrame:CGRectMake(CGRectGetMinX(self.label.frame), CGRectGetMinY(self.label.frame), CGRectGetWidth(self.label.frame), CGRectGetHeight(self.label.frame) - CGRectGetHeight(self.accessoryView.frame))];
     }
 }
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
+    if ([self.tooltipViewController.delegate respondsToSelector:@selector(tooltipViewController:shouldInteractWithURL:interaction:)]) {
+        return [self.tooltipViewController.delegate tooltipViewController:self.tooltipViewController shouldInteractWithURL:URL interaction:interaction];
+    }
+    return YES;
+}
+
 @dynamic text;
 - (NSString *)text {
     return self.attributedText.string;
