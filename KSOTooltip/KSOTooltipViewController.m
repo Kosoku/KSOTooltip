@@ -32,9 +32,14 @@
 
 @implementation KSOTooltipViewController
 #pragma mark *** Subclass Overrides ***
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return self.theme.statusBarStyle;
+}
+#pragma mark -
 - (UIModalPresentationStyle)modalPresentationStyle {
     return UIModalPresentationOverCurrentContext;
 }
+#pragma mark -
 - (BOOL)automaticallyAdjustsScrollViewInsets {
     return NO;
 }

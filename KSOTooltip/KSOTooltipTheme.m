@@ -34,6 +34,8 @@
 - (id)copyWithZone:(NSZone *)zone {
     KSOTooltipTheme *retval = [[[self class] alloc] initWithIdentifier:[NSString stringWithFormat:@"%@.copy",self.identifier]];
     
+    retval->_statusBarStyle = _statusBarStyle;
+    
     retval->_backgroundColor = _backgroundColor;
     retval->_fillColor = _fillColor;
     retval->_textColor = _textColor;

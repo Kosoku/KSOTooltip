@@ -36,6 +36,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,copy,nonatomic) NSString *identifier;
 
 /**
+ Set and get the status bar style used when the tooltip view controller is presented.
+ 
+ The default value is UIStatusBarStyleDefault.
+ */
+@property (assign,nonatomic) UIStatusBarStyle statusBarStyle;
+
+/**
  Set and get the background color that is displayed above the presenting view controller. This can be set to mirror the behavior of UIPopoverPresentationController so the background is dimmed.
  
  The default is nil.
