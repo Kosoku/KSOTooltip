@@ -1,6 +1,6 @@
-﻿/* dismiss button accessibility hint */
-"DISMISS_BUTTON_ACCESSIBILITY_HINT" = "Close the tooltip";
+/* dismiss button accessibility hint */
+"DISMISS_BUTTON_ACCESSIBILITY_HINT" = "ヒントを閉じる";
 
 /* dismiss button accessibility label */
-"DISMISS_BUTTON_ACCESSIBILITY_LABEL" = "Close";
+"DISMISS_BUTTON_ACCESSIBILITY_LABEL" = "閉じる";
 
