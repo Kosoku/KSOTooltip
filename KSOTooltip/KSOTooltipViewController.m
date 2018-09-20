@@ -133,6 +133,9 @@
     }
     
     [self.tooltipView setFrame:rect];
+    // Notify the system that the layout has changed and move focus.
+    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.tooltipView);
+
 }
 #pragma mark UIViewControllerTransitioningDelegate
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
