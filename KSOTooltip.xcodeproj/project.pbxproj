@@ -77,7 +77,7 @@
 /* Begin PBXFileReference section */
 		070439361F70369500F01D6E /* KSOTooltipTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipTheme.h; sourceTree = "<group>"; };
 		070439371F70369500F01D6E /* KSOTooltipTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSOTooltipTheme.m; sourceTree = "<group>"; };
-		072FDDFC1F6E5BE600E73661 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		072FDDFC1F6E5BE600E73661 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		072FDDFE1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+KSOTooltipPrivateExtensions.h"; sourceTree = "<group>"; };
 		072FDDFF1F6E5CA100E73661 /* NSBundle+KSOTooltipPrivateExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+KSOTooltipPrivateExtensions.m"; sourceTree = "<group>"; };
 		072FDE021F6E5E3200E73661 /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
