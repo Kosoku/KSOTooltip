@@ -29,6 +29,9 @@
 		073CFDC31F6DCFF300C1BD29 /* KSOTooltipDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFDC61F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		073CFDC71F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */; };
+		0747FD722170454700476581 /* KSOFontAwesomeExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0747FD712170454700476581 /* KSOFontAwesomeExtensions.framework */; };
+		0747FD742170455200476581 /* KSOFontAwesomeExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0747FD732170455200476581 /* KSOFontAwesomeExtensions.framework */; };
+		0747FD752170455200476581 /* KSOFontAwesomeExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0747FD732170455200476581 /* KSOFontAwesomeExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0752D1731F6E0871002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1721F6E0871002BA4CC /* Stanley.framework */; };
 		0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; };
 		0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0752D1741F6E087A002BA4CC /* Stanley.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -64,6 +67,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				073CFDB21F6DC13B00C1BD29 /* KSOTooltip.framework in Embed Frameworks */,
+				0747FD752170455200476581 /* KSOFontAwesomeExtensions.framework in Embed Frameworks */,
 				07FB2F671F6E0DBC001A4C8F /* Loki.framework in Embed Frameworks */,
 				0752D1761F6E087A002BA4CC /* Stanley.framework in Embed Frameworks */,
 				079ACAE91F704A6300EBFEBF /* Agamotto.framework in Embed Frameworks */,
@@ -105,6 +109,8 @@
 		073CFDC21F6DCFF300C1BD29 /* KSOTooltipDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSOTooltipDefines.h; sourceTree = "<group>"; };
 		073CFDC41F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KSOTooltipExtensions.h"; sourceTree = "<group>"; };
 		073CFDC51F6DD12A00C1BD29 /* UIViewController+KSOTooltipExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KSOTooltipExtensions.m"; sourceTree = "<group>"; };
+		0747FD712170454700476581 /* KSOFontAwesomeExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KSOFontAwesomeExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0747FD732170455200476581 /* KSOFontAwesomeExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KSOFontAwesomeExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0752D1721F6E0871002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stanley.framework; path = "Vendor/Stanley/build/Debug-iphoneos/Stanley.framework"; sourceTree = "<group>"; };
 		0752D1741F6E087A002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		079ACAE51F704A5700EBFEBF /* Agamotto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Agamotto.framework; path = "Vendor/Agamotto/build/Debug-iphoneos/Agamotto.framework"; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0747FD722170454700476581 /* KSOFontAwesomeExtensions.framework in Frameworks */,
 				079ACAE61F704A5700EBFEBF /* Agamotto.framework in Frameworks */,
 				07FB2F641F6E0DB6001A4C8F /* Loki.framework in Frameworks */,
 				07FB2F5F1F6E0D51001A4C8F /* Ditko.framework in Frameworks */,
@@ -135,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				073CFDB11F6DC13B00C1BD29 /* KSOTooltip.framework in Frameworks */,
+				0747FD742170455200476581 /* KSOFontAwesomeExtensions.framework in Frameworks */,
 				07FB2F661F6E0DBC001A4C8F /* Loki.framework in Frameworks */,
 				0752D1751F6E087A002BA4CC /* Stanley.framework in Frameworks */,
 				079ACAE81F704A6300EBFEBF /* Agamotto.framework in Frameworks */,
@@ -226,6 +234,8 @@
 		0752D1711F6E0871002BA4CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0747FD732170455200476581 /* KSOFontAwesomeExtensions.framework */,
+				0747FD712170454700476581 /* KSOFontAwesomeExtensions.framework */,
 				079ACAE71F704A6300EBFEBF /* Agamotto.framework */,
 				079ACAE51F704A5700EBFEBF /* Agamotto.framework */,
 				07FB2F651F6E0DBC001A4C8F /* Loki.framework */,
