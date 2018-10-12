@@ -130,6 +130,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    if (self.sourceView == nil) {
+        [self dismissAnimated:NO completion:nil];
+    }
+    
     if (self.contentView.arrowDirection != KSOTooltipArrowDirectionUnknown) {
         return;
     }
