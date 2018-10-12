@@ -58,6 +58,7 @@
     [_button setKDI_cornerRadius:5.0];
     [_button setRounded:YES];
     [_button addTarget:self action:@selector(_buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_button setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [self addSubview:_button];
     
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _button}]];
@@ -82,7 +83,7 @@
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-//    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     
     _badgeButton = [[KDIBadgeButton alloc] initWithFrame:CGRectZero];
     _badgeButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -179,9 +180,6 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
 
 - (IBAction)_showTooltipAction:(id)sender {
     KSOTooltipView *view = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
-//    KSOTooltipArrowDirection directions = arc4random_uniform((uint32_t)KSOTooltipArrowDirectionAll) + KSOTooltipArrowDirectionUp;
-//
-//    [view setAllowedArrowDirections:directions];
     
     KSOTooltipTheme *theme = [view.theme copy];
 
@@ -189,11 +187,6 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
     [theme setFillColor:KDIColorRandomRGB()];
     [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
     [theme setTextStyle:UIFontTextStyleFootnote];
-//    [theme setMinimumEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 20)];
-//    [theme setCornerRadius:(CGFloat)arc4random_uniform(10)];
-//    [theme setArrowStyle:KSTBoundedValue(arc4random_uniform(KSOTooltipArrowStyleNone + 1), KSOTooltipArrowStyleDefault, KSOTooltipArrowStyleNone)];
-//    [theme setArrowWidth:(CGFloat)arc4random_uniform(20)];
-//    [theme setArrowHeight:theme.arrowWidth];
     
     [view setTheme:theme];
     
@@ -238,7 +231,7 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
         [view setSourceBarButtonItem:sender];
     }
     
-    [view present];
+    [view presentAnimated:YES completion:nil];
 }
 
 @end

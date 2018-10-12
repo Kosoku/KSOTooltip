@@ -113,6 +113,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign,nonatomic) CGFloat arrowHeight;
 
+@property (assign,nonatomic) NSTimeInterval animationDuration;
+@property (assign,nonatomic) CGFloat animationSpringDamping;
+@property (assign,nonatomic) CGFloat animationInitialSpringVelocity;
+
 /**
  The designated initializer.
  

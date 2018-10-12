@@ -52,6 +52,10 @@
     retval->_arrowWidth = _arrowWidth;
     retval->_arrowHeight = _arrowHeight;
     
+    retval->_animationDuration = _animationDuration;
+    retval->_animationSpringDamping = _animationSpringDamping;
+    retval->_animationInitialSpringVelocity = _animationInitialSpringVelocity;
+    
     return retval;
 }
 
@@ -67,6 +71,8 @@
     _cornerRadius = 5.0;
     _arrowWidth = 8.0;
     _arrowHeight = 8.0;
+    _animationDuration = 0.33;
+    _animationSpringDamping = 0.5;
     
     return self;
 }

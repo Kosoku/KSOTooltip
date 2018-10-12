@@ -95,16 +95,8 @@
             break;
     }
     
-//    if (self.accessoryView == nil) {
-        [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]-right-|" options:0 metrics:metrics views:@{@"view": self.stackView}]];
-        [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]-bottom-|" options:0 metrics:metrics views:@{@"view": self.stackView}]];
-//    }
-//    else {
-//        [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]-right-|" options:0 metrics:metrics views:@{@"view": self.label}]];
-//        [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]-[accessory]-bottom-|" options:0 metrics:metrics views:@{@"view": self.label, @"accessory": self.accessoryView}]];
-//        [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=left-[view]->=right-|" options:0 metrics:metrics views:@{@"view": self.accessoryView}]];
-//        [temp addObject:[self.accessoryView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor]];
-//    }
+    [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]-right-|" options:0 metrics:metrics views:@{@"view": self.stackView}]];
+    [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]-bottom-|" options:0 metrics:metrics views:@{@"view": self.stackView}]];
     
     self.KDI_customConstraints = temp;
     

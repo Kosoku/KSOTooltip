@@ -43,11 +43,12 @@
     
     _dismissButton = [UIButton buttonWithType:UIButtonTypeSystem];
     _dismissButton.translatesAutoresizingMaskIntoConstraints = NO;
+    _dismissButton.backgroundColor = _theme.backgroundColor;
     _dismissButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"button.close.accessibility-label", nil, NSBundle.KSO_tooltipFrameworkBundle, @"Close", @"button close accessibility label");
     _dismissButton.accessibilityHint = NSLocalizedStringWithDefaultValue(@"button.close.accessibility-hint", nil, NSBundle.KSO_tooltipFrameworkBundle, @"Double tap to close the tooltip", @"button close accessibility hint");
     [_dismissButton KDI_addBlock:^(__kindof UIControl * _Nonnull control, UIControlEvents controlEvents) {
         kstStrongify(self);
-        [self removeFromSuperview];
+        [self dismissAnimated:YES completion:nil];
     } forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_dismissButton];
     
@@ -58,14 +59,6 @@
     [self addSubview:_contentView];
     
     return self;
-}
-
-- (void)didMoveToWindow {
-    [super didMoveToWindow];
-    
-    if (self.window != nil) {
-        [self setNeedsUpdateConstraints];
-    }
 }
 
 + (BOOL)requiresConstraintBasedLayout {
@@ -100,6 +93,25 @@
             default:
                 break;
         }
+        
+        if (self.contentView.arrowDirection == KSOTooltipArrowDirectionUp ||
+            self.contentView.arrowDirection == KSOTooltipArrowDirectionDown) {
+            
+            if (self.sourceBarButtonItem == nil) {
+                [temp addObject:[self.contentView.centerXAnchor constraintEqualToAnchor:self.sourceView.centerXAnchor]];
+
+                temp.lastObject.priority = UILayoutPriorityDefaultLow;
+            }
+        }
+        else if (self.contentView.arrowDirection == KSOTooltipArrowDirectionLeft ||
+                 self.contentView.arrowDirection == KSOTooltipArrowDirectionRight) {
+            
+            if (self.sourceBarButtonItem == nil) {
+                [temp addObject:[self.contentView.centerYAnchor constraintEqualToAnchor:self.sourceView.centerYAnchor]];
+                
+                temp.lastObject.priority = UILayoutPriorityDefaultLow;
+            }
+        }
     }
     
     self.KDI_customConstraints = temp;
@@ -114,12 +126,13 @@
         return;
     }
     
-    CGRect sourceRect = [self convertRect:self.sourceView.bounds fromView:self.sourceView];
+    CGRect sourceRect = [self.window convertRect:self.sourceView.bounds fromView:self.sourceView];
     CGPoint center = CGPointMake(CGRectGetMidX(sourceRect), CGRectGetMidY(sourceRect));
-    CGRect topLeft = CGRectMake(0, 0, CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    CGRect topRight = CGRectMake(CGRectGetMidX(self.bounds), 0, CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    CGRect bottomLeft = CGRectMake(0, CGRectGetMidY(self.bounds), CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    CGRect bottomRight = CGRectMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds), CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    CGRect bounds = self.window.bounds;
+    CGRect topLeft = CGRectMake(0, 0, CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+    CGRect topRight = CGRectMake(CGRectGetMidX(bounds), 0, CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+    CGRect bottomLeft = CGRectMake(0, CGRectGetMidY(bounds), CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+    CGRect bottomRight = CGRectMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds), CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     
     // always prefer up
     if (CGRectContainsPoint(topLeft, center)) {
@@ -170,12 +183,60 @@
     [self setNeedsUpdateConstraints];
 }
 
-- (void)present {
-    [self.sourceView.window addSubview:self];
+- (void)presentAnimated:(BOOL)animated completion:(KSTVoidBlock)completion; {
+    if (self.window == nil) {
+        [self.sourceView.window addSubview:self];
+    }
+    
+    if (animated) {
+        self.dismissButton.backgroundColor = UIColor.clearColor;
+        self.contentView.alpha = 0.0;
+        self.contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);
+        
+        [UIView animateKeyframesWithDuration:self.theme.animationDuration delay:0 options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
+            [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.66 animations:^{
+                self.dismissButton.backgroundColor = self.theme.backgroundColor;
+            }];
+            [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:1.0 animations:^{
+                [UIView animateWithDuration:self.theme.animationDuration delay:0 usingSpringWithDamping:self.theme.animationSpringDamping initialSpringVelocity:self.theme.animationInitialSpringVelocity options:0 animations:^{
+                    self.contentView.alpha = 1.0;
+                    self.contentView.transform = CGAffineTransformIdentity;
+                } completion:nil];
+            }];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                if (completion != nil) {
+                    completion();
+                }
+            }
+        }];
+    }
+}
+- (void)dismissAnimated:(BOOL)animated completion:(KSTVoidBlock)completion; {
+    void(^block)(void) = ^{
+        [self removeFromSuperview];
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:self.theme.animationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            self.dismissButton.backgroundColor = UIColor.clearColor;
+            self.contentView.alpha = 0.0;
+            self.contentView.transform = CGAffineTransformMakeScale(2.0, 2.0);
+        } completion:^(BOOL finished) {
+            if (finished) {
+                block();
+            }
+        }];
+    }
+    else {
+        block();
+    }
 }
 
 - (void)setTheme:(KSOTooltipTheme *)theme {
     _theme = theme ?: KSOTooltipTheme.defaultTheme;
+    
+    self.dismissButton.backgroundColor = _theme.backgroundColor;
     
     self.contentView.theme = _theme;
 }
