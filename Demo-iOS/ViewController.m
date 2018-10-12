@@ -199,7 +199,7 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
 @implementation ViewController
 
 - (NSString *)title {
-    return @"Demo";
+    return @"View";
 }
 
 - (void)viewDidLoad {

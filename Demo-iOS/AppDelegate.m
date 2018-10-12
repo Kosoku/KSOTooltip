@@ -15,6 +15,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "TableViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +26,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self setWindow:[[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds]];
-    [self.window setRootViewController:[[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]]];
+    
+    UITabBarController *viewController = [[UITabBarController alloc] initWithNibName:nil bundle:nil];
+    
+    viewController.viewControllers = @[[[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] initWithNibName:nil bundle:nil]],
+                                       [[UINavigationController alloc] initWithRootViewController:[[TableViewController alloc] initWithStyle:UITableViewStyleGrouped]]];
+    
+    [self.window setRootViewController:viewController];
     [self.window makeKeyAndVisible];
     return YES;
 }

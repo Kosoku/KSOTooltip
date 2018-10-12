@@ -34,6 +34,7 @@
 		079ACAE61F704A5700EBFEBF /* Agamotto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079ACAE51F704A5700EBFEBF /* Agamotto.framework */; };
 		079ACAE81F704A6300EBFEBF /* Agamotto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079ACAE71F704A6300EBFEBF /* Agamotto.framework */; };
 		079ACAE91F704A6300EBFEBF /* Agamotto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 079ACAE71F704A6300EBFEBF /* Agamotto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		07A88EA52170AF8100BA4023 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A88EA42170AF8100BA4023 /* TableViewController.m */; };
 		07F91A1F1F6DF3CA008DFB8D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */; };
 		07FB2F5F1F6E0D51001A4C8F /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */; };
 		07FB2F611F6E0D58001A4C8F /* Ditko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07FB2F601F6E0D58001A4C8F /* Ditko.framework */; };
@@ -105,6 +106,8 @@
 		0752D1741F6E087A002BA4CC /* Stanley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stanley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		079ACAE51F704A5700EBFEBF /* Agamotto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Agamotto.framework; path = "Vendor/Agamotto/build/Debug-iphoneos/Agamotto.framework"; sourceTree = "<group>"; };
 		079ACAE71F704A6300EBFEBF /* Agamotto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Agamotto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07A88EA32170AF8100BA4023 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		07A88EA42170AF8100BA4023 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		07F91A1E1F6DF3CA008DFB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ViewController.xib; sourceTree = "<group>"; };
 		07FB2F5E1F6E0D51001A4C8F /* Ditko.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ditko.framework; path = "Vendor/Ditko/build/Debug-iphoneos/Ditko.framework"; sourceTree = "<group>"; };
 		07FB2F601F6E0D58001A4C8F /* Ditko.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ditko.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +204,8 @@
 				073CFDA21F6DC11E00C1BD29 /* ViewController.h */,
 				073CFDA31F6DC11E00C1BD29 /* ViewController.m */,
 				07F91A1D1F6DF3CA008DFB8D /* ViewController.xib */,
+				07A88EA32170AF8100BA4023 /* TableViewController.h */,
+				07A88EA42170AF8100BA4023 /* TableViewController.m */,
 				073CFDA81F6DC11E00C1BD29 /* Assets.xcassets */,
 				073CFDAA1F6DC11E00C1BD29 /* LaunchScreen.storyboard */,
 				073CFDAD1F6DC11E00C1BD29 /* Info.plist */,
@@ -418,6 +423,7 @@
 				073CFDA41F6DC11E00C1BD29 /* ViewController.m in Sources */,
 				073CFDA11F6DC11E00C1BD29 /* AppDelegate.m in Sources */,
 				073CFD9E1F6DC11E00C1BD29 /* main.m in Sources */,
+				07A88EA52170AF8100BA4023 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

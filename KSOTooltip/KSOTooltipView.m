@@ -85,6 +85,17 @@
         [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=left-[view]->=right-|" options:0 metrics:@{@"left": @(self.theme.minimumEdgeInsets.left), @"right": @(self.theme.minimumEdgeInsets.right)} views:@{@"view": self.contentView}]];
         [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=top-[view]->=bottom-|" options:0 metrics:@{@"top": @(self.theme.minimumEdgeInsets.top + CGRectGetHeight(UIApplication.sharedApplication.statusBarFrame)), @"bottom": @(self.theme.minimumEdgeInsets.bottom)} views:@{@"view": self.contentView}]];
         
+        UIView *superview = self.sourceView.superview;
+        UIScrollView *scrollView = nil;
+        
+        while (superview != nil) {
+            if ([superview isKindOfClass:UIScrollView.class]) {
+                scrollView = (UIScrollView *)superview;
+                break;
+            }
+            superview = superview.superview;
+        }
+        
         switch (self.contentView.arrowDirection) {
             case KSOTooltipArrowDirectionRight:
                 [temp addObject:[self.contentView.rightAnchor constraintEqualToAnchor:self.sourceView.leftAnchor constant:0.0]];
