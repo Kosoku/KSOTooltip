@@ -189,7 +189,7 @@
     [self setNeedsUpdateConstraints];
 }
 
-- (void)setAccessoryView:(__kindof UIView *)accessoryView {
+- (void)setAccessoryView:(__kindof UIView<KSOTooltipViewAccessory> *)accessoryView {
     if (_accessoryView == accessoryView) {
         return;
     }

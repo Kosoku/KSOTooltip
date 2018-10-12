@@ -37,7 +37,7 @@
 
 @end
 
-@interface CheckmarkAccessoryView : UIView
+@interface CheckmarkAccessoryView : UIView <KSOTooltipViewAccessory, KSOTooltipViewDelegate>
 @property (strong,nonatomic) KDIButton *button;
 @end
 
@@ -67,13 +67,37 @@
     return self;
 }
 
+@synthesize tooltipView=_tooltipView;
+- (void)setTooltipView:(KSOTooltipView *)tooltipView {
+    _tooltipView = tooltipView;
+    _tooltipView.delegate = self;
+    
+    UIColor *color = _tooltipView.theme.backgroundColor.KDI_contrastingColor;
+    
+    self.button.tintColor = color;
+}
+
+- (BOOL)tooltipViewShouldDismiss:(KSOTooltipView *)view {
+    BOOL retval = self.button.isInverted;
+    
+    if (!retval) {
+        self.tooltipView.userInteractionEnabled = NO;
+        
+        [UIAlertController KDI_presentAlertControllerWithTitle:nil message:@"The button must be inverted to dismiss the tooltip. Tap the button once and try again." cancelButtonTitle:nil otherButtonTitles:nil completion:^(__kindof UIAlertController * _Nonnull alertController, NSInteger buttonIndex) {
+            self.tooltipView.userInteractionEnabled = YES;
+        }];
+    }
+    
+    return retval;
+}
+
 - (IBAction)_buttonAction:(id)sender {
     [self.button setInverted:!self.button.isInverted];
 }
 
 @end
 
-@interface AccessoryView : UIView
+@interface AccessoryView : UIView <KSOTooltipViewAccessory>
 @property (strong,nonatomic) KDIBadgeButton *badgeButton;
 @end
 
@@ -105,9 +129,18 @@
     return self;
 }
 
+@synthesize tooltipView=_tooltipView;
+- (void)setTooltipView:(KSOTooltipView *)tooltipView {
+    _tooltipView = tooltipView;
+    
+    UIColor *color = _tooltipView.theme.backgroundColor.KDI_contrastingColor;
+    
+    self.badgeButton.tintColor = color;
+}
+
 @end
 
-@interface AccessoryViewWithAutoLayout : UIView
+@interface AccessoryViewWithAutoLayout : UIView <KSOTooltipViewAccessory>
 @property (strong,nonatomic) UILabel *label;
 @property (strong,nonatomic) UISegmentedControl *segmentedControl;
 
@@ -138,6 +171,16 @@
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _segmentedControl}]];
     
     return self;
+}
+
+@synthesize tooltipView=_tooltipView;
+- (void)setTooltipView:(KSOTooltipView *)tooltipView {
+    _tooltipView = tooltipView;
+    
+    UIColor *color = _tooltipView.theme.backgroundColor.KDI_contrastingColor;
+    
+    self.label.textColor = color;
+    self.segmentedControl.tintColor = color;
 }
 
 @end
@@ -183,10 +226,9 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
     
     KSOTooltipTheme *theme = [view.theme copy];
 
-    [theme setBackgroundColor:[KDIColorRandomRGB() colorWithAlphaComponent:0.5]];
+    [theme setBackgroundColor:[KDIColorRandomRGB() colorWithAlphaComponent:0.25]];
     [theme setFillColor:KDIColorRandomRGB()];
     [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
-    [theme setTextStyle:UIFontTextStyleFootnote];
     
     [view setTheme:theme];
     

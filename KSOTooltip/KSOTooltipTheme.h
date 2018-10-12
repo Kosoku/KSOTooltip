@@ -36,13 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly,copy,nonatomic) NSString *identifier;
 
 /**
- Set and get the status bar style used when the tooltip view controller is presented.
- 
- The default value is UIStatusBarStyleDefault.
- */
-@property (assign,nonatomic) UIStatusBarStyle statusBarStyle;
-
-/**
  Set and get the background color that is displayed above the presenting view controller. This can be set to mirror the behavior of UIPopoverPresentationController so the background is dimmed.
  
  The default is nil.
@@ -70,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set and get the text style used to fetch the dynamic font used to draw the tooltip text. If this is non-nil, the tooltip text will respond to dynamic type changes and fetch its font using `[UIFont preferredFontForTextStyle:]`. If you wish to customize how the dynamic type font is fetched, see the Ditko/UIFont+KDIDynamicTypeExtensions.h header for more information.
  
- The default is nil.
+ The default is UIFontTextStyleFootnote.
  */
 @property (copy,nonatomic,nullable) UIFontTextStyle textStyle;
 
@@ -113,8 +106,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (assign,nonatomic) CGFloat arrowHeight;
 
+/**
+ The duration used for present and dismiss animations.
+ 
+ The default is 0.33.
+ */
 @property (assign,nonatomic) NSTimeInterval animationDuration;
+/**
+ The spring damping used for the present animation.
+ 
+ The default is 0.5.
+ */
 @property (assign,nonatomic) CGFloat animationSpringDamping;
+/**
+ The initial spring velocity used for the present animation.
+ 
+ The default is 0.0.
+ */
 @property (assign,nonatomic) CGFloat animationInitialSpringVelocity;
 
 /**

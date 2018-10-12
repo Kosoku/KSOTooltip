@@ -48,7 +48,15 @@
     _dismissButton.accessibilityHint = NSLocalizedStringWithDefaultValue(@"button.close.accessibility-hint", nil, NSBundle.KSO_tooltipFrameworkBundle, @"Double tap to close the tooltip", @"button close accessibility hint");
     [_dismissButton KDI_addBlock:^(__kindof UIControl * _Nonnull control, UIControlEvents controlEvents) {
         kstStrongify(self);
-        [self dismissAnimated:YES completion:nil];
+        BOOL shouldDismiss = YES;
+        
+        if ([self.delegate respondsToSelector:@selector(tooltipViewShouldDismiss:)]) {
+            shouldDismiss = [self.delegate tooltipViewShouldDismiss:self];
+        }
+        
+        if (shouldDismiss) {
+            [self dismissAnimated:YES completion:nil];
+        }
     } forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_dismissButton];
     
@@ -183,7 +191,29 @@
     [self setNeedsUpdateConstraints];
 }
 
++ (instancetype)tooltipViewWithText:(NSString *)text sourceBarButtonItem:(UIBarButtonItem *)sourceBarButtonItem sourceView:(UIView *)sourceView {
+    KSOTooltipView *retval = [[self alloc] initWithFrame:CGRectZero];
+    
+    retval.text = text;
+    retval.sourceView = sourceView;
+    retval.sourceBarButtonItem = sourceBarButtonItem;
+    
+    return retval;
+}
++ (instancetype)tooltipViewWithAttributedText:(NSAttributedString *)attributedText sourceBarButtonItem:(UIBarButtonItem *)sourceBarButtonItem sourceView:(UIView *)sourceView {
+    KSOTooltipView *retval = [[self alloc] initWithFrame:CGRectZero];
+    
+    retval.attributedText = attributedText;
+    retval.sourceView = sourceView;
+    retval.sourceBarButtonItem = sourceBarButtonItem;
+    
+    return retval;
+}
+
 - (void)presentAnimated:(BOOL)animated completion:(KSTVoidBlock)completion; {
+    NSAssert(self.sourceView != nil, @"attempting to present %@ with nil sourceView!", self);
+    NSAssert(!KSTIsEmptyObject(self.text) || !KSTIsEmptyObject(self.attributedText), @"attempting to present %@ without text or attributedText set!", self);
+    
     if (self.window == nil) {
         [self.sourceView.window addSubview:self];
     }
@@ -214,8 +244,16 @@
 }
 - (void)dismissAnimated:(BOOL)animated completion:(KSTVoidBlock)completion; {
     void(^block)(void) = ^{
+        if ([self.delegate respondsToSelector:@selector(tooltipViewDidDismiss:)]) {
+            [self.delegate tooltipViewDidDismiss:self];
+        }
+        
         [self removeFromSuperview];
     };
+    
+    if ([self.delegate respondsToSelector:@selector(tooltipViewWillDismiss:)]) {
+        [self.delegate tooltipViewWillDismiss:self];
+    }
     
     if (animated) {
         [UIView animateWithDuration:self.theme.animationDuration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
@@ -260,11 +298,6 @@
     [self.contentView.label setAttributedText:attributedText];
 }
 
-- (void)setSourceView:(UIView *)sourceView {
-    _sourceView = sourceView;
-    
-    self.contentView.sourceView = _sourceView;
-}
 - (void)setSourceBarButtonItem:(UIBarButtonItem *)sourceBarButtonItem {
     _sourceBarButtonItem = sourceBarButtonItem;
     
@@ -279,13 +312,26 @@
         }
     }
 }
+- (void)setSourceView:(UIView *)sourceView {
+    _sourceView = sourceView;
+    
+    self.contentView.sourceView = _sourceView;
+}
 
 @dynamic accessoryView;
 - (UIView *)accessoryView {
     return self.contentView.accessoryView;
 }
-- (void)setAccessoryView:(__kindof UIView *)accessoryView {
+- (void)setAccessoryView:(__kindof UIView<KSOTooltipViewAccessory> *)accessoryView {
+    if (accessoryView != nil) {
+        NSAssert([accessoryView isKindOfClass:UIView.class], @"attempting to set accessory view %@ that does not inherit from UIView!", accessoryView);
+    }
+    
     self.contentView.accessoryView = accessoryView;
+    
+    if ([accessoryView respondsToSelector:@selector(setTooltipView:)]) {
+        accessoryView.tooltipView = self;
+    }
 }
 
 @end
