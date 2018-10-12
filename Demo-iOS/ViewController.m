@@ -37,23 +37,20 @@
 
 @end
 
-@interface CheckmarkAccessoryView : UIView <KSOTooltipViewControllerDelegate>
-@property (weak,nonatomic) KSOTooltipViewController *viewController;
+@interface CheckmarkAccessoryView : UIView
 @property (strong,nonatomic) KDIButton *button;
-- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController;
 @end
 
 @implementation CheckmarkAccessoryView
 
-- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    _viewController = viewController;
-    [_viewController setDelegate:self];
+    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     
     _button = [KDIButton buttonWithType:UIButtonTypeSystem];
-    [_button setTintColor:_viewController.theme.textColor];
+    _button.translatesAutoresizingMaskIntoConstraints = NO;
     [_button setImage:[UIImage imageNamed:@"checkmark"] forState:UIControlStateNormal];
     [_button setTitle:@"Tap to toggle selected" forState:UIControlStateNormal];
     [_button setContentEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
@@ -63,31 +60,10 @@
     [_button addTarget:self action:@selector(_buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_button];
     
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _button}]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _button}]];
+    
     return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    [self.button setFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - 8)];
-}
-
-- (CGSize)sizeThatFits:(CGSize)size {
-    CGSize retval = [self.button sizeThatFits:size];
-    
-    retval.height += 8;
-    
-    return retval;
-}
-
-- (BOOL)tooltipViewControllerShouldDismiss:(KSOTooltipViewController *)tooltipViewController {
-    BOOL retval = self.button.isInverted;
-    
-    if (!retval) {
-        [UIAlertController KDI_presentAlertControllerWithTitle:nil message:@"Toggle the checkmark button in order to dismiss!" cancelButtonTitle:nil otherButtonTitles:nil completion:nil];
-    }
-    
-    return retval;
 }
 
 - (IBAction)_buttonAction:(id)sender {
@@ -98,20 +74,18 @@
 
 @interface AccessoryView : UIView
 @property (strong,nonatomic) KDIBadgeButton *badgeButton;
-@property (weak,nonatomic) KSOTooltipViewController *viewController;
-
-- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController;
 @end
 
 @implementation AccessoryView
 
-- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    _viewController = viewController;
+//    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     
     _badgeButton = [[KDIBadgeButton alloc] initWithFrame:CGRectZero];
+    _badgeButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_badgeButton setBadgePosition:KDIBadgeButtonBadgePositionRelativeToImage];
     [_badgeButton.button setContentEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
     [_badgeButton.button setTitleEdgeInsets:UIEdgeInsetsMake(8, 0, 0, 0)];
@@ -122,22 +96,12 @@
     [_badgeButton.button setImage:[UIImage imageNamed:@"ghost"] forState:UIControlStateNormal];
     [_badgeButton.button setTitle:@"Badge Button" forState:UIControlStateNormal];
     [_badgeButton.badgeView setBadge:@"123"];
-    [_badgeButton.button setTintColor:_viewController.theme.textColor];
     [self addSubview:_badgeButton];
     
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view": _badgeButton}]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _badgeButton}]];
+    
     return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    CGSize size = [self.badgeButton sizeThatFits:self.bounds.size];
-    
-    [self.badgeButton setFrame:KSTCGRectCenterInRect(CGRectMake(0, 0, size.width, size.height), self.bounds)];
-}
-
-- (CGSize)sizeThatFits:(CGSize)size {
-    return [self.badgeButton sizeThatFits:size];
 }
 
 @end
@@ -145,44 +109,34 @@
 @interface AccessoryViewWithAutoLayout : UIView
 @property (strong,nonatomic) UILabel *label;
 @property (strong,nonatomic) UISegmentedControl *segmentedControl;
-@property (weak,nonatomic) KSOTooltipViewController *viewController;
 
-- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController;
 @end
 
 @implementation AccessoryViewWithAutoLayout
 
-- (instancetype)initWithFrame:(CGRect)frame viewController:(KSOTooltipViewController *)viewController {
+- (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
     
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    _viewController = viewController;
+    [self setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     
     _label = [[UILabel alloc] initWithFrame:CGRectZero];
     [_label setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_label setText:@"Accessory"];
     [_label setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]];
-    [_label setTextColor:_viewController.theme.textColor];
     [self addSubview:_label];
     
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"One",@"Two",@"Three"]];
     [_segmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_segmentedControl setTintColor:_viewController.theme.textColor];
     [self addSubview:_segmentedControl];
     
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]" options:0 metrics:nil views:@{@"view": _label}]];
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:@{@"view": _label}]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _label}]];
     
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[subview]-[view]-|" options:0 metrics:nil views:@{@"view": _segmentedControl, @"subview": _label}]];
-    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:@{@"view": _segmentedControl}]];
+    [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view": _segmentedControl}]];
     
     return self;
-}
-
-+ (BOOL)requiresConstraintBasedLayout {
-    return YES;
 }
 
 @end
@@ -224,31 +178,27 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
 }
 
 - (IBAction)_showTooltipAction:(id)sender {
-    KSOTooltipViewController *viewController = [[KSOTooltipViewController alloc] init];
-    KSOTooltipArrowDirection directions = arc4random_uniform((uint32_t)KSOTooltipArrowDirectionAll) + KSOTooltipArrowDirectionUp;
+    KSOTooltipView *view = [[KSOTooltipView alloc] initWithFrame:CGRectZero];
+//    KSOTooltipArrowDirection directions = arc4random_uniform((uint32_t)KSOTooltipArrowDirectionAll) + KSOTooltipArrowDirectionUp;
+//
+//    [view setAllowedArrowDirections:directions];
     
-    KSTLog(@"allowed directions: %@",@(directions));
-    
-    [viewController setAllowedArrowDirections:directions];
-    
-    KSOTooltipTheme *theme = [viewController.theme copy];
+    KSOTooltipTheme *theme = [view.theme copy];
 
     [theme setBackgroundColor:[KDIColorRandomRGB() colorWithAlphaComponent:0.5]];
     [theme setFillColor:KDIColorRandomRGB()];
     [theme setTextColor:[theme.fillColor KDI_contrastingColor]];
     [theme setTextStyle:UIFontTextStyleFootnote];
-    [theme setMinimumEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 20)];
-    [theme setCornerRadius:(CGFloat)arc4random_uniform(10)];
-    [theme setArrowStyle:KSTBoundedValue(arc4random_uniform(KSOTooltipArrowStyleNone + 1), KSOTooltipArrowStyleDefault, KSOTooltipArrowStyleNone)];
-    [theme setArrowWidth:(CGFloat)arc4random_uniform(20)];
-    [theme setArrowHeight:(CGFloat)arc4random_uniform(15)];
+//    [theme setMinimumEdgeInsets:UIEdgeInsetsMake(8, 20, 8, 20)];
+//    [theme setCornerRadius:(CGFloat)arc4random_uniform(10)];
+//    [theme setArrowStyle:KSTBoundedValue(arc4random_uniform(KSOTooltipArrowStyleNone + 1), KSOTooltipArrowStyleDefault, KSOTooltipArrowStyleNone)];
+//    [theme setArrowWidth:(CGFloat)arc4random_uniform(20)];
+//    [theme setArrowHeight:theme.arrowWidth];
     
-    KSTLogObject(theme);
-    
-    [viewController setTheme:theme];
+    [view setTheme:theme];
     
     if ([sender isEqual:self.customView]) {
-        [viewController setAttributedText:({
+        [view setAttributedText:({
             NSMutableAttributedString *retval = [[NSMutableAttributedString alloc] initWithString:@"This tooltip is being presented from a bar button item with a custom view" attributes:@{NSFontAttributeName: theme.font}];
             
             [retval.string enumerateSubstringsInRange:NSMakeRange(0, retval.length) options:NSStringEnumerationByWords|NSStringEnumerationSubstringNotRequired usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
@@ -257,16 +207,16 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
             
             retval;
         })];
-        [viewController setBarButtonItem:self.customBarButtonItem];
-        [viewController setAccessoryView:[[CheckmarkAccessoryView alloc] initWithFrame:CGRectZero viewController:viewController]];
+        [view setSourceBarButtonItem:self.customBarButtonItem];
+        [view setAccessoryView:[[CheckmarkAccessoryView alloc] initWithFrame:CGRectZero]];
     }
     else if ([sender isKindOfClass:UIButton.class]) {
         switch ((ButtonTag)[(UIButton *)sender tag]) {
             case ButtonTagAccessoryView:
-                [viewController setAccessoryView:[[AccessoryView alloc] initWithFrame:CGRectZero viewController:viewController]];
+                [view setAccessoryView:[[AccessoryView alloc] initWithFrame:CGRectZero]];
                 break;
             case ButtonTagAccessoryViewWithAutolayout:
-                [viewController setAccessoryView:[[AccessoryViewWithAutoLayout alloc] initWithFrame:CGRectZero viewController:viewController]];
+                [view setAccessoryView:[[AccessoryViewWithAutoLayout alloc] initWithFrame:CGRectZero]];
                 break;
             case ButtonTagNone:
             default:
@@ -280,15 +230,15 @@ typedef NS_ENUM(NSInteger, ButtonTag) {
         [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Ars Technica" attributes:@{NSLinkAttributeName: [NSURL URLWithString:@"https://arstechnica.com/"], NSFontAttributeName: font, NSForegroundColorAttributeName: textColor}]];
         [attrString appendAttributedString:[[NSAttributedString alloc] initWithString:@" in it that you can interact with" attributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor}]];
 
-        [viewController setAttributedText:attrString];
-        [viewController setSourceView:sender];
+        [view setAttributedText:attrString];
+        [view setSourceView:sender];
     }
     else {
-        [viewController setText:@"This tooltip is being presented from a bar button item"];
-        [viewController setBarButtonItem:sender];
+        [view setText:@"This tooltip is being presented from a bar button item"];
+        [view setSourceBarButtonItem:sender];
     }
     
-    [self presentViewController:viewController animated:YES completion:nil];
+    [view present];
 }
 
 @end

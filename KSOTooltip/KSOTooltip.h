@@ -25,5 +25,4 @@ FOUNDATION_EXPORT const unsigned char KSOTooltipVersionString[];
 
 #import <KSOTooltip/KSOTooltipDefines.h>
 #import <KSOTooltip/KSOTooltipTheme.h>
-#import <KSOTooltip/KSOTooltipViewController.h>
-#import <KSOTooltip/UIViewController+KSOTooltipExtensions.h>
+#import <KSOTooltip/KSOTooltipView.h>

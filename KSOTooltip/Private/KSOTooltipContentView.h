@@ -1,9 +1,9 @@
 //
-//  KSOTooltipView.h
-//  KSOTooltip
+//  KSOTooltipContentView.h
+//  KSOTooltip-iOS
 //
-//  Created by William Towe on 9/16/17.
-//  Copyright © 2017 Kosoku Interactive, LLC. All rights reserved.
+//  Created by William Towe on 10/11/18.
+//  Copyright © 2018 Kosoku Interactive, LLC. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 //
@@ -14,27 +14,23 @@
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
-#import <KSOTooltip/KSOTooltipDefines.h>
+#import "KSOTooltipDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class KSOTooltipTheme,KSOTooltipViewController;
+@class KSOTooltipTheme;
 
-@interface KSOTooltipView : UIView
+@interface KSOTooltipContentView : UIView
 
-@property (weak,nonatomic,nullable) KSOTooltipViewController *tooltipViewController;
+@property (strong,nonatomic) KSOTooltipTheme *theme;
 
-@property (strong,nonatomic,nullable) KSOTooltipTheme *theme;
+@property (readonly,strong,nonatomic) UITextView *label;
 
-@property (copy,nonatomic) NSString *text;
-@property (copy,nonatomic) NSAttributedString *attributedText;
+@property (weak,nonatomic) UIView *sourceView;
 
 @property (assign,nonatomic) KSOTooltipArrowDirection arrowDirection;
 
-@property (weak,nonatomic) UIView *sourceView;
-@property (assign,nonatomic) CGRect sourceRect;
-
-@property (strong,nonatomic,nullable) UIView *accessoryView;
+@property (strong,nonatomic,nullable) __kindof UIView *accessoryView;
 
 @end
 
