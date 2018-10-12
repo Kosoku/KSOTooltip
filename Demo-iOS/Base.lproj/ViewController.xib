@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,28 +20,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gx-ty-2cl">
-                    <rect key="frame" x="107" y="72" width="162" height="30"/>
+                    <rect key="frame" x="106.5" y="72" width="162" height="30"/>
                     <state key="normal" title="Manual Accessory View"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="dae-rN-RFf"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkR-Bd-BAj">
-                    <rect key="frame" x="16" y="318" width="186" height="30"/>
+                    <rect key="frame" x="16" y="318.5" width="186" height="30"/>
                     <state key="normal" title="Autolayout Accessory View"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="4QC-m4-Egv"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riR-ts-vMU">
-                    <rect key="frame" x="321" y="318" width="38" height="30"/>
+                    <rect key="frame" x="321" y="318.5" width="38" height="30"/>
                     <state key="normal" title="Show"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="L21-1Q-4vZ"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpe-eh-vvR">
-                    <rect key="frame" x="169" y="617" width="38" height="30"/>
+                    <rect key="frame" x="168.5" y="577" width="38" height="30"/>
                     <state key="normal" title="Show"/>
                     <connections>
                         <action selector="_showTooltipAction:" destination="-1" eventType="touchUpInside" id="02Y-5w-ay6"/>
@@ -53,7 +53,7 @@
                 <constraint firstItem="4Gx-ty-2cl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="C2a-iK-tgY"/>
                 <constraint firstItem="4Gx-ty-2cl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SOD-re-Qhw"/>
                 <constraint firstItem="lpe-eh-vvR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SgW-In-ACF"/>
-                <constraint firstAttribute="bottom" secondItem="lpe-eh-vvR" secondAttribute="bottom" constant="20" id="az2-o2-qcg"/>
+                <constraint firstAttribute="bottom" secondItem="lpe-eh-vvR" secondAttribute="bottom" constant="60" id="az2-o2-qcg"/>
                 <constraint firstItem="riR-ts-vMU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="d98-Ne-zTo"/>
                 <constraint firstAttribute="trailing" secondItem="riR-ts-vMU" secondAttribute="trailing" constant="16" id="hqk-JD-8OJ"/>
                 <constraint firstItem="DkR-Bd-BAj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ilR-71-oAM"/>

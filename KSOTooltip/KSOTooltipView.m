@@ -99,15 +99,23 @@
         switch (self.contentView.arrowDirection) {
             case KSOTooltipArrowDirectionRight:
                 [temp addObject:[self.contentView.rightAnchor constraintEqualToAnchor:self.sourceView.leftAnchor constant:0.0]];
+                
+                temp.lastObject.priority = UILayoutPriorityDefaultLow;
                 break;
             case KSOTooltipArrowDirectionUp:
                 [temp addObject:[self.contentView.topAnchor constraintEqualToAnchor:self.sourceView.bottomAnchor constant:0.0]];
+                
+                temp.lastObject.priority = UILayoutPriorityDefaultLow;
                 break;
             case KSOTooltipArrowDirectionDown:
                 [temp addObject:[self.contentView.bottomAnchor constraintEqualToAnchor:self.sourceView.topAnchor constant:0.0]];
+                
+                temp.lastObject.priority = UILayoutPriorityDefaultLow;
                 break;
             case KSOTooltipArrowDirectionLeft:
                 [temp addObject:[self.contentView.leftAnchor constraintEqualToAnchor:self.sourceView.rightAnchor constant:0.0]];
+                
+                temp.lastObject.priority = UILayoutPriorityDefaultLow;
                 break;
             default:
                 break;
@@ -143,15 +151,38 @@
     
     if (self.sourceView == nil) {
         [self dismissAnimated:NO completion:nil];
-    }
-    
-    if (self.contentView.arrowDirection != KSOTooltipArrowDirectionUnknown) {
         return;
     }
     
-    CGRect sourceRect = [self.window convertRect:self.sourceView.bounds fromView:self.sourceView];
+    CGRect sourceRect = [self convertRect:[self.window convertRect:[self.sourceView convertRect:self.sourceView.bounds toView:nil] fromWindow:nil] fromView:nil];
+    
+    if (self.contentView.arrowDirection != KSOTooltipArrowDirectionUnknown) {
+        CGRect frame = self.contentView.frame;
+        
+        switch (self.contentView.arrowDirection) {
+            case KSOTooltipArrowDirectionRight:
+                frame.origin.x = CGRectGetMinX(sourceRect) - CGRectGetWidth(frame);
+                break;
+            case KSOTooltipArrowDirectionLeft:
+                frame.origin.x = CGRectGetMaxX(sourceRect);
+                break;
+            case KSOTooltipArrowDirectionDown:
+                frame.origin.y = CGRectGetMinY(sourceRect) - CGRectGetHeight(frame);
+                break;
+            case KSOTooltipArrowDirectionUp:
+                frame.origin.y = CGRectGetMaxY(sourceRect);
+                break;
+            default:
+                break;
+        }
+        
+        self.contentView.frame = frame;
+        
+        return;
+    }
+    
     CGPoint center = CGPointMake(CGRectGetMidX(sourceRect), CGRectGetMidY(sourceRect));
-    CGRect bounds = self.window.bounds;
+    CGRect bounds = self.bounds;
     CGRect topLeft = CGRectMake(0, 0, CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     CGRect topRight = CGRectMake(CGRectGetMidX(bounds), 0, CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     CGRect bottomLeft = CGRectMake(0, CGRectGetMidY(bounds), CGRectGetMidX(bounds), CGRectGetMidY(bounds));

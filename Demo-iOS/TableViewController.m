@@ -21,6 +21,7 @@
 
 @interface TextTableViewCell : UITableViewCell
 @property (strong,nonatomic) UITextField *textField;
+@property (strong,nonatomic) UIButton *button;
 @end
 
 @implementation TextTableViewCell
@@ -39,11 +40,21 @@
         kstStrongify(self);
         KSOTooltipView *view = [KSOTooltipView tooltipViewWithText:@"The best tooltip in all the land" sourceBarButtonItem:nil sourceView:self.textField];
         
-        view.allowedArrowDirections = KSOTooltipArrowDirectionDown;
-        
         [view presentAnimated:YES completion:nil];
     } forControlEvents:UIControlEventEditingDidBegin];
     [self.contentView addSubview:self.textField];
+    
+    self.button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.button setTitle:@"Tooltip" forState:UIControlStateNormal];
+    [self.button KDI_addBlock:^(__kindof UIControl * _Nonnull control, UIControlEvents controlEvents) {
+        kstStrongify(self);
+        KSOTooltipView *view = [KSOTooltipView tooltipViewWithText:@"The best tooltip in all the land" sourceBarButtonItem:nil sourceView:self.button];
+        
+        [view presentAnimated:YES completion:nil];
+    } forControlEvents:UIControlEventTouchUpInside];
+    [self.button sizeToFit];
+    self.textField.rightView = self.button;
+    self.textField.rightViewMode = UITextFieldViewModeAlways;
     
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[view]-|" options:0 metrics:nil views:@{@"view": self.textField}]];
     [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[view]-|" options:0 metrics:nil views:@{@"view": self.textField}]];
@@ -71,7 +82,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 25;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TextTableViewCell *retval = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(TextTableViewCell.class) forIndexPath:indexPath];
