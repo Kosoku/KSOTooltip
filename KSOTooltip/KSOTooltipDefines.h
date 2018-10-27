@@ -33,6 +33,36 @@ typedef NS_ENUM(NSInteger, KSOTooltipArrowStyle) {
 };
 
 /**
+ Options mask for dismiss options.
+ */
+typedef NS_OPTIONS(NSUInteger, KSOTooltipDismissOptions) {
+    /**
+     No dismiss options. The client must dismiss the tooltip programatically.
+     */
+    KSOTooltipDismissOptionsNone = 0,
+    /**
+     A tap outside of the tooltip content view (the text and possible accessory view) will dismiss the tooltip.
+     */
+    KSOTooltipDismissOptionsTapOnBackground = 1 << 0,
+    /**
+     A tap inside the tooltip content view will dismiss the tooltip.
+     */
+    KSOTooltipDismissOptionsTapOnForeground = 1 << 1,
+    /**
+     The tooltip will dismiss itself after a delay. See dismissDelay on KSOTooltipView.
+     */
+    KSOTooltipDismissOptionsAutomaticallyAfterDelay = 1 << 2,
+    /**
+     The default options. Tap on background or foreground will dismiss the tooltip.
+     */
+    KSOTooltipDismissOptionsDefault = KSOTooltipDismissOptionsTapOnBackground|KSOTooltipDismissOptionsTapOnForeground,
+    /**
+     Convenience to specify all options.
+     */
+    KSOTooltipDismissOptionsAll = KSOTooltipDismissOptionsTapOnBackground|KSOTooltipDismissOptionsTapOnForeground|KSOTooltipDismissOptionsAutomaticallyAfterDelay
+};
+
+/**
  Options mask for possible arrow directions.
  */
 typedef NS_OPTIONS(NSUInteger, KSOTooltipArrowDirection) {

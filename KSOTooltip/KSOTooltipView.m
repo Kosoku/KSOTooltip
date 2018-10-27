@@ -22,10 +22,13 @@
 #import <Ditko/Ditko.h>
 #import <Stanley/Stanley.h>
 
-@interface KSOTooltipView ()
+@interface KSOTooltipView () <KSOTooltipContentViewDelegate>
 @property (strong,nonatomic) UIButton *dismissButton;
 @property (strong,nonatomic) KSOTooltipContentView *contentView;
 
+@property (strong,nonatomic) KSTTimer *dismissTimer;
+
+- (void)_dismissIfPossible;
 @end
 
 @implementation KSOTooltipView
@@ -40,23 +43,17 @@
     
     _theme = KSOTooltipTheme.defaultTheme;
     _allowedArrowDirections = KSOTooltipArrowDirectionAll;
+    _dismissOptions = KSOTooltipDismissOptionsDefault;
+    _dismissDelay = 2.5;
     
     _dismissButton = [UIButton buttonWithType:UIButtonTypeSystem];
     _dismissButton.translatesAutoresizingMaskIntoConstraints = NO;
     _dismissButton.backgroundColor = _theme.backgroundColor;
-    _dismissButton.accessibilityLabel = NSLocalizedStringWithDefaultValue(@"button.close.accessibility-label", nil, NSBundle.KSO_tooltipFrameworkBundle, @"Close", @"button close accessibility label");
-    _dismissButton.accessibilityHint = NSLocalizedStringWithDefaultValue(@"button.close.accessibility-hint", nil, NSBundle.KSO_tooltipFrameworkBundle, @"Double tap to close the tooltip", @"button close accessibility hint");
+    _dismissButton.accessibilityLabel = KSOTooltipLocalizedStringAccessibilityLabelDismiss();
+    _dismissButton.accessibilityHint = KSOTooltipLocalizedStringAccessibilityHintDismiss();
     [_dismissButton KDI_addBlock:^(__kindof UIControl * _Nonnull control, UIControlEvents controlEvents) {
         kstStrongify(self);
-        BOOL shouldDismiss = YES;
-        
-        if ([self.delegate respondsToSelector:@selector(tooltipViewShouldDismiss:)]) {
-            shouldDismiss = [self.delegate tooltipViewShouldDismiss:self];
-        }
-        
-        if (shouldDismiss) {
-            [self dismissAnimated:YES completion:nil];
-        }
+        [self _dismissIfPossible];
     } forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_dismissButton];
     
@@ -64,7 +61,23 @@
     _contentView.translatesAutoresizingMaskIntoConstraints = NO;
     _contentView.backgroundColor = UIColor.clearColor;
     _contentView.theme = _theme;
+    _contentView.delegate = self;
     [self addSubview:_contentView];
+    
+    [self KAG_addObserverForKeyPaths:@[@kstKeypath(self,dismissOptions)] options:NSKeyValueObservingOptionInitial block:^(NSString * _Nonnull keyPath, id  _Nullable value, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
+        kstStrongify(self);
+        if ([keyPath isEqualToString:@kstKeypath(self,dismissOptions)]) {
+            self.contentView.dismissOptions = self.dismissOptions;
+            
+            BOOL canDismissOnBackgroundTap = (self.dismissOptions & KSOTooltipDismissOptionsTapOnBackground) != 0;
+            
+            self.dismissButton.enabled = canDismissOnBackgroundTap;
+            
+            if ((self.dismissOptions & KSOTooltipDismissOptionsAutomaticallyAfterDelay) == 0) {
+                self.dismissTimer = nil;
+            }
+        }
+    }];
     
     return self;
 }
@@ -237,6 +250,24 @@
     [self setNeedsUpdateConstraints];
 }
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    BOOL retval = [super pointInside:point withEvent:event];
+    
+    if (retval &&
+        (self.dismissOptions & KSOTooltipDismissOptionsTapOnBackground) == 0) {
+        
+        if (![self.contentView pointInside:[self.contentView convertPoint:point fromView:self] withEvent:event]) {
+            retval = NO;
+        }
+    }
+    
+    return retval;
+}
+
+- (void)tooltipContentViewDidTapToDismiss:(KSOTooltipContentView *)view {
+    [self _dismissIfPossible];
+}
+
 + (instancetype)tooltipViewWithText:(NSString *)text sourceBarButtonItem:(UIBarButtonItem *)sourceBarButtonItem sourceView:(UIView *)sourceView {
     KSOTooltipView *retval = [[self alloc] initWithFrame:CGRectZero];
     
@@ -260,6 +291,8 @@
     NSAssert(self.sourceView != nil, @"attempting to present %@ with nil sourceView!", self);
     NSAssert(!KSTIsEmptyObject(self.text) || !KSTIsEmptyObject(self.attributedText), @"attempting to present %@ without text or attributedText set!", self);
     
+    kstWeakify(self);
+    
     if (self.window == nil) {
         [self.sourceView.window addSubview:self];
     }
@@ -280,7 +313,17 @@
                 } completion:nil];
             }];
         } completion:^(BOOL finished) {
+            kstStrongify(self);
             if (finished) {
+                if ((self.dismissOptions & KSOTooltipDismissOptionsAutomaticallyAfterDelay) != 0 &&
+                    self.dismissDelay > 0.0) {
+                    
+                    self.dismissTimer = [KSTTimer scheduledTimerWithTimeInterval:self.dismissDelay block:^(KSTTimer * _Nonnull timer) {
+                        kstStrongify(self);
+                        [self dismissAnimated:YES completion:nil];
+                    } userInfo:nil repeats:NO queue:nil];
+                }
+                
                 if (completion != nil) {
                     completion();
                 }
@@ -378,6 +421,24 @@
     if ([accessoryView respondsToSelector:@selector(setTooltipView:)]) {
         accessoryView.tooltipView = self;
     }
+}
+
+- (void)_dismissIfPossible; {
+    BOOL shouldDismiss = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(tooltipViewShouldDismiss:)]) {
+        shouldDismiss = [self.delegate tooltipViewShouldDismiss:self];
+    }
+    
+    if (shouldDismiss) {
+        [self dismissAnimated:YES completion:nil];
+    }
+}
+
+- (void)setDismissTimer:(KSTTimer *)dismissTimer {
+    [_dismissTimer invalidate];
+    
+    _dismissTimer = dismissTimer;
 }
 
 @end

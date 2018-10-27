@@ -15,15 +15,18 @@
 
 #import "KSOTooltipContentView.h"
 #import "KSOTooltipTheme.h"
+#import "NSBundle+KSOTooltipPrivateExtensions.h"
 
 #import <Agamotto/Agamotto.h>
 #import <Stanley/Stanley.h>
 #import <Ditko/Ditko.h>
 
-@interface KSOTooltipContentView ()
+@interface KSOTooltipContentView () <UIGestureRecognizerDelegate, UITextViewDelegate>
 @property (strong,nonatomic) UIStackView *stackView;
 @property (readwrite,strong,nonatomic) UITextView *label;
 @property (readonly,nonatomic) UIColor *fillColor;
+
+@property (strong,nonatomic) UITapGestureRecognizer *dismissGestureRecognizer;
 
 - (CGRect)_backgroundRectForBounds:(CGRect)bounds;
 - (CGRect)_arrowRectForBounds:(CGRect)bounds;
@@ -34,6 +37,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (!(self = [super initWithFrame:frame]))
         return nil;
+    
+    kstWeakify(self);
     
     self.contentMode = UIViewContentModeRedraw;
     
@@ -48,14 +53,29 @@
     [_label setBackgroundColor:UIColor.clearColor];
     [_label setScrollEnabled:NO];
     [_label setEditable:NO];
-    [_label setSelectable:YES];
     [_label setContentInset:UIEdgeInsetsZero];
     [_label setTextContainerInset:UIEdgeInsetsZero];
     [_label.textContainer setLineFragmentPadding:0.0];
     [_label setDataDetectorTypes:UIDataDetectorTypeLink];
     [_label setLinkTextAttributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}];
+    _label.delegate = self;
     [_label setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     [_stackView addArrangedSubview:_label];
+    
+    _dismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL];
+    _dismissGestureRecognizer.delegate = self;
+    [_dismissGestureRecognizer KDI_addBlock:^(__kindof UIGestureRecognizer * _Nonnull gestureRecognizer) {
+        kstStrongify(self);
+        [self.delegate tooltipContentViewDidTapToDismiss:self];
+    }];
+    [_label addGestureRecognizer:_dismissGestureRecognizer];
+    
+    [self KAG_addObserverForKeyPaths:@[@kstKeypath(self,dismissOptions)] options:0 block:^(NSString * _Nonnull keyPath, id  _Nullable value, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change) {
+        kstStrongify(self);
+        if ([keyPath isEqualToString:@kstKeypath(self,dismissOptions)]) {
+            self.dismissGestureRecognizer.enabled = (self.dismissOptions & KSOTooltipDismissOptionsTapOnForeground) != 0;
+        }
+    }];
     
     return self;
 }
@@ -165,6 +185,20 @@
         
         [path fill];
     }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return [otherGestureRecognizer isKindOfClass:UILongPressGestureRecognizer.class];
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
+    return interaction != UITextItemInteractionPresentActions;
+}
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction {
+    return interaction != UITextItemInteractionPresentActions;
 }
 
 - (void)setTheme:(KSOTooltipTheme *)theme {

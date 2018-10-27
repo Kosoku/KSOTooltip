@@ -51,6 +51,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign,nonatomic) KSOTooltipArrowDirection allowedArrowDirections;
 
 /**
+ Set and get the dismiss options for the receiver.
+ 
+ The default is KSOTooltipDismissOptionsDefault.
+ 
+ @see KSOTooltipDismissOptions
+ */
+@property (assign,nonatomic) KSOTooltipDismissOptions dismissOptions;
+/**
+ Set and get the dismiss delay for the receiver. This is only relevant if dismissOptions contains KSOTooltipDismissOptionsAutomaticallyAfterDelay.
+ 
+ The default is 2.5.
+ */
+@property (assign,nonatomic) NSTimeInterval dismissDelay;
+
+/**
  Set and get the tooltip text.
  
  You must set this or attributedText before presenting the receiver.

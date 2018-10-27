@@ -20,3 +20,6 @@
 + (NSBundle *)KSO_tooltipFrameworkBundle;
 
 @end
+
+#define KSOTooltipLocalizedStringAccessibilityLabelDismiss() NSLocalizedStringWithDefaultValue(@"button.close.accessibility-label", nil, NSBundle.KSO_tooltipFrameworkBundle, @"Close", @"button close accessibility label")
+#define KSOTooltipLocalizedStringAccessibilityHintDismiss() NSLocalizedStringWithDefaultValue(@"button.close.accessibility-hint", nil, NSBundle.KSO_tooltipFrameworkBundle, @"Double tap to close the tooltip", @"button close accessibility hint")

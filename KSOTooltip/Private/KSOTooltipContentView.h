@@ -19,17 +19,26 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class KSOTooltipTheme;
+@protocol KSOTooltipContentViewDelegate;
 
 @interface KSOTooltipContentView : UIView
 
+@property (weak,nonatomic,nullable) id<KSOTooltipContentViewDelegate> delegate;
+
 @property (strong,nonatomic) KSOTooltipTheme *theme;
 @property (assign,nonatomic) KSOTooltipArrowDirection arrowDirection;
+@property (assign,nonatomic) KSOTooltipDismissOptions dismissOptions;
 
 @property (weak,nonatomic) UIView *sourceView;
 @property (strong,nonatomic,nullable) __kindof UIView<KSOTooltipViewAccessory> *accessoryView;
 
 @property (readonly,strong,nonatomic) UITextView *label;
 
+@end
+
+@protocol KSOTooltipContentViewDelegate <NSObject>
+@required
+- (void)tooltipContentViewDidTapToDismiss:(KSOTooltipContentView *)view;
 @end
 
 NS_ASSUME_NONNULL_END
