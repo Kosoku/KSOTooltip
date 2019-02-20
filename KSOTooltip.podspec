@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KSOTooltip'
-  s.version          = '2.1.0'
+  s.version          = '2.1.1'
   s.summary          = 'KSOTooltip is a iOS framework for displaying informational tooltips.'
 
 # This description is used to generate tags and improve search results.
@@ -23,7 +23,7 @@ KSOTooltip is an `iOS` framework for displaying informational tooltips modally. 
 
   s.homepage         = 'https://github.com/Kosoku/KSOTooltip'
   s.screenshots      = ['https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-1.png','https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-2.png','https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-3.png','https://github.com/Kosoku/KSOTooltip/raw/master/screenshots/iOS-4.png']
-  s.license          = { :type => 'BSD', :file => 'license.txt' }
+  s.license          = { :type => 'Apache 2.0', :file => 'license.txt' }
   s.author           = { 'William Towe' => 'willbur1984@gmail.com' }
   s.source           = { :git => 'https://github.com/Kosoku/KSOTooltip.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
