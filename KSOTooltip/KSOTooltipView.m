@@ -100,7 +100,7 @@
     
     if (self.sourceView != nil) {
         [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=left-[view]->=right-|" options:0 metrics:@{@"left": @(self.theme.minimumEdgeInsets.left), @"right": @(self.theme.minimumEdgeInsets.right)} views:@{@"view": self.contentView}]];
-        [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=top-[view]->=bottom-|" options:0 metrics:@{@"top": @(self.theme.minimumEdgeInsets.top + CGRectGetHeight(UIApplication.sharedApplication.statusBarFrame)), @"bottom": @(self.theme.minimumEdgeInsets.bottom)} views:@{@"view": self.contentView}]];
+        [temp addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=top-[view]->=bottom-|" options:0 metrics:@{@"top": @(self.theme.minimumEdgeInsets.top + CGRectGetHeight(self.window.windowScene.statusBarManager.statusBarFrame)), @"bottom": @(self.theme.minimumEdgeInsets.bottom)} views:@{@"view": self.contentView}]];
         
         UIView *superview = self.sourceView.superview;
         UIScrollView *scrollView = nil;
