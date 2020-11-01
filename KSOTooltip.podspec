@@ -42,4 +42,5 @@ KSOTooltip is an `iOS` framework for displaying informational tooltips modally. 
   
   s.dependency 'Agamotto'
   s.dependency 'Ditko'
+  s.dependency 'Stanley'
 end
