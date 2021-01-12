@@ -64,6 +64,7 @@
     [_label setLinkTextAttributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle|NSUnderlinePatternSolid)}];
     _label.delegate = self;
     [_label setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    _label.hidden = YES;
     [_stackView addArrangedSubview:_label];
     
     _dismissGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:nil action:NULL];
@@ -242,6 +243,24 @@
     }
     
     [self setNeedsUpdateConstraints];
+}
+
+@dynamic text;
+- (NSString *)text {
+    return self.label.text;
+}
+- (void)setText:(NSString *)text {
+    self.label.text = text;
+    self.label.hidden = KSTIsEmptyObject(text);
+}
+
+@dynamic attributedText;
+- (NSAttributedString *)attributedText {
+    return self.label.attributedText;
+}
+- (void)setAttributedText:(NSAttributedString *)attributedText {
+    self.label.attributedText = attributedText;
+    self.label.hidden = KSTIsEmptyObject(attributedText.string);
 }
 
 - (CGRect)_backgroundRectForBounds:(CGRect)bounds; {

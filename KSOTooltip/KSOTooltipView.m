@@ -293,7 +293,7 @@
 
 - (void)presentAnimated:(BOOL)animated completion:(KSTVoidBlock)completion; {
     NSAssert(self.sourceView != nil, @"attempting to present %@ with nil sourceView!", self);
-    NSAssert(!KSTIsEmptyObject(self.text) || !KSTIsEmptyObject(self.attributedText), @"attempting to present %@ without text or attributedText set!", self);
+    NSAssert(!KSTIsEmptyObject(self.text) || !KSTIsEmptyObject(self.attributedText) || self.accessoryView != nil, @"attempting to present %@ without text, attributedText, or accessoryView set!", self);
     
     kstWeakify(self);
     
@@ -378,17 +378,17 @@
 
 @dynamic text;
 - (NSString *)text {
-    return self.attributedText.string;
+    return self.contentView.text;
 }
 - (void)setText:(NSString *)text {
-    [self.contentView.label setText:text];
+    self.contentView.text = text;
 }
 @dynamic attributedText;
 - (NSAttributedString *)attributedText {
-    return self.contentView.label.attributedText;
+    return self.contentView.attributedText;
 }
 - (void)setAttributedText:(NSAttributedString *)attributedText {
-    [self.contentView.label setAttributedText:attributedText];
+    self.contentView.attributedText = attributedText;
 }
 
 - (void)setSourceBarButtonItem:(UIBarButtonItem *)sourceBarButtonItem {

@@ -36,7 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak,nonatomic) UIView *sourceView;
 @property (strong,nonatomic,nullable) __kindof UIView<KSOTooltipViewAccessory> *accessoryView;
 
-@property (readonly,strong,nonatomic) UITextView *label;
+@property (copy,nonatomic,nullable) NSString *text;
+@property (copy,nonatomic,nullable) NSAttributedString *attributedText;
 
 @end
 
